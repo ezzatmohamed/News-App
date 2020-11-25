@@ -13,7 +13,7 @@ const Signup = ()=> {
     return (
         <div className="form-container">
             <form onSubmit={onSubmit}>
-                <p id="form-title">Signup</p>
+                <p id="form-title">Signup Form</p>
                 <div className="form-input">
                     <input  type = "email" 
                             name="email" 
@@ -33,7 +33,7 @@ const Signup = ()=> {
                     />
                 </div>
                 <div className="form-input">
-                    <p>Birth of date</p>
+                    <p id ="BOD">Birth of date</p>
                     <input  type = "date" 
                             name="date" 
                             value={credentials.date}
@@ -42,9 +42,10 @@ const Signup = ()=> {
                     />
                 </div>
 
-                <div className="form-button">
-                    <button type="submit" >Signup</button>
+                <div id="link">
+                    <a href="/login">OR Login</a>
                 </div>
+                <button className="form-button" type="submit" >Signup</button>
             </form>
         </div>
     )

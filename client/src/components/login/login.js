@@ -11,8 +11,8 @@ const Login = ()=> {
     }
     return (
         <div className="form-container">
+            <p id="form-title">Login form</p>
             <form onSubmit={onSubmit}>
-                <p id="form-title">Login</p>
                 <div className="form-input">
                     <input  type = "email" 
                             name="email" 
@@ -31,9 +31,11 @@ const Login = ()=> {
                             required
                     />
                 </div>
-                <div className="form-button">
-                    <button type="submit" >Login</button>
+                <div id="link">
+                <a href="/signup">OR Register</a>
                 </div>
+                    <button className="form-button" type="submit" >Login</button>
+              
             </form>
         </div>
     )
