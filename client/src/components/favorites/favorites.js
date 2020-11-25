@@ -33,10 +33,18 @@ const Favorites = ()=> {
                 
             </div>
             <div className="headlines-page">
-                 <button id="headline-prev">Prev</button> 
+                {page == 1? '' : <button id="headline-prev">Prev</button>} 
                 <button  id="headline-next">
                     Next
                 </button>
+            </div>
+            <div className="success-msg" display={false}>
+                <span class="closebtn" >&times;</span>
+                Headline removed Successfully from favorites
+            </div>
+            <div className="error-msg"  >
+                <span class="closebtn">&times;</span>
+                An error occured
             </div>
         </div>
     )

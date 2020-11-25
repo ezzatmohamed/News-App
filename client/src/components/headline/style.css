@@ -25,6 +25,17 @@
     height:30%;
     overflow: auto;
 }
+#headline-author{
+
+  color:gray;
+  font-size: 13px;
+  position: absolute;
+  bottom: 60px;
+  right:5px;
+  max-width:50%;
+  max-height:10%;
+  overflow: auto;
+}
 .headline-container h2{
     text-align: center;
     padding: 100px 20px;

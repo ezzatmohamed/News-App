@@ -37,7 +37,7 @@ export const fetchFavorites = () => {
         api.get('/todos')
             .then(res=>{
 
-                dispatch(fetchFavoritesSucess(res.data))
+                dispatch(fetchFavoritesSucess(res.data.slice(0,7)))
             })
             .catch(err=>{
                 dispatch(fetchFavoritesFailure(err.message))

@@ -10,7 +10,7 @@ const Headlines = ()=> {
     
 
     const [state,setState] = useState({loading:false,headlines:[],error:""})
-    const [page,setPage] = useState(2)
+    const [page,setPage] = useState(1)
 
 
 
@@ -43,10 +43,19 @@ const Headlines = ()=> {
                 
             </div>
             <div className="headlines-page">
-                 <button id="headline-prev">Prev</button> 
+                 {page == 1 ? '' : <button id="headline-prev">Prev</button>} 
                 <button  id="headline-next">
                     Next
                 </button>
+            </div>
+
+            <div className="success-msg">
+                <span class="closebtn" >&times;</span>
+                Headline added Successfully to favorites
+            </div>
+            <div className="error-msg">
+                <span class="closebtn">&times;</span>
+                An error occured
             </div>
         </div>
     )
