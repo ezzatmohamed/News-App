@@ -4,5 +4,6 @@
 }
 body{
 
-  background: rgb(95, 114, 134);
+  background-image: url('background.jpg');
+  background-size: cover;
 }

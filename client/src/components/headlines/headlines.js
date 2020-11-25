@@ -10,7 +10,7 @@ const Headlines = ()=> {
     
 
     const [state,setState] = useState({loading:false,headlines:[],error:""})
-    const [page,setPage] = useState(1)
+    const [page,setPage] = useState(2)
 
 
 
@@ -18,7 +18,7 @@ const Headlines = ()=> {
         setState({...state,loading:true})
         api.get('/todos')
         .then(res=>{
-            setState({loading:false,headlines:res.data,error:""})
+            setState({loading:false,headlines:res.data.slice(0,6),error:""})
         })
         .catch(err=>{
             setState({loading:false,headlines:[],error:err.message})
@@ -26,7 +26,7 @@ const Headlines = ()=> {
     },[])
     
     return (
-        <div>
+        <div className="contanier">
             <div className="headlines-container">
 
                 {state.loading ? <p>Loading...</p> : ''}
@@ -43,12 +43,10 @@ const Headlines = ()=> {
                 
             </div>
             <div className="headlines-page">
-                <a href = {`/${page-1}`} id="headline-prev">
-                    Prev
-                </a>
-                <a href = {`/${page+1}`}   id="headline-next">
+                 <button id="headline-prev">Prev</button> 
+                <button  id="headline-next">
                     Next
-                </a>
+                </button>
             </div>
         </div>
     )
