@@ -33,12 +33,10 @@ const Favorites = ()=> {
                 
             </div>
             <div className="headlines-page">
-                <a href = {`/${page-1}`} id="headline-prev">
-                    Prev
-                </a>
-                <a href = {`/${page+1}`}   id="headline-next">
+                 <button id="headline-prev">Prev</button> 
+                <button  id="headline-next">
                     Next
-                </a>
+                </button>
             </div>
         </div>
     )
