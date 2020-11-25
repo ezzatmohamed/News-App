@@ -13,6 +13,9 @@ const Headline = (props)=> {
             <p id="headline-date">date</p>
             <p id="headline-content">content</p>
             <a id="headline-link" href="#">Link</a>
+            <div id="add-favorite">
+                <button>Add to favorite</button>
+            </div>
         </div>
     )
 }
