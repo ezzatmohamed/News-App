@@ -1,6 +1,6 @@
-import {FETCH_HEADLINES_REQUEST,
-    FETCH_HEADLINES_SUCCESS,
-    FETCH_HEADLINES_FAILURE} from './headlineTypes'
+import {FETCH_FAVORITE_REQUEST,
+        FETCH_FAVORITE_SUCCESS,
+        FETCH_FAVORITE_FAILURE} from './favoriteTypes'
 
 
 const initialState = {
@@ -13,23 +13,30 @@ const initialState = {
 const reducer = (state=initialState,action) => {
 
     switch(action.type){
-        case FETCH_HEADLINES_REQUEST:
+        case FETCH_FAVORITE_REQUEST:
             return {
                 ...state,
                 loading:true
             }
-        case FETCH_HEADLINES_SUCCESS:
+        case FETCH_FAVORITE_SUCCESS:
             return{
                 loading:false,
-                headlines: action.payload,
+                favorites: action.payload,
                 error:''
             }
 
-        case FETCH_HEADLINES_FAILURE:
+        case FETCH_FAVORITE_FAILURE:
             return{
                 loading:false,
-                headlines: [],
+                favorites: [],
                 error:action.payload
+            }
+        case DELETE_FROM_FAVORITE:
+            
+            return{
+                loading:false,
+                favorites:newFavorites,
+                error:""
             }
         default :
             return state

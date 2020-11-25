@@ -1,1 +1,1 @@
-export * from './headline/headlineActions'
+export * from './favorite/favoriteActions'

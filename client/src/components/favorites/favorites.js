@@ -1,40 +1,30 @@
 import React ,{useState,useEffect} from 'react'
 import './style.css'
-import api from './../../api'
 import {connect} from 'react-redux'
-import {fetchHeadlines} from './../../redux'
+import {fetchFavorites} from './../../redux'
 import {useSelector, useDispatch} from 'react-redux'
 import Headline from './../headline/headline'
 
-const Headlines = ()=> {
+const Favorites = ()=> {
     
-
-    const [state,setState] = useState({loading:false,headlines:[],error:""})
+    // const [ credentials, setCredentials]  = useState({email:"",name:"",date:""})
+    const state = useSelector(state=> state.favoritesReducer)
+    const dispatch = useDispatch()
     const [page,setPage] = useState(1)
 
-
-
     useEffect(()=>{
-        setState({...state,loading:true})
-        api.get('/todos')
-        .then(res=>{
-            setState({loading:false,headlines:res.data,error:""})
-        })
-        .catch(err=>{
-            setState({loading:false,headlines:[],error:err.message})
-        })
+        dispatch(fetchFavorites())
     },[])
-    
     return (
         <div>
             <div className="headlines-container">
 
                 {state.loading ? <p>Loading...</p> : ''}
                 {
-                    state.headlines ?( state.headlines.length ? 
+                    state.favorites ?( state.favorites.length ? 
                         
-                        state.headlines.map(headline=>{
-                        return  <Headline  info={headline} FavoriteDelete={false} ></Headline>
+                        state.favorites.map(favorite=>{
+                        return  <Headline  info={favorite} FavoriteDelete={true}></Headline>
                         })
                         : '') : ''
                 }
@@ -54,4 +44,4 @@ const Headlines = ()=> {
     )
 }
 
-export default Headlines
+export default Favorites

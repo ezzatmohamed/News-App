@@ -1,10 +1,10 @@
 
 import { combineReducers } from 'redux'
 // import cakeReducer from './cake/cakeReducer'
-import headlinesReducer from './headline/headlinesReducers'
+import favoritesReducer from './favorite/favoriteReducers'
 
 const rootReducer = combineReducers({
-    headlinesReducer
+    favoritesReducer
 })
 
 export default rootReducer
