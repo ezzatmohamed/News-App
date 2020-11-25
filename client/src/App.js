@@ -14,6 +14,15 @@ function App() {
             <Route path="/signup" exact >
               <Signup></Signup>
             </Route>
+
+            <Route path="/" exact >
+              <Signup></Signup>
+            </Route>
+
+            <Route path="/favorites" exact >
+              <Signup></Signup>
+            </Route>
+
          </Switch>
       </div>
     </Router>

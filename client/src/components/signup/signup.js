@@ -24,7 +24,7 @@ const Signup = ()=> {
                     />
                 </div>
                 <div className="form-input">
-                    <input  type = "text" 
+                    <input  type = "text"   
                             name="name" 
                             value={credentials.name}
                             placeholder="Name" 
