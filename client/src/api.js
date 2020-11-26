@@ -1,6 +1,6 @@
 const axios = require( 'axios')
 
-const URL = 'https://jsonplaceholder.typicode.com'
+const URL = 'http://localhost:8000'
 const HEADERS = {}
 
 if(localStorage.getItem('token')){
@@ -16,7 +16,7 @@ api.interceptors.response.use(function (response) {
     //success
     return response;
   }, function (error) {
-    if(error.resonse.status == 401){
+    if(error.response.status == 401){
         localStorage.removeItem('token')
         localStorage.clear()
         window.location= "/"

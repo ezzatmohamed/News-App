@@ -66,10 +66,10 @@ class UserController extends Controller
 
         $token = auth()->attempt($request->all());
         if(!$token)
-            return response(['message'=>"invalid credentials"],401);
+            return response(['message'=>"invalid credentials"],403);
 
         // $token = Auth::user()->createToken('token')->accessToken;
-        return response(['token'=>$token ],200);
+        return response(['token'=>$token,'message'=>'Successfully logged in!' ],200);
 
     }
 }
