@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -51,5 +52,24 @@ class UserController extends Controller
         {
             return response(['message'=>'invalid inputs'],422);
         }
+    }
+    public function login(Request $request)
+    {
+        $rules = [
+            'password' => 'required|string',
+            'email' => 'required|email'
+        ];
+        $credentials = Validator::make($request->all(),$rules);
+        if($credentials->fails()){
+            return response(['message'=>'invalid inputs'],422);
+        }
+
+        $token = auth()->attempt($request->all());
+        if(!$token)
+            return response(['message'=>"invalid credentials"],401);
+
+        // $token = Auth::user()->createToken('token')->accessToken;
+        return response(['token'=>$token ],200);
+
     }
 }
