@@ -23,12 +23,11 @@ const Headline = (props)=> {
         <div className="headline-container">
             <div className="headline-image"></div>
                 <div className="headline-text">       
-                    <h2>{info.title}</h2>  
-                    <p id="headline-author">william shakespear shakespear shakespear shakespear shakespear</p>
-                    <p id="headline-content">n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. </p>
-                    <a id="headline-link" href="#">Go to Headline Link</a>
-
-                    <p id="headline-date">12/07/1001</p>  
+                    <h2 style={ { backgroundImage: "url("+info.urlToImage+")" } }>{info.title}</h2>  
+                    <p id="headline-author">{info.author} </p>
+                    <p id="headline-content">{info.description}</p>
+                    <a id="headline-link" href={info.url}>Go to Headline Link</a>
+                    <p id="headline-date">{info.publishedAt}</p>  
                 </div>
 
             {button}

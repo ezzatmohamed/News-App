@@ -18,11 +18,10 @@ class NewsController extends Controller
         $page = $request->query('page');
 
         $response = $this->getNewsApi($country,$page);
-        
+
         if($response === "error"){
             return response(['message'=>'Error fetching news'],500);
         }
         return $response;
     }
-
 }

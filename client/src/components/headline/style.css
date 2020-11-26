@@ -39,7 +39,7 @@
 .headline-container h2{
     text-align: center;
     padding: 100px 20px;
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNURlf-jEmALU0YbWIRcru1P8n5wl3QzoyQ&usqp=CAU");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNURlf-jEmALU0YbWIRcru1P8n5wl3QzoyQ&usqp=CAU");
     background-size: cover;
     color:white;
 }

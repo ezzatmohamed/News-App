@@ -2,10 +2,13 @@ import React ,{useState,useEffect} from 'react'
 import './style.css'
 import api from './../../api'
 import Message from './../message/message'
+import {Redirect } from 'react-router-dom'
+
 const Login = ()=> {
     
     const [ credentials, setCredentials]  = useState({email:"",password:""})
     const [ response,setResponse ] = useState({display:false,message:"",success:false})
+    const [ redirect,setRedirect ] = useState(false)
 
 
     const onSubmit = (e)=>{
@@ -16,6 +19,7 @@ const Login = ()=> {
                 setResponse({...response,display:true,message,success:true})
                 setTimeout( ()=>{ setResponse({...response,display:false,message:message,success:false})}, 2500);
                 localStorage.setItem('token',res.data.token)
+                setRedirect(true)
             })
             .catch(err=>{
                 const message = err.response.data && err.response.data.message ? err.response.data.message : "";
@@ -24,6 +28,9 @@ const Login = ()=> {
              
             })
     }
+    if(redirect)
+        return (<Redirect to='/headlines'/>)
+
     return (
         <div>
             <div className="form-container">

@@ -19,7 +19,7 @@ api.interceptors.response.use(function (response) {
     if(error.response.status == 401){
         localStorage.removeItem('token')
         localStorage.clear()
-        window.location= "/"
+        window.location= "/login"
     }
     return Promise.reject(error);
   });
