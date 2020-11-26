@@ -10,19 +10,20 @@ const Headlines = (props)=> {
     
 
     const [fetch,setFetching] = useState({loading:false,headlines:[],error:""})
-    const [page,setPage] = useState(1)
+    // const [page,setPage] = useState(1)
+    const [params,setParams] = useState({page:1,country:1,category:1})
     const [nextPage,setNextPage] = useState(2)
-    const [country,setCountry] = useState(1)
+    // const [country,setCountry] = useState(1)
 
     useEffect(()=>{
         setFetching({...fetch,headlines:[],loading:true})
-        api.get(`api/news?page=${page}&country=${country}`)
+        api.get(`api/news?page=${params.page}&country=${params.country}&category=${params.category}`)
         .then(res=>{
             let articles = res.data.data
             if(!Array.isArray(articles)){
                 articles= Object.keys(articles).map((k) => articles[k])
             }
-            const NextPage = res.data.next_page_url == null ? -1 : page+1
+            const NextPage = res.data.next_page_url == null ? -1 : params.page+1
          
             setFetching({...fetch,loading:false,headlines:articles})
             setNextPage(NextPage)
@@ -30,16 +31,22 @@ const Headlines = (props)=> {
         .catch(err=>{
             setFetching({...fetch,loading:false,headlines:[],error:err.message})
         })
-    },[page,country])
+    },[params.page,params.country,params.category])
     
     return (
         <div className="contanier">
             <div className="custom-dropdown big" >
-                    <select value={country} onChange={(e)=>{setCountry(e.target.value);setPage(1);console.log(country)}}>
-                        <option value="1">Egypt</option>
-                        <option value="2">UAE</option>
-                    </select>
-                </div>
+                <select value={params.country} onChange={(e)=>{setParams({...params,page:1,country:e.target.value})}}>
+                    <option value="1">Egypt</option>
+                    <option value="2">UAE</option>
+                </select>
+            </div>
+            <div className="custom-dropdown big" >
+                <select value={params.category} onChange={(e)=>{setParams({...params,page:1,category:e.target.value})}}>
+                    <option value="1">Business</option>
+                    <option value="2">Sports</option>
+                </select>
+            </div>
             <div className="headlines-container">
      
                 
@@ -57,8 +64,8 @@ const Headlines = (props)=> {
                 
             </div>
             <div className="headlines-page">
-                 {page == 1 ? '' : <button id="headline-prev"  onClick={()=>{setPage(page-1)}}>Prev</button>} 
-                 {nextPage == -1 ? '' : <button  id="headline-next" onClick={()=>{setPage(page+1)}}>Next</button>}
+                 {params.page == 1 ? '' : <button id="headline-prev"  onClick={()=>{setParams({...params,page:params.page-1})}}>Prev</button>} 
+                 {nextPage == -1 ? '' : <button  id="headline-next" onClick={()=>{setParams({...params,page:params.page+1})}}>Next</button>}
             </div>
 
         </div>

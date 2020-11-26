@@ -7,18 +7,18 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 trait NewsApi{
 
-    public function getNewsApi($country,$page=1){
+    public function getNewsApi($country,$category,$page=1){
 
+        // retrieving the api key from .env 
         $apiKey = env('NEWS_API_KEY','');
-        $responseBusiness = Http::get("http://newsapi.org/v2/top-headlines?country={$country}&category=business&apiKey=".$apiKey);
-        $responseSports = Http::get('http://newsapi.org/v2/top-headlines?country={$country}&category=sports&apiKey='.$apiKey);
-        if($responseBusiness['status']==="ok" && $responseSports['status']==="ok"){
-            $articles = array_merge($responseBusiness['articles'],$responseSports['articles']);
-            return $this->paginate($articles,6,$page);
-        }
-        else{
+        $response = Http::get("http://newsapi.org/v2/top-headlines?country={$country}&category={$category}&apiKey=".$apiKey);
+        // $responseSports = Http::get('http://newsapi.org/v2/top-headlines?country={$country}&category=sports&apiKey='.$apiKey);
+
+
+        if($response['status']==="ok")
+            return $this->paginate($response['articles'],6,$page);
+        else
             return "error";
-        }
     }
 
     public function paginate($items, $perPage = 5, $page = null, $options = [])
