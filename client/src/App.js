@@ -9,7 +9,7 @@ import Favorites from './components/favorites/favorites'
 import Header from './components/header/header'
 import { Provider } from 'react-redux'
 import store from './redux/store'
-
+a
 function App() {
   return (
     <Router>
