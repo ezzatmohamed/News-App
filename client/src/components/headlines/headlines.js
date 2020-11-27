@@ -17,7 +17,10 @@ const Headlines = (props)=> {
 
     useEffect(()=>{
         setFetching({...fetch,headlines:[],loading:true})
-        api.get(`api/news?page=${params.page}&country=${params.country}&category=${params.category}`)
+        // const api = require('./../../api')
+        // console.log(api)
+        // alert(localStorage.getItem('token'))
+        api().get(`api/news?page=${params.page}&country=${params.country}&category=${params.category}`)
         .then(res=>{
             let articles = res.data.data
             if(!Array.isArray(articles)){

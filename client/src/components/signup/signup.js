@@ -7,19 +7,22 @@ import {useSelector, useDispatch} from 'react-redux'
 const Signup = ()=> {
     
     const [ credentials, setCredentials]  = useState({email:"",name:"",date_of_birth:""})
+    const [loading,setLoading] = useState(false)
     const dispatch = useDispatch()
 
     const onSubmit = (e)=>{
         e.preventDefault()
-        api.post('/api/signup',credentials)
+        setLoading(true)
+        api().post('/api/signup',credentials)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 dispatch(displayMsg(true,message))
+                setLoading(false)
             })
             .catch(err=>{
                 const message = err.response.data && err.response.data.message ? err.response.data.message : "";
                 dispatch(displayMsg(false,message))
-
+                setLoading(false)
             })
     }
     return (
@@ -58,7 +61,7 @@ const Signup = ()=> {
                     <div id="link">
                         <a href="/login">OR Login</a>
                     </div>
-                    <button className="form-button" type="submit" >Signup</button>
+                    <button disabled={loading} className="form-button" type="submit" >Signup</button>
                 </form>
                 
             </div>    

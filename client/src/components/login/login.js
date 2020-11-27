@@ -1,26 +1,34 @@
 import React ,{useState,useEffect} from 'react'
 import './style.css'
 import api from './../../api'
-import {Redirect } from 'react-router-dom'
-import {displayMsg} from './../../redux'
-import {useSelector, useDispatch} from 'react-redux'
+import {withRouter } from 'react-router-dom'
+import {displayMsg,LogIn} from './../../redux'
+import {useDispatch} from 'react-redux'
 
-const Login = ()=> {
+const Login = (props)=> {
     
     const [ credentials, setCredentials]  = useState({email:"",password:""})
     const dispatch = useDispatch()
+    const [loading,setLoading] = useState(false)
 
     const onSubmit = (e)=>{
         e.preventDefault()
-        api.post('api/login',credentials)
+        setLoading(true)
+
+
+        api().post('api/login',credentials)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 localStorage.setItem('token',res.data.token)
                 dispatch(displayMsg(true,message))
+                setLoading(false)
+                dispatch(LogIn())
+                props.history.push('/')
             })
             .catch(err=>{
-                const message = err.response.data && err.response.data.message ? err.response.data.message : "";
+                const message = "invalid login"
                 dispatch(displayMsg(false,message))
+                setLoading(false)
             })
     }
 
@@ -51,12 +59,12 @@ const Login = ()=> {
                     <div id="link">
                     <a href="/signup">OR Register</a>
                     </div>
-                        <button className="form-button" type="submit" >Login</button>
-                
+                        <button disabled={loading} className="form-button" type="submit" >Login</button>
+                    
                 </form>
             </div>
         </div>
     )
 }
 
-export default Login
+export default withRouter(Login)

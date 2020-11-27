@@ -10,35 +10,27 @@ import Header from './components/header/header'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import Message from './components/message/message'
+import {AuthRoute,NotAuthRoute} from './protected.route'
 
 
 function App() {
+
   return (
-    <Router>
+    <Router >
 
       <Provider store={store}>
         <div className="App">
-          <Header></Header>
+          {/* <Header></Header> */}
+          <Route path='/' component={Header}/>
           <Switch>
-              <Route path="/login" exact >
-                <Login></Login>
-              </Route>
-              <Route path="/signup" exact >
-                <Signup></Signup>
-              </Route>
+              <NotAuthRoute path="/login" exact component={Login}/>
+              <NotAuthRoute path="/signup" exact component={Signup}/>
 
 
-              <Route path="/favorites" exact >
-                <Favorites></Favorites>
-              </Route>
-              <Route path="/headlines" exact >
-                <Headlines></Headlines>
-              </Route>
-
-              <Route path="/" exact >
-                <Headlines></Headlines>
-              </Route>
-
+              <AuthRoute path="/favorites" exact component={Favorites}/>
+              <AuthRoute path="/headlines" exact component={Headlines}/>
+              <AuthRoute path="/" exact component={Headlines}/>
+ 
           </Switch>
             <Message ></Message> 
         </div>

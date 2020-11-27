@@ -4,27 +4,29 @@ import api from './../../api'
 import {displayMsg,deleteFromFavorite} from './../../redux'
 import {useSelector, useDispatch} from 'react-redux'
 
-
 const Headline = (props)=> {
     
     const info = props.info
     const dispatch = useDispatch()
-
+    const [loading,setLoading] = useState(false)
     
     const RemoveFromFavorite = ()=>{
-        
-        api.delete(`api/favorite/${info.id}`)
+        setLoading(true)
+        api().delete(`api/favorite/${info.id}`)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 dispatch(displayMsg(true,message))
                 dispatch(deleteFromFavorite(info.id))
+                setLoading(false)
             })
             .catch(err=>{
                 const message = err.response&&err.response.data && err.response.data.message ? err.response.data.message : "";
                 dispatch(displayMsg(false,message))
+                setLoading(false)
             })
     }
     const AddToFavorite = ()=>{
+        setLoading(true)
         const data = {
             "description":`${info.description}`,
             "publishedAt":`${info.publishedAt}`,
@@ -33,26 +35,29 @@ const Headline = (props)=> {
             "url":`${info.url}`,
             "urlToImage":`${info.urlToImage}`
         }
-        api.post('api/favorite',data)
+        
+        api().post('api/favorite',data)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 dispatch(displayMsg(true,message))
+                setLoading(false)
             })
             .catch(err=>{
                 const message = err.response.data && err.response.data.message ? err.response.data.message : "";
                 dispatch(displayMsg(false,message))
+                setLoading(false)
             })
     }
 
     let button
     if(!props.FavoriteDelete){
 
-        button = <div  onClick={AddToFavorite} className = "headline-button" id="add-favorite">
-                            <button>Add to favorite</button>
+        button = <div    onClick={AddToFavorite} className = "headline-button" id="add-favorite">
+                            <button disabled={loading}>Add to favorite</button>
                         </div>
     }else{
-        button =    <div  onClick={RemoveFromFavorite} className = "headline-button" id="remove-favorite">
-                        <button>Remove From favorite</button>
+        button =    <div    onClick={RemoveFromFavorite} className = "headline-button" id="remove-favorite">
+                        <button disabled={loading}>Remove From favorite</button>
                     </div>
     }
 

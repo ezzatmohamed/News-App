@@ -7,3 +7,12 @@ body{
   background-image: url('background.jpg');
   background-size: cover;
 }
+
+button:disabled,
+button[disabled],
+button:disabled:hover,
+button[disabled]:hover{
+  background-color: #cccccc;
+  color: #666666;
+}
+
