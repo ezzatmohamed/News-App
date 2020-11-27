@@ -5,15 +5,15 @@ import {connect} from 'react-redux'
 import {fetchHeadlines} from './../../redux'
 import {useSelector, useDispatch} from 'react-redux'
 import Headline from './../headline/headline'
+import {displayMsg} from './../../redux'
 
 const Headlines = (props)=> {
     
 
-    const [fetch,setFetching] = useState({loading:false,headlines:[],error:""})
-    // const [page,setPage] = useState(1)
+    const [fetch,setFetching] = useState({loading:false,headlines:[]})
     const [params,setParams] = useState({page:1,country:1,category:1})
     const [nextPage,setNextPage] = useState(2)
-    // const [country,setCountry] = useState(1)
+    const dispatch = useDispatch()
 
     useEffect(()=>{
         setFetching({...fetch,headlines:[],loading:true})
@@ -27,9 +27,13 @@ const Headlines = (props)=> {
          
             setFetching({...fetch,loading:false,headlines:articles})
             setNextPage(NextPage)
+
         })
         .catch(err=>{
-            setFetching({...fetch,loading:false,headlines:[],error:err.message})
+            setFetching({...fetch,loading:false,headlines:[]})
+
+            const message = err.response.data && err.response.data.message ? err.response.data.message : "";
+            dispatch(displayMsg(false,message))
         })
     },[params.page,params.country,params.category])
     
@@ -50,21 +54,16 @@ const Headlines = (props)=> {
             <div className="headlines-container">
      
                 
-                {fetch.loading ? <p>Loading...</p> : ''}
+                {fetch.loading ? <div class="loader"></div> : ''}
                 {
-                    
-                        
                     fetch.headlines && fetch.headlines.length? fetch.headlines.map(headline=>{
                         return  <Headline  info={headline} FavoriteDelete={false} ></Headline>
                         }):''
                         
                 }
-                {fetch.error != ""? <p>An Error Occured refresh the page!</p> : ''}
-
-                
             </div>
             <div className="headlines-page">
-                 {params.page == 1 ? '' : <button id="headline-prev"  onClick={()=>{setParams({...params,page:params.page-1})}}>Prev</button>} 
+                 {params.page == 1  ? '' : <button id="headline-prev"  onClick={()=>{setParams({...params,page:params.page-1})}}>Prev</button>} 
                  {nextPage == -1 ? '' : <button  id="headline-next" onClick={()=>{setParams({...params,page:params.page+1})}}>Next</button>}
             </div>
 

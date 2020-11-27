@@ -31,17 +31,22 @@ export const deleteFromFavorite= (id)=>{
     }
 }
 
-export const fetchFavorites = () => {
+export const fetchFavorites = (page) => {
     return (dispatch)=>{
         dispatch(fetchFavoritesRequest())
-        api.get('/todos')
+        api.get(`api/favorites?page=${page}`)
             .then(res=>{
-
-                dispatch(fetchFavoritesSucess(res.data.slice(0,7)))
+                console.log(res)
+                const response = res.data.data
+                const NextPage = response.next_page_url == null ? -1 : page+1
+                dispatch(fetchFavoritesSucess({data:response.data,next:NextPage}))
             })
             .catch(err=>{
-                dispatch(fetchFavoritesFailure(err.message))
+                const message = err.response && err.response.data && err.response.data.message ? err.response.data.message : "";
+                dispatch(fetchFavoritesFailure(message))
             })
     }
 }
+
+
 

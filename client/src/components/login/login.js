@@ -1,35 +1,29 @@
 import React ,{useState,useEffect} from 'react'
 import './style.css'
 import api from './../../api'
-import Message from './../message/message'
 import {Redirect } from 'react-router-dom'
+import {displayMsg} from './../../redux'
+import {useSelector, useDispatch} from 'react-redux'
 
 const Login = ()=> {
     
     const [ credentials, setCredentials]  = useState({email:"",password:""})
-    const [ response,setResponse ] = useState({display:false,message:"",success:false})
-    const [ redirect,setRedirect ] = useState(false)
-
+    const dispatch = useDispatch()
 
     const onSubmit = (e)=>{
         e.preventDefault()
         api.post('api/login',credentials)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
-                setResponse({...response,display:true,message,success:true})
-                setTimeout( ()=>{ setResponse({...response,display:false,message:message,success:false})}, 2500);
                 localStorage.setItem('token',res.data.token)
-                setRedirect(true)
+                dispatch(displayMsg(true,message))
             })
             .catch(err=>{
                 const message = err.response.data && err.response.data.message ? err.response.data.message : "";
-                setResponse({...response,display:true,message:message,success:false})
-                setTimeout( function(){ setResponse({...response,display:false,message:message,success:false})}, 2500);
-             
+                dispatch(displayMsg(false,message))
             })
     }
-    if(redirect)
-        return (<Redirect to='/headlines'/>)
+
 
     return (
         <div>

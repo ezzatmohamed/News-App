@@ -9,6 +9,11 @@
     text-align: center;
     position: relative;
 }
+.headline-title p{
+  font-size:25px;
+  font-weight: 600;
+  background: rgba(0, 0, 0,0.3);
+}
 .headline-text{
     height:500px;
     width:100%;
@@ -36,12 +41,13 @@
   max-height:10%;
   overflow: auto;
 }
-.headline-container h2{
+.headline-title{
     text-align: center;
     padding: 100px 20px;
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNURlf-jEmALU0YbWIRcru1P8n5wl3QzoyQ&usqp=CAU");
     background-size: cover;
     color:white;
+
 }
 .headline-container button{
     box-sizing: border-box;

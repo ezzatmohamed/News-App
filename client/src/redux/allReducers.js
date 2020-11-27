@@ -1,10 +1,11 @@
 
 import { combineReducers } from 'redux'
-// import cakeReducer from './cake/cakeReducer'
 import favoritesReducer from './favorite/favoriteReducers'
+import messageReducer from './message/messageReducers'
 
 const rootReducer = combineReducers({
-    favoritesReducer
+    favoritesReducer,
+    messageReducer
 })
 
 export default rootReducer

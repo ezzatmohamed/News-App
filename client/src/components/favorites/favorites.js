@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import './style.css'
 import {connect} from 'react-redux'
-import {fetchFavorites} from './../../redux'
+import {fetchFavorites,displayMsg} from './../../redux'
 import {useSelector, useDispatch} from 'react-redux'
 import Headline from './../headline/headline'
 
@@ -13,8 +13,8 @@ const Favorites = ()=> {
     const [page,setPage] = useState(1)
 
     useEffect(()=>{
-        dispatch(fetchFavorites())
-    },[])
+        dispatch(fetchFavorites(page))
+    },[page])
     return (
         <div>
             <div className="headlines-container">
@@ -28,24 +28,14 @@ const Favorites = ()=> {
                         })
                         : '') : ''
                 }
-                {state.error ? <p>error Occured!</p> : ''}
+                {state.error ? dispatch(displayMsg(false,state.error)) : ''}
+            </div>
 
-                
-            </div>
             <div className="headlines-page">
-                {page == 1? '' : <button id="headline-prev">Prev</button>} 
-                <button  id="headline-next">
-                    Next
-                </button>
+                 {page == 1  ? '' : <button id="headline-prev"  onClick={()=>{setPage(page-1)}}>Prev</button>} 
+                 {state.NextPage == -1 ? '' : <button  id="headline-next" onClick={()=>{setPage(page+1)}}>Next</button>}
             </div>
-            <div className="success-msg" display={false}>
-                <span class="closebtn" >&times;</span>
-                Headline removed Successfully from favorites
-            </div>
-            <div className="error-msg"  >
-                <span class="closebtn">&times;</span>
-                An error occured
-            </div>
+
         </div>
     )
 }

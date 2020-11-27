@@ -1,14 +1,20 @@
 import React ,{useState,useEffect} from 'react'
 import './style.css'
+import {displayMsg} from './../../redux'
+
+import {useSelector, useDispatch} from 'react-redux'
 
 const Message = (props)=>{
 
+    const MsgState = useSelector(state=>state.messageReducer)
+
 
     return(
-        <div className={props.success ? "success-msg" : "error-msg" }>
+        MsgState.display ?
+        <div className={MsgState.success ? "success-msg" : "error-msg" }>
                 <span className="closebtn" >&times;</span>
-                {props.message}
-        </div>
+                {MsgState.msg}
+        </div> : ""
     )
 }
 

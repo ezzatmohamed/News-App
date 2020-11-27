@@ -7,7 +7,8 @@ import {FETCH_FAVORITE_REQUEST,
 const initialState = {
     loading:false,
     headlines:[],
-    error:''
+    error:'',
+    NextPage:2
 }
 
 
@@ -21,23 +22,36 @@ const reducer = (state=initialState,action) => {
             }
         case FETCH_FAVORITE_SUCCESS:
             return{
+                ...state,
+                NextPage:action.payload.next,
                 loading:false,
-                favorites: action.payload,
+                favorites: action.payload.data,
                 error:''
             }
 
         case FETCH_FAVORITE_FAILURE:
             return{
+                ...state,
                 loading:false,
                 favorites: [],
                 error:action.payload
             }
         case DELETE_FROM_FAVORITE:
 
-            const newFavorites =[]
+            const newFavorites = [...state.favorites]
+
+            for(let i = 0; i < newFavorites.length;i++){
+                console.log(newFavorites[i].id)
+                if(newFavorites[i].id === action.payload){
+                    newFavorites.splice(i,1)
+                    break
+                }
+            }
+            
             return{
+                ...state,
                 loading:false,
-                favorites:newFavorites,
+                favorites:[...newFavorites],
                 error:""
             }
         default :

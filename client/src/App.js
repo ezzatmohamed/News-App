@@ -9,6 +9,8 @@ import Favorites from './components/favorites/favorites'
 import Header from './components/header/header'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import Message from './components/message/message'
+
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
               </Route>
 
           </Switch>
+            <Message ></Message> 
         </div>
       </Provider>
     </Router>

@@ -1,25 +1,24 @@
 import React ,{useState,useEffect} from 'react'
 import './style.css'
 import api from './../../api'
-import Message from './../message/message'
+import {displayMsg} from './../../redux'
+import {useSelector, useDispatch} from 'react-redux'
+
 const Signup = ()=> {
     
     const [ credentials, setCredentials]  = useState({email:"",name:"",date_of_birth:""})
-    const [ response,setResponse ] = useState({display:false,message:"",success:false})
+    const dispatch = useDispatch()
 
     const onSubmit = (e)=>{
         e.preventDefault()
         api.post('/api/signup',credentials)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
-                setResponse({...response,display:true,message,success:true})
-                setTimeout( ()=>{ setResponse({...response,display:false,message:message,success:false})}, 2500);
+                dispatch(displayMsg(true,message))
             })
             .catch(err=>{
                 const message = err.response.data && err.response.data.message ? err.response.data.message : "";
-                
-                setResponse({...response,display:true,message:message,success:false})
-                setTimeout( function(){ setResponse({...response,display:false,message:message,success:false})}, 2500);
+                dispatch(displayMsg(false,message))
 
             })
     }
@@ -63,7 +62,7 @@ const Signup = ()=> {
                 </form>
                 
             </div>    
-            {response.display ? <Message success={response.success} message={response.message} ></Message> : ""}
+            {/* {response.display ? <Message success={response.success} message={response.message} ></Message> : ""} */}
             
         </div>
     )
