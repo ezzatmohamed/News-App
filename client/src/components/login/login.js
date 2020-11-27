@@ -55,7 +55,6 @@ const Login = ()=> {
                 
                 </form>
             </div>
-            {response.display ? <Message success={response.success} message={response.message} ></Message> : ""}
         </div>
     )
 }

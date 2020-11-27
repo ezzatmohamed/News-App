@@ -73,4 +73,8 @@ class UserController extends Controller
         return response(['token'=>$token,'message'=>'Successfully logged in!' ],200);
 
     }
+    public function logout(Request $request){
+        auth()->logout();
+        return response(['message'=>'Logged out successfully'],200);
+    }
 }

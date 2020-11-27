@@ -15,12 +15,12 @@ class CreateFavoritesTable extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
-            $table->timestamp('publishedAt');
-            $table->string('title');
-            $table->string('author');
+            $table->string('description')->nullable();
+            $table->string('publishedAt')->nullable();
+            $table->string('title')->nullable();
+            $table->string('author')->nullable();
             $table->string('url')->unique();
-            $table->string('urlToImage');
+            $table->string('urlToImage')->nullable();
             $table->timestamps();
         });
     }

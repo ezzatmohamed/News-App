@@ -2,14 +2,30 @@ import React, {Component} from 'react';
 import './header.css'
 import {Redirect } from 'react-router-dom'
 import axios from 'axios'
+import api from './../../api'
 
-// import {Link} from 'react-router-dom'
-// import {Router,Redirect } from 'react-router-dom'
+import {displayMsg} from './../../redux'
+import {useSelector, useDispatch} from 'react-redux'
+
 const Header = () => {
 
+    const dispatch = useDispatch()
 
-    const logout = (e)=>{
+    const logout = (e) => {
         e.preventDefault();
+
+      api.get('api/logout')
+      .then(  (res) => {
+          const message = res.data && res.data.message ? res.data.message : "";
+          localStorage.setItem('token','')
+          localStorage.clear() 
+          dispatch(displayMsg(true,message))
+        })
+        .catch( (err) => {
+            const message = err.response &&err.response.data && err.response.data.message ? err.response.data.message : "";
+            dispatch(displayMsg(false,message))
+        });
+
     }
 
 

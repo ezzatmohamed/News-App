@@ -25,12 +25,12 @@ class FavoriteController extends Controller
     {
         try{    
                 $rules = [
-                    'description' => 'string',
-                    'publishedAt' => 'date',
-                    'title' => 'string',
-                    'author' => 'string',
-                    'url' => 'required|string',
-                    'urlToImage' => 'string'
+                    'description' => 'string|max:255',
+                    'publishedAt' => 'string|max:255',
+                    'title' => 'string|max:255',
+                    'author' => 'string|max:255',
+                    'url' => 'required|string|max:255',
+                    'urlToImage' => 'string|max:255'
                 ];
                 $dataValidate = Validator::make($request->all(),$rules);
                 // Check if Inputes are valid

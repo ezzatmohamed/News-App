@@ -29,4 +29,5 @@ Route::group(['middleware'=>['CheckAuth']],function(){
     Route::get('favorites',[FavoriteController::class, 'index']);
     Route::post('favorite/',[FavoriteController::class, 'create']);
     Route::delete('favorite/{id}',[FavoriteController::class, 'delete'])->middleware('CheckAuth');
+    Route::get('logout', [UserController::class, 'logout']);
 });
