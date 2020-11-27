@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +25,7 @@ Route::post('signup',[UserController::class, 'signup']);
 Route::post('login', [UserController::class, 'login']);
 
 Route::get('news',[NewsController::class, 'index']);
+
+Route::get('favorites',[FavoriteController::class, 'index']);
+Route::post('favorite/',[FavoriteController::class, 'create']);
+Route::delete('favorite/{id}',[FavoriteController::class, 'delete']);

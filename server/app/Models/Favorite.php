@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     use HasFactory;
-    
+    protected $fillable = ['description','publishedAt','title','author','url','urlToImage'];
+
     public function users() 
     {
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User','user_favorite');
     }
 }
