@@ -21,6 +21,6 @@ use App\Http\Controllers\NewsController;
 
 // Route::post('/signup','UserController@signup');
 Route::post('signup',[UserController::class, 'signup']);
-Route::post('login',[UserController::class, 'login']);
+Route::post('login', [UserController::class, 'login']);
 
 Route::get('news',[NewsController::class, 'index']);
