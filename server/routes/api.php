@@ -25,9 +25,9 @@ Route::post('signup',[UserController::class, 'signup']);
 Route::post('login', [UserController::class, 'login']);
 
 Route::group(['middleware'=>['CheckAuth']],function(){
-    Route::get('news',[NewsController::class, 'index'])->middleware('auth:api');
+    Route::get('news',[NewsController::class, 'index']);
     Route::get('favorites',[FavoriteController::class, 'index']);
     Route::post('favorite/',[FavoriteController::class, 'create']);
-    Route::delete('favorite/{id}',[FavoriteController::class, 'delete'])->middleware('CheckAuth');
+    Route::delete('favorite/{id}',[FavoriteController::class, 'delete']);
     Route::get('logout', [UserController::class, 'logout']);
 });
