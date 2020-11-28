@@ -12,7 +12,7 @@ const Headline = (props)=> {
     
     const RemoveFromFavorite = ()=>{
         setLoading(true)
-        api().delete(`api/favorite/${info.id}`)
+        api().delete(`favorite/${info.id}`)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 dispatch(displayMsg(true,message))
@@ -27,13 +27,19 @@ const Headline = (props)=> {
     }
     const AddToFavorite = ()=>{
         setLoading(true)
+        const filterInput = (input) =>{
+            if(!input)
+                return ""
+            return input.substring(0,255);
+        }
+
         const data = {
-            "description":`${info.description}`,
-            "publishedAt":`${info.publishedAt}`,
-            "title":`${info.title}`,
-            "author":`${info.author}`,
-            "url":`${info.url}`,
-            "urlToImage":`${info.urlToImage}`
+            "description":`${filterInput(info.description)}`,
+            "publishedAt":`${filterInput(info.publishedAt)}`,
+            "title":`${filterInput(info.title)}`,
+            "author":`${filterInput(info.author)}`,
+            "url":`${filterInput(info.url)}`,
+            "urlToImage":`${filterInput(info.urlToImage)}`
         }
         
         api().post('favorite',data)

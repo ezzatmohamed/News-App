@@ -34,7 +34,7 @@ export const deleteFromFavorite= (id)=>{
 export const fetchFavorites = (page) => {
     return (dispatch)=>{
         dispatch(fetchFavoritesRequest())
-        api().get(`api/favorites?page=${page}`)
+        api().get(`/favorites?page=${page}`)
             .then(res=>{
                 console.log(res)
                 const response = res.data.data

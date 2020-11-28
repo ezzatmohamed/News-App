@@ -13,7 +13,7 @@ const Signup = ()=> {
     const onSubmit = (e)=>{
         e.preventDefault()
         setLoading(true)
-        api().post('/api/signup',credentials)
+        api().post('/signup',credentials)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 dispatch(displayMsg(true,message))

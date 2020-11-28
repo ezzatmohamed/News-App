@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-// dd();
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('{all}', function () {
+    return File::get(public_path() . '/index.html');
+})->where('all', '(.*)');
