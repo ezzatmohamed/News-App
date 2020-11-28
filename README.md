@@ -43,6 +43,8 @@ $ git clone https://github.com/ezzatmohamed/News-App.git
 $ cd News-App/server
 $ cp .env.example .env
 $ composer install
+$ php artisan key:generate
+$ php artisan jwt:secret
 ``` 
 ## Setting up Environment values
 
@@ -69,7 +71,6 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```
 - News API Key
 Get an Api key from: https://newsapi.org/
-
 ```
 NEWS_API_KEY= YOUR API KEY
 ```
@@ -77,8 +78,6 @@ NEWS_API_KEY= YOUR API KEY
 ## Steps to run
 Before running comands, make sure you started your database
 ```
-$ php artisan key:generate
-$ php artisan jwt:secret
 $ php artisan migrate
 $ php artisan serve
 ```
