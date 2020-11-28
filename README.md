@@ -29,7 +29,7 @@ https://yodawy-news.herokuapp.com/
 
 ## Folder Structure 
 - ***client***   folder contains Reactjs project.
-- ***server*** folder contains laravel code and the the ***client*** production build files.
+- ***server*** folder contains laravel code and the ***client*** production build files.
 # How to run
 
 ## Requirements:
