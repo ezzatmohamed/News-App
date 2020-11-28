@@ -67,10 +67,18 @@ MAIL_ENCRYPTION=ssl
 MAIL_FROM_ADDRESS= YOUR EMAIL ADDRESS
 MAIL_FROM_NAME="${APP_NAME}"
 ```
+- News API Key
+Get an Api key from: https://newsapi.org/
+
+```
+NEWS_API_KEY= YOUR API KEY
+```
 
 ## Steps to run
 Before running comands, make sure you started your database
 ```
+$ php artisan key:generate
+$ php artisan jwt:secret
 $ php artisan migrate
 $ php artisan serve
 ```
