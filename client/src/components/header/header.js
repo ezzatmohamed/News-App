@@ -15,7 +15,7 @@ const Header = (props) => {
     const logout = (e) => {
         e.preventDefault();
 
-      api().get('api/logout')
+      api().get('logout')
       .then(  (res) => {
           const message = res.data && res.data.message ? res.data.message : "";
           localStorage.setItem('token','')

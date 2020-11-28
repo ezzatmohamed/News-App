@@ -73,6 +73,7 @@ class AuthTest extends TestCase
         $response->assertSee('token');
 
     }
+
     /** @test */
     public function recieve_error_when_login_with_invalid_credentials()
     {
@@ -92,6 +93,29 @@ class AuthTest extends TestCase
 
         $response->assertStatus(403);
         $response->assertSee('invalid');
+
+    }
+
+    /** @test */
+    public function authenticated_user_can_logout()
+    {
+        //Arrange
+        User::create([
+            "email"=>"t@test.com",
+            "name" =>"test",
+            "date_of_birth"=>"2000-12-12",
+            "password"=>bcrypt("12345678")
+        ]);
+
+        $response = $this->post('api/login',["email"=>"t@test.com",
+                                 "password"=>"12345678"]);
+        //Act
+        $response = $this->get('api/logout');
+
+        //Assert
+
+        $response->assertStatus(200);
+        $response->assertSee('Logged out successfully');
 
     }
 }

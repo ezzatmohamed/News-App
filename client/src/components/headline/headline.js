@@ -36,7 +36,7 @@ const Headline = (props)=> {
             "urlToImage":`${info.urlToImage}`
         }
         
-        api().post('api/favorite',data)
+        api().post('favorite',data)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 dispatch(displayMsg(true,message))

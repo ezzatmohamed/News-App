@@ -1,6 +1,6 @@
 const axios = require( 'axios')
 
-const URL = 'http://localhost:8000'
+const URL = 'api'
 const HEADERS = {}
 
 

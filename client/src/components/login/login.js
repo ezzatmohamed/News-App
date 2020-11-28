@@ -16,7 +16,7 @@ const Login = (props)=> {
         setLoading(true)
 
 
-        api().post('api/login',credentials)
+        api().post('login',credentials)
             .then(res=>{
                 const message = res.data && res.data.message ? res.data.message : "";
                 localStorage.setItem('token',res.data.token)
