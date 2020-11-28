@@ -29,8 +29,8 @@ const Headline = (props)=> {
         setLoading(true)
         const filterInput = (input) =>{
             if(!input)
-                return ""
-            return input.substring(0,255);
+                return "not available"
+            return input.substring(0,254);
         }
 
         const data = {
