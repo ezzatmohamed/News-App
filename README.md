@@ -16,7 +16,7 @@
 # Introduction
 
 ## Description
-News Application fetches an open source NEWS API to retrieve news,browse and top headlines about business and sports in Egypt or UAE.
+News Application that fetches an open source NEWS API to retrieve news and browse top headlines about business and sports in Egypt or UAE.
 
 **Technologies** : Reactjs & Laravel 8
 
