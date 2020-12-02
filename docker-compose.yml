@@ -1,22 +1,21 @@
 version: '3'
 
 networks: 
-    app:
+    laravel:
         driver: bridge
 
 services: 
     api:    
-        build: ./server
-        container_name: backend
+        build: .
+        container_name: laravel_backend
         networks: 
-                - app
+            - laravel
         volumes: 
-            - ./server:/app/api   
+            - ./server:/var/www
         ports: 
-            - "8001:8000"
+            - "8000:8000"
         depends_on: 
-            - db
-            
+            - db            
     db:       
         image: mysql:latest 
         container_name: database
@@ -29,4 +28,4 @@ services:
             MYSQL_ROOT_PASSWORD: 'root'
 
         networks: 
-            - app
+            - laravel
