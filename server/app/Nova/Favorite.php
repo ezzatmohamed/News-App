@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Favorite extends Resource
 {
@@ -23,8 +23,7 @@ class Favorite extends Resource
      * @var string
      */
     public static $title = 'title';
-    
-    public static $with = ['users'];
+    public static $with = ['user'];
 
     /**
      * The columns that should be searched.
@@ -47,34 +46,35 @@ class Favorite extends Resource
             ID::make(__('ID'), 'id')->sortable(),
 
 
-            Text::make('title')
+            Text::make('Title','title')
             ->sortable()
             ->rules('max:255'),
             
-            Text::make('author')
+            Text::make('Author','author')
             ->sortable()
             ->rules('max:255'),
 
-            Text::make('description')
+            Text::make('Description','description')
             ->sortable()
             ->rules('max:255'),
 
 
-            Text::make('urlToImage','urlToImage')
+            Text::make('Image','urlToImage')
             ->sortable()
             ->rules('required', 'max:255'),
 
-            Text::make('publishedAt','publishedAt')
+            Text::make('Date','publishedAt')
             ->sortable()
             ->rules('max:255'),
 
 
-            Text::make('url')
+            Text::make('Link','url')
             ->sortable()
             ->rules('required', 'max:255')
             ->creationRules('unique:favorites,url')
             ->updateRules('unique:favorites,url,{{resourceId}}'),
-            BelongsToMany::make('Users')
+
+            BelongsTo::make('User')
             ];
     }
 
