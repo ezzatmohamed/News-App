@@ -61,7 +61,7 @@ class Favorite extends Resource
 
             Text::make('Image','urlToImage')
             ->sortable()
-            ->rules('required', 'max:255'),
+            ->rules('max:255'),
 
             Text::make('Date','publishedAt')
             ->sortable()
