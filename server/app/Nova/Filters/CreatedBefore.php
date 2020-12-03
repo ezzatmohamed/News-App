@@ -19,7 +19,7 @@ class CreatedBefore extends DateFilter
     public function apply(Request $request, $query, $value)
     {
         $value = Carbon::parse($value);
-        return $query->where('created_at','<',$value);
+        return $query->where('created_at','<=',$value);
 
     }
 }
