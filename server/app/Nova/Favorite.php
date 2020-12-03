@@ -3,30 +3,26 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsToMany;
 
-class User extends Resource
+class Favorite extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\User::class;
+    public static $model = \App\Models\Favorite::class;
 
-    // public static $group = 'admin';
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -34,7 +30,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id','description','title','author'
     ];
 
     /**
@@ -46,32 +42,38 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make(__('ID'), 'id')->sortable(),
 
-            Gravatar::make()->maxWidth(50),
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Email')
+            Text::make('title')
             ->sortable()
-            ->rules('required', 'email', 'max:254')
-            ->creationRules('unique:users,email')
-            ->updateRules('unique:users,email,{{resourceId}}'),
+            ->rules('max:255'),
+            
+            Text::make('author')
+            ->sortable()
+            ->rules('max:255'),
 
-            Date::make('date_of_birth')
+            Text::make('description')
+            ->sortable()
+            ->rules('max:255'),
+
+
+            Text::make('urlToImage','urlToImage')
             ->sortable()
             ->rules('required', 'max:255'),
-            
-            Password::make('Password')   
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
-            
-            HasMany::make('Favorites')
 
-        ];
+            Text::make('publishedAt','publishedAt')
+            ->sortable()
+            ->rules('max:255'),
+
+
+            Text::make('url')
+            ->sortable()
+            ->rules('required', 'max:255')
+            ->creationRules('unique:favorites,url')
+            ->updateRules('unique:favorites,url,{{resourceId}}'),
+            BelongsToMany::make('Users')
+            ];
     }
 
     /**
