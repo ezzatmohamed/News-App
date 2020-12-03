@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
         'date_of_birth'
     ];
 
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -41,6 +42,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'date_of_birth' => 'date'
     ];
     
     public function favorites() 

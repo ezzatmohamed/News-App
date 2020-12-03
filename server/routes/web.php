@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
 Route::get('{all}', function () {
     return File::get(public_path() . '/index.html');
-})->where('all', '(.*)');
+})->where('all', '^(?!nova).*$');
+
