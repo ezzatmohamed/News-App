@@ -36,15 +36,7 @@ class FavoriteByUser extends Filter
     public function options(Request $request)
     {
         
-        // retrieving all users
-        $users = User::all();
-
-        $filter = [];
-        
-        // Creating filter array { email => id}
-        foreach($users as $user)        
-            $filter[$user->email]=$user->id;
-
+        $filter = User::pluck('id','email')->toArray();
         return $filter;
     }
 }
