@@ -10,8 +10,8 @@ class Favorite extends Model
     use HasFactory;
     protected $fillable = ['description','publishedAt','title','author','url','urlToImage'];
 
-    public function users() 
+    public function user() 
     {
-        return $this->belongsToMany('App\Models\User','user_favorite');
+        return $this->belongsTo('App\Models\User');
     }
 }
