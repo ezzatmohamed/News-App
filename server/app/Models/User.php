@@ -47,7 +47,7 @@ class User extends Authenticatable implements JWTSubject
     
     public function favorites() 
     {
-        return $this->belongsToMany('App\Models\Favorite','user_favorite');
+        return $this->hasMany('App\Models\Favorite');
     }
 
     public function getJWTIdentifier(){

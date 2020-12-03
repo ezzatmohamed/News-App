@@ -21,6 +21,10 @@ class CreateFavoritesTable extends Migration
             $table->string('author')->nullable();
             $table->string('url')->unique();
             $table->string('urlToImage')->nullable();
+
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }

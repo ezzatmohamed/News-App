@@ -23,6 +23,8 @@ class Favorite extends Resource
      * @var string
      */
     public static $title = 'title';
+    
+    public static $with = ['users'];
 
     /**
      * The columns that should be searched.

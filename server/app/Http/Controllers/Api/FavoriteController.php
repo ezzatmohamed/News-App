@@ -40,23 +40,24 @@ class FavoriteController extends Controller
 
                 $data = request()->only('description','publishedAt','title','author','url','urlToImage');
 
-                // retrieve favorite if exists or Creating new record
-                $favorite = Favorite::where('url',$data['url'])->first();
-                if(!$favorite)
-                    $favorite = Favorite::create( $data);
 
                 $user = auth()->user();
-
-                // Check if user already favorite this article or not 
-                if(!$user->favorites->contains($favorite->id))
+                // retrieve favorite if exists or Creating new record
+                $favorite = Favorite::where('url',$data['url'])->where('user_id',$user->id)->first(); 
+                if($favorite)
                 {
-                    $user->favorites()->attach($favorite);
-                    return response(['message'=>"Added to favorite successfully!"],201);
-                }
-                else{
                     return response(['message'=>"Already exists in favorites!"],409);
                 }
-                return $favorite;
+                
+                $favorite = $user->favorites()->create(['description'=>$data['description'],
+                                    'title'=>$data['title'],
+                                    'author'=>$data['author'],
+                                    'publishedAt'=>$data['publishedAt'],
+                                    'url'=>$data['url'],
+                                    'urlToImage'=>$data['urlToImage']
+                ]);
+
+                return response(['message'=>"Added to favorite successfully!"],201);
         }
         catch(Exception $e)
         {
@@ -71,7 +72,7 @@ class FavoriteController extends Controller
             {
                 return response(['message'=>"This article is not in your favorites!"],409);
             }
-            $user->favorites()->detach($id);
+            Favorite::find($id)->delete();
             return response(['message'=>"Article has been deleted from your favorites!"],202);
 
         }

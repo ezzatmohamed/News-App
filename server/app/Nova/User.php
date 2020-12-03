@@ -27,6 +27,7 @@ class User extends Resource
      * @var string
      */
     public static $title = 'name';
+    public static $with = ['favorites'];
 
     /**
      * The columns that should be searched.
