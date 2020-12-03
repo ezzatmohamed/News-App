@@ -70,9 +70,7 @@ class Favorite extends Resource
 
             Text::make('Link','url')
             ->sortable()
-            ->rules('required', 'max:255')
-            ->creationRules('unique:favorites,url')
-            ->updateRules('unique:favorites,url,{{resourceId}}'),
+            ->rules('required', 'max:255'),
 
             BelongsTo::make('User')
             ];

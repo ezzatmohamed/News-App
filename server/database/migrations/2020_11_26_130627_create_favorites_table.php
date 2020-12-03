@@ -19,7 +19,7 @@ class CreateFavoritesTable extends Migration
             $table->string('publishedAt')->nullable();
             $table->string('title')->nullable();
             $table->string('author')->nullable();
-            $table->string('url')->unique();
+            $table->string('url');
             $table->string('urlToImage')->nullable();
 
             $table->bigInteger('user_id')->unsigned();
