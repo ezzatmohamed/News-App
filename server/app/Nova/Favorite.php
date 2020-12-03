@@ -50,6 +50,11 @@ class Favorite extends Resource
             ->sortable()
             ->rules('max:255'),
             
+            Text::make('Created at','created_at')
+            ->sortable()
+            ->hideWhenCreating()
+            ->hideWhenUpdating(),
+
             Text::make('Author','author')
             ->sortable()
             ->rules('max:255'),
@@ -96,7 +101,9 @@ class Favorite extends Resource
     public function filters(Request $request)
     {
         return [
-            new Filters\FavoriteByUser
+            new Filters\FavoriteByUser,
+            new Filters\CreatedBefore,
+            new Filters\CreatedAfter
         ];
     }
 
