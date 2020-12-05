@@ -3,32 +3,28 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Http\Requests\NovaRequest;
+// use Silber\Bouncer\Database\Role;
 use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Fields\MorphedByMany;
 
-class User extends Resource
+use Laravel\Nova\Fields\Text;
+class Role extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\User::class;
+    public static $model = \Silber\Bouncer\Database\Role::class;
 
-    // public static $group = 'admin';
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
     public static $title = 'name';
-    public static $with = ['favorites'];
 
     /**
      * The columns that should be searched.
@@ -36,7 +32,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
     ];
 
     /**
@@ -48,29 +44,19 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make(__('ID'), 'id')->sortable(),
 
+
+            Text::make('Title','title')
+            ->sortable()
+            ->rules('required'),
+            
             Text::make('Name','name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Email','email')
             ->sortable()
-            ->rules('required', 'email', 'max:254')
-            ->creationRules('unique:users,email')
-            ->updateRules('unique:users,email,{{resourceId}}'),
+            ->rules('required'),
+            
+            MorphedByMany::make('Users')
 
-            Date::make('Date Of Birth','date_of_birth')
-            ->sortable()
-            ->rules('required', 'max:255'),
-            
-            Password::make('Password','password')   
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
-            
-            HasMany::make('Favorites'),
-            MorphToMany::make('Roles')
         ];
     }
 
