@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\MorphToMany;
 
 class User extends Resource
 {
@@ -53,6 +54,17 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+                MorphToMany::make('Roles', 'roles', 'Yadahan\BouncerTool\Nova\Role')->fields(function () {
+                    return [
+                        Text::make('Scope')
+                            ->sortable()
+                            ->rules('nullable', 'integer'),
+                    ];
+                }),
+        
+                MorphToMany::make('Abilities', 'abilities', 'Yadahan\BouncerTool\Nova\Ability')
+                    ->fields(new \Yadahan\BouncerTool\Nova\PermissionsFields),
+                    
             Text::make('Email','email')
             ->sortable()
             ->rules('required', 'email', 'max:254')
