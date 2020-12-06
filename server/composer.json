@@ -19,9 +19,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
+        "laravel/nova": "*",
         "laravel/tinker": "^2.5",
+        "silber/bouncer": "v1.0.0-rc.9",
         "tymon/jwt-auth": "^1.0",
-        "laravel/nova": "*"
+        "yadahan/nova-bouncer": "^0.6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

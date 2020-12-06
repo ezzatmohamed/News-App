@@ -14,6 +14,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        \Silber\Bouncer\Database\Role::class => \App\Policies\RolePolicy::class,
+        \Silber\Bouncer\Database\Ability::class => \App\Policies\AbilityPolicy::class,
+
     ];
 
     /**
