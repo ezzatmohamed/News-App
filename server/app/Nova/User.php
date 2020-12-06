@@ -11,7 +11,6 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\MorphToMany;
-// use Laravel\Nova\Fields\HasMany;
 
 class User extends Resource
 {

@@ -24,12 +24,14 @@ class UserSeeder extends Seeder
             $admin->password= bcrypt("12345678");
             $admin->save();
             
+        
         Bouncer::assign('admin')->to($admin);
+        Bouncer::allow('admin')->everything();
 
         $user = new User();
         $user->name= "yodawyUser";
         $user->email= "user@user.com";
-        $user->date_of_birth= "12-12-2002";
+        $user->date_of_birth= "12-12-2002"; 
         $user->password= bcrypt("12345678");
         $user->save();
         
