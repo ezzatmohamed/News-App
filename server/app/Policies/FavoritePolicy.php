@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use Silber\Bouncer\Database\Role;
+use App\Models\Favorite;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RolePolicy
+class FavoritePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class RolePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Silber\Bouncer\Database\Role  $role
+     * @param  \App\Models\Favorite  $favorite
      * @return mixed
      */
-    public function view(User $user, Role $role)
+    public function view(User $user, Favorite $favorite)
     {
         return $user->isAn('admin');
     }
@@ -48,10 +48,10 @@ class RolePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Silber\Bouncer\Database\Role  $role
+     * @param  \App\Models\Favorite  $favorite
      * @return mixed
      */
-    public function update(User $user, Role $role)
+    public function update(User $user, Favorite $favorite)
     {
         return $user->isAn('admin');
     }
@@ -60,10 +60,10 @@ class RolePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Silber\Bouncer\Database\Role  $role
+     * @param  \App\Models\Favorite  $favorite
      * @return mixed
      */
-    public function delete(User $user, Role $role)
+    public function delete(User $user, Favorite $favorite)
     {
         return $user->isAn('admin');
     }
@@ -72,10 +72,10 @@ class RolePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Silber\Bouncer\Database\Role  $role
+     * @param  \App\Models\Favorite  $favorite
      * @return mixed
      */
-    public function restore(User $user, Role $role)
+    public function restore(User $user, Favorite $favorite)
     {
         return $user->isAn('admin');
     }
@@ -84,10 +84,10 @@ class RolePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Silber\Bouncer\Database\Role  $role
+     * @param  \App\Models\Favorite  $favorite
      * @return mixed
      */
-    public function forceDelete(User $user, Role $role)
+    public function forceDelete(User $user, Favorite $favorite)
     {
         return $user->isAn('admin');
     }
