@@ -1,6 +1,6 @@
 <template>
     <div class="custom-dropdown big">
-        <select  v-bind:name ="name" @input="handleChange">
+        <select  v-bind:name ="name" @input="onChange">
             <option disabled value="" selected="selected">Please select a user</option>
             <option v-for="option in options" :key="option.key" :value="option.value"> 
                 {{option.key}} 
@@ -24,11 +24,14 @@ import  './selectInput.css'
       name:{
         type:String,
         required:true
+      },
+      handleChange:{
+        type:Function
       }
     } ,
     methods: {
-      handleChange(e) {
-        this.$emit('handleChange', e.target);
+      onChange(e) {
+        this.handleChange(e.target)
       }
     }
   }

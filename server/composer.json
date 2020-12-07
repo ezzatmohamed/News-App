@@ -15,10 +15,6 @@
         {
             "type": "path",
             "url": "./nova-components/CreateFavorite"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/CreateFavorite"
         }
     ],
     "require": {

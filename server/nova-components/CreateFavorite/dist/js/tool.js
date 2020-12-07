@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -641,7 +641,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -663,15 +662,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("heading", { staticClass: "mb-6" }, [_vm._v("Create Favorite")]),
-      _vm._v(" "),
-      _c("Form", { attrs: { title: "Favorite Creation" } })
-    ],
-    1
-  )
+  return _c("div", [_c("Form", { attrs: { title: "Favorite Creation" } })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1377,11 +1368,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     title: {
       type: String,
       default: ""
+    },
+    handleChange: {
+      type: Function
     }
   },
   methods: {
-    handleChange: function handleChange(e) {
-      this.$emit('handleChange', e.target);
+    onChange: function onChange(e) {
+      this.handleChange(e.target);
     }
   }
 
@@ -1400,7 +1394,7 @@ var render = function() {
     _vm._v(" "),
     _c("input", {
       attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
-      on: { input: _vm.handleChange }
+      on: { input: _vm.onChange }
     })
   ])
 }
@@ -1604,11 +1598,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: {
       type: String,
       required: true
+    },
+    handleChange: {
+      type: Function
     }
   },
   methods: {
-    handleChange: function handleChange(e) {
-      this.$emit('handleChange', e.target);
+    onChange: function onChange(e) {
+      this.handleChange(e.target);
     }
   }
 });
@@ -1624,7 +1621,7 @@ var render = function() {
   return _c("div", { staticClass: "custom-dropdown big" }, [
     _c(
       "select",
-      { attrs: { name: _vm.name }, on: { input: _vm.handleChange } },
+      { attrs: { name: _vm.name }, on: { input: _vm.onChange } },
       [
         _c(
           "option",
@@ -1849,65 +1846,55 @@ var render = function() {
         },
         [
           _c("formInput", {
-            attrs: { type: "text", name: "title" },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
+            attrs: {
+              type: "text",
+              name: "title",
+              handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),
           _c("formInput", {
-            attrs: { type: "text", name: "author" },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
+            attrs: {
+              type: "text",
+              name: "author",
+              handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),
           _c("formInput", {
-            attrs: { type: "text", name: "description" },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
+            attrs: {
+              type: "text",
+              name: "description",
+              handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),
           _c("formInput", {
-            attrs: { type: "text", name: "urlToImage" },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
+            attrs: {
+              type: "text",
+              name: "urlToImage",
+              handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),
           _c("formInput", {
-            attrs: { type: "text", name: "url" },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
-            }
+            attrs: { type: "text", name: "url", handleChange: _vm.handleChange }
           }),
           _vm._v(" "),
           _c("formInput", {
-            attrs: { type: "date", name: "publishedAt", title: "Publish Date" },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
+            attrs: {
+              type: "date",
+              name: "publishedAt",
+              title: "Publish Date",
+              handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),
           _c("selectInput", {
-            attrs: { name: "user", options: _vm.users },
-            on: {
-              handleChange: function($event) {
-                return _vm.handleChange($event)
-              }
+            attrs: {
+              name: "user",
+              options: _vm.users,
+              handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),

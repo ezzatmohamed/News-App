@@ -1,6 +1,5 @@
 <template>
     <div>
-        <heading class="mb-6">Create Favorite</heading>
         <Form title="Favorite Creation"/>
 
     </div>

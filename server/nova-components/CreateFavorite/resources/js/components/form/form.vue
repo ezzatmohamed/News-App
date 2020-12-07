@@ -5,15 +5,15 @@
                 <p id="form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
                     
-                    <formInput type="text" name="title"         @handleChange="handleChange($event)"  /> 
-                    <formInput type="text" name="author"        @handleChange="handleChange($event)" /> 
-                    <formInput type="text" name="description"   @handleChange="handleChange($event)" /> 
-                    <formInput type="text" name="urlToImage"    @handleChange="handleChange($event)" /> 
-                    <formInput type="text" name="url"           @handleChange="handleChange($event)" /> 
+                    <formInput type="text" name="title"         :handleChange="handleChange"  /> 
+                    <formInput type="text" name="author"        :handleChange="handleChange" /> 
+                    <formInput type="text" name="description"   :handleChange="handleChange" /> 
+                    <formInput type="text" name="urlToImage"    :handleChange="handleChange" /> 
+                    <formInput type="text" name="url"           :handleChange="handleChange" /> 
 
-                    <formInput type="date" name="publishedAt" title="Publish Date" @handleChange="handleChange($event)" /> 
+                    <formInput type="date" name="publishedAt" title="Publish Date" :handleChange="handleChange" /> 
 
-                    <selectInput name="user" :options="users" @handleChange="handleChange($event)" />
+                    <selectInput name="user" :options="users"  :handleChange="handleChange" />
 
                     <buttonInput type="submit"  text="Create" />
                 </form>

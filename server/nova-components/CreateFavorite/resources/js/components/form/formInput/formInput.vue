@@ -4,7 +4,7 @@
         <p id ="input-title" >{{title}}</p>
         <input  v-bind:type ="type"
                 v-bind:name ="name"
-                @input ="handleChange"
+                @input ="onChange"
                 v-bind:placeholder ="name"
         />
     </div>
@@ -27,11 +27,14 @@
       title:{
         type:String,
         default:""
+      },
+      handleChange:{
+        type:Function
       }
     },
     methods: {
-      handleChange(e) {
-        this.$emit('handleChange', e.target);
+      onChange(e) {
+        this.handleChange(e.target)
       }
     }
     
