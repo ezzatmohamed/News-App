@@ -668,7 +668,7 @@ var render = function() {
     [
       _c("heading", { staticClass: "mb-6" }, [_vm._v("Create Favorite")]),
       _vm._v(" "),
-      _c("Form")
+      _c("Form", { attrs: { title: "Favorite Creation" } })
     ],
     1
   )
@@ -778,13 +778,543 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.form-container[data-v-023ff5f4]{\n    width:40%;\n    position: absolute;\n    padding:40px;\n    top:50%;\n    left:50%;\n    text-align: center;\n    -webkit-transform:translate(-50%,-50%);\n            transform:translate(-50%,-50%)\n}\n.form-container form[data-v-023ff5f4]{\n    background-color: #ebebeb;\n    padding: 12px;\n}\n#form-title[data-v-023ff5f4]{\n    background: #28d;\n    padding: 20px;\n    font-size: 1.4em;\n    font-weight: normal;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}\n.form-input[data-v-023ff5f4] {\n    padding: 12px;\n}\n.form-input input[data-v-023ff5f4] {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n}\n.form-input input[type=\"email\"][data-v-023ff5f4],\n  .form-input input[type=\"password\"][data-v-023ff5f4] {\n    background: #fff;\n    border-color: #bbb;\n    color: #555;\n}\n  \n  /* Text fields' focus effect */\n.form-input input[type=\"email\"][data-v-023ff5f4]:focus,\n  .form-input input[type=\"password\"][data-v-023ff5f4]:focus {\n    border-color: #888;\n}\n.form-button[data-v-023ff5f4]  {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n.form-button[data-v-023ff5f4]:hover {\n    background: #17c;\n}\n.form-button[data-v-023ff5f4]:focus {\n    border-color: #05a;\n}\n#BOD[data-v-023ff5f4]{\n      color:#05a;\n      text-transform: uppercase;\n      font-size: 2vh;\n      padding:13px;\n}\n.form-container a[data-v-023ff5f4]{\n    text-decoration: underline;\n    color: #05a;\n}\n#link[data-v-023ff5f4]{\n    padding: 10px;\n    font-size: 2vh;\n    text-transform: uppercase;\n}\nbutton[data-v-023ff5f4]:disabled,\nbutton[disabled][data-v-023ff5f4],\nbutton[data-v-023ff5f4]:disabled:hover,\nbutton[disabled][data-v-023ff5f4]:hover{\n  background-color: #cccccc;\n  color: #666666;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.form-container[data-v-023ff5f4]{\n    width:40%;\n    position: relative;\n    padding:20px;\n    /* top:50%; */\n    /* left:50%; */\n    margin:auto;\n    text-align: center;\n    /* transform:translate(-50%,-50%) */\n}\n.form-container form[data-v-023ff5f4]{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n#form-title[data-v-023ff5f4]{\n    background: #28d;\n    padding: 20px;\n    font-size: 1.4em;\n    font-weight: normal;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formInput_formInput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_retrieveUsers_js__ = __webpack_require__(41);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: { formInput: __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default.a, buttonInput: __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default.a, selectInput: __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default.a },
+    name: "form",
+    props: ["title"],
+    data: function data() {
+        return {
+            info: {
+                title: "",
+                author: "",
+                description: "",
+                urlToImage: "",
+                publishedAt: "",
+                url: "",
+                user: 0
+            },
+            users: []
+        };
+    },
+
+    methods: {
+        onSubmit: function onSubmit() {
+            Nova.request().post('/nova-api/favorites', this.info).then(function (res) {
+                Nova.success('Created successfully');
+            }).catch(function (err) {
+                Nova.error('Error: ' + err.message);
+            });
+        },
+        handleChange: function handleChange(payload) {
+            this.info[payload.name] = payload.value;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        Object(__WEBPACK_IMPORTED_MODULE_3__helpers_retrieveUsers_js__["a" /* retrieveUsers */])(Nova).then(function (res) {
+            _this.users = res;
+        }).catch(function (err) {
+
+            Nova.error("Error Retrieving users");
+        });
+    }
+
+});
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-container" }, [
+      _c("p", { attrs: { id: "form-title" } }, [_vm._v(_vm._s(_vm.title))]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
+        [
+          _c("formInput", {
+            attrs: { type: "text", name: "title" },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("formInput", {
+            attrs: { type: "text", name: "author" },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("formInput", {
+            attrs: { type: "text", name: "description" },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("formInput", {
+            attrs: { type: "text", name: "urlToImage" },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("formInput", {
+            attrs: { type: "text", name: "url" },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("formInput", {
+            attrs: { type: "date", name: "publishedAt", title: "Publish Date" },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("selectInput", {
+            attrs: { name: "user", options: _vm.users },
+            on: {
+              handleChange: function($event) {
+                return _vm.handleChange($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("buttonInput", { attrs: { type: "submit", text: "Create" } })
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-023ff5f4", module.exports)
+  }
+}
+
+/***/ }),
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(26)
+}
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(24)
+/* template */
+var __vue_template__ = __webpack_require__(28)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-83dfcf06"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/formInput/formInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-83dfcf06", Component.options)
+  } else {
+    hotAPI.reload("data-v-83dfcf06", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "formInput",
+  props: ["type", "name", "title"],
+  methods: {
+    handleChange: function handleChange(e) {
+      this.$emit('handleChange', e.target);
+    }
+  }
+
+});
+
+/***/ }),
+/* 25 */,
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(27);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("54b24d95", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-83dfcf06\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./formInput.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-83dfcf06\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./formInput.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-input[data-v-83dfcf06] {\n  padding: 12px;\n}\n.form-input input[data-v-83dfcf06] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  display: block;\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  padding: 16px;\n  outline: 0;\n  font-family: inherit;\n  font-size: 0.95em;\n}\n.form-input input[type=\"email\"][data-v-83dfcf06],\n.form-input input[type=\"password\"][data-v-83dfcf06] {\n  background: #fff;\n  border-color: #bbb;\n  color: #555;\n}\n#input-title[data-v-83dfcf06]{\n    color:#05a;\n    text-transform: uppercase;\n    font-size: 2vh;\n    padding:13px;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-input" }, [
+    _c("p", { attrs: { id: "input-title" } }, [_vm._v(_vm._s(_vm.title))]),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
+      on: { input: _vm.handleChange }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-83dfcf06", module.exports)
+  }
+}
+
+/***/ }),
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(35)
+}
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(33)
+/* template */
+var __vue_template__ = __webpack_require__(37)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-32e25261"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/buttonInput/buttonInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-32e25261", Component.options)
+  } else {
+    hotAPI.reload("data-v-32e25261", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "buttonInput",
+  props: ["type", "text"]
+});
+
+/***/ }),
+/* 34 */,
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(36);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("064abaa5", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-32e25261\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buttonInput.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-32e25261\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./buttonInput.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-button[data-v-32e25261]  {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n.form-button[data-v-32e25261]:hover {\n    background: #17c;\n}\n.form-button[data-v-32e25261]:focus {\n    border-color: #05a;\n}\n#link[data-v-32e25261]{\n    padding: 10px;\n    font-size: 2vh;\n    text-transform: uppercase;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    { staticClass: "form-button", attrs: { type: _vm.submit } },
+    [_vm._v(_vm._s(_vm.text))]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-32e25261", module.exports)
+  }
+}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(42)
+}
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(39)
+/* template */
+var __vue_template__ = __webpack_require__(44)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5c197c4d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/selectInput/selectInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c197c4d", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c197c4d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -802,256 +1332,116 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "form",
-
-    data: function data() {
-        return {
-            title: "",
-            author: "",
-            description: "",
-            image: "",
-            date: "",
-            url: ""
-        };
-    },
-
-    methods: {
-        onSubmit: function onSubmit() {
-            console.log(this.date);
-        }
+  name: "selectInput",
+  props: ["options", "name"],
+  methods: {
+    handleChange: function handleChange(e) {
+      this.$emit('handleChange', e.target);
     }
-
+  }
 });
 
 /***/ }),
-/* 19 */
+/* 40 */,
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return retrieveUsers; });
+var retrieveUsers = function retrieveUsers(Nova) {
+
+    return new Promise(function (resolve, reject) {
+
+        Nova.request().get('/nova-api/users').then(function (res) {
+            var usersList = [];
+            res.data.resources.forEach(function (user) {
+                var data = { value: -1, key: ""
+
+                    // Searching for name&id attribute
+                };user.fields.forEach(function (field) {
+                    if (field.attribute == "id") data.value = field.value;else if (field.attribute == "name") data.key = field.value;
+                });
+                usersList.push(data);
+            });
+
+            resolve(usersList);
+        }).catch(function (err) {
+            reject(err);
+        });
+    });
+};
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(43);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("1acbf069", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c197c4d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./selectInput.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c197c4d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./selectInput.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.big[data-v-5c197c4d] {\n  font-size: 1.2em;\n}\n.small[data-v-5c197c4d] {\n  font-size: .7em;\n}\n.square[data-v-5c197c4d] {\n  width: .7em;\n  height: .7em;\n  margin: .5em;\n  display: inline-block;\n}\n\n/* Custom dropdown */\n.custom-dropdown[data-v-5c197c4d] {\n  display: inline-block;\n  vertical-align: middle;\n  /* margin: 10px; demo only */\n  margin:auto;\n  padding:10px;\n  margin-bottom:5px;\n}\n.custom-dropdown select[data-v-5c197c4d] {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border: 0;\n  margin: 0;\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button; /* hide default arrow in chrome OSX */\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "form-container" }, [
-      _c("p", { attrs: { id: "form-title" } }, [_vm._v("Favorite Creation")]),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.onSubmit($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-input" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.title,
-                  expression: "title"
-                }
-              ],
-              attrs: { type: "text", name: "title", placeholder: "Title" },
-              domProps: { value: _vm.title },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.title = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-input" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.author,
-                  expression: "author"
-                }
-              ],
-              attrs: { type: "text", name: "author", placeholder: "Author" },
-              domProps: { value: _vm.author },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.author = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-input" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
-                }
-              ],
-              attrs: {
-                type: "text",
-                name: "description",
-                placeholder: "Description"
-              },
-              domProps: { value: _vm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.description = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-input" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.image,
-                  expression: "image"
-                }
-              ],
-              attrs: { type: "text", name: "image", placeholder: "Image url" },
-              domProps: { value: _vm.image },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.image = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-input" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.url,
-                  expression: "url"
-                }
-              ],
-              attrs: { type: "text", name: "url", placeholder: "Article Url" },
-              domProps: { value: _vm.url },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.url = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-input" }, [
-            _c("p", { attrs: { id: "BOD" } }, [_vm._v("Publish Date")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.date,
-                  expression: "date"
-                }
-              ],
-              attrs: { type: "date", name: "date" },
-              domProps: { value: _vm.date },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.date = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "form-button", attrs: { type: "submit" } },
-            [_vm._v("Create")]
+  return _c("div", { staticClass: "custom-dropdown big" }, [
+    _c(
+      "select",
+      { attrs: { name: _vm.name }, on: { input: _vm.handleChange } },
+      [
+        _c(
+          "option",
+          { attrs: { disabled: "", value: "", selected: "selected" } },
+          [_vm._v("Please select a user")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.options, function(option) {
+          return _c(
+            "option",
+            { key: option.id, domProps: { value: option.value } },
+            [_vm._v(" \n            " + _vm._s(option.key) + " \n        ")]
           )
-        ]
-      )
-    ])
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
@@ -1060,7 +1450,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-023ff5f4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5c197c4d", module.exports)
   }
 }
 

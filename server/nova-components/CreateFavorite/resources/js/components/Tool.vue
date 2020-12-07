@@ -1,7 +1,7 @@
 <template>
     <div>
         <heading class="mb-6">Create Favorite</heading>
-        <Form />
+        <Form title="Favorite Creation"/>
 
     </div>
 </template>
