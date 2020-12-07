@@ -5,15 +5,15 @@
                 <p id="form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
                     
-                    <formInput type="text" name="title"         :handleChange="handleChange"  /> 
-                    <formInput type="text" name="author"        :handleChange="handleChange" /> 
-                    <formInput type="text" name="description"   :handleChange="handleChange" /> 
-                    <formInput type="text" name="urlToImage"    :handleChange="handleChange" /> 
-                    <formInput type="text" name="url"           :handleChange="handleChange" /> 
+                    <formInput type="text" name="title"        :value="info.title"     :handleChange="handleChange"  /> 
+                    <formInput type="text" name="author"       :value="info.author"     :handleChange="handleChange" /> 
+                    <formInput type="text" name="description"  :value="info.description"    :handleChange="handleChange" /> 
+                    <formInput type="text" name="urlToImage"   :value="info.urlToImage"    :handleChange="handleChange" /> 
+                    <formInput type="text" name="url"          :value="info.url"    :handleChange="handleChange" /> 
 
-                    <formInput type="date" name="publishedAt" title="Publish Date" :handleChange="handleChange" /> 
+                    <formInput type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
 
-                    <selectInput name="user" :options="users"  :handleChange="handleChange" />
+                    <selectInput name="user" :options="users" :value="info.user"  :handleChange="handleChange" />
 
                     <buttonInput type="submit"  text="Create" />
                 </form>
@@ -42,14 +42,14 @@ import './form.css'
         data(){
             return{
                 info:{
-                        title:"",
-                        author:"",
-                        description:"",
-                        urlToImage:"",
-                        publishedAt:"",
-                        url:"",
-                        user:0
-                    },
+                title:"",
+                author:"",
+                description:"",
+                urlToImage:"",
+                publishedAt:"",
+                url:"",
+                user:0
+            },
                 users:[]
             }
         },
@@ -59,6 +59,16 @@ import './form.css'
                     .post('/nova-api/favorites',this.info)
                     .then(res=>{
                         Nova.success('Created successfully')
+                        this.info = {
+                                        title:"",
+                                        author:"",
+                                        description:"",
+                                        urlToImage:"",
+                                        publishedAt:"",
+                                        url:"",
+                                        user:0
+                                    }
+                        console.log(this.info)
                     })
                     .catch(err=>{
                         Nova.error(`Error: ${err.message}`)

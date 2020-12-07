@@ -1257,8 +1257,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onSubmit: function onSubmit() {
+            var _this = this;
+
             Nova.request().post('/nova-api/favorites', this.info).then(function (res) {
                 Nova.success('Created successfully');
+                _this.info = {
+                    title: "",
+                    author: "",
+                    description: "",
+                    urlToImage: "",
+                    publishedAt: "",
+                    url: "",
+                    user: 0
+                };
+                console.log(_this.info);
             }).catch(function (err) {
                 Nova.error('Error: ' + err.message);
             });
@@ -1268,10 +1280,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
-        var _this = this;
+        var _this2 = this;
 
         Object(__WEBPACK_IMPORTED_MODULE_3__helpers_retrieveUsers_js__["a" /* retrieveUsers */])(Nova).then(function (res) {
-            _this.users = res;
+            _this2.users = res;
         }).catch(function (err) {
 
             Nova.error("Error Retrieving users");
@@ -1351,6 +1363,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -1368,6 +1382,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     title: {
       type: String,
       default: ""
+    },
+    value: {
+      type: String
     },
     handleChange: {
       type: Function
@@ -1394,6 +1411,7 @@ var render = function() {
     _vm._v(" "),
     _c("input", {
       attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
+      domProps: { value: _vm.value },
       on: { input: _vm.onChange }
     })
   ])
@@ -1599,6 +1617,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       required: true
     },
+    value: {
+      type: String
+    },
     handleChange: {
       type: Function
     }
@@ -1621,13 +1642,15 @@ var render = function() {
   return _c("div", { staticClass: "custom-dropdown big" }, [
     _c(
       "select",
-      { attrs: { name: _vm.name }, on: { input: _vm.onChange } },
+      {
+        attrs: { name: _vm.name },
+        domProps: { value: _vm.value },
+        on: { input: _vm.onChange }
+      },
       [
-        _c(
-          "option",
-          { attrs: { disabled: "", value: "", selected: "selected" } },
-          [_vm._v("Please select a user")]
-        ),
+        _c("option", { key: "0", attrs: { value: "0", disabled: "" } }, [
+          _vm._v("Please select a user")
+        ]),
         _vm._v(" "),
         _vm._l(_vm.options, function(option) {
           return _c(
@@ -1849,6 +1872,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "title",
+              value: _vm.info.title,
               handleChange: _vm.handleChange
             }
           }),
@@ -1857,6 +1881,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "author",
+              value: _vm.info.author,
               handleChange: _vm.handleChange
             }
           }),
@@ -1865,6 +1890,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "description",
+              value: _vm.info.description,
               handleChange: _vm.handleChange
             }
           }),
@@ -1873,12 +1899,18 @@ var render = function() {
             attrs: {
               type: "text",
               name: "urlToImage",
+              value: _vm.info.urlToImage,
               handleChange: _vm.handleChange
             }
           }),
           _vm._v(" "),
           _c("formInput", {
-            attrs: { type: "text", name: "url", handleChange: _vm.handleChange }
+            attrs: {
+              type: "text",
+              name: "url",
+              value: _vm.info.url,
+              handleChange: _vm.handleChange
+            }
           }),
           _vm._v(" "),
           _c("formInput", {
@@ -1886,6 +1918,7 @@ var render = function() {
               type: "date",
               name: "publishedAt",
               title: "Publish Date",
+              value: _vm.info.publishedAt,
               handleChange: _vm.handleChange
             }
           }),
@@ -1894,6 +1927,7 @@ var render = function() {
             attrs: {
               name: "user",
               options: _vm.users,
+              value: _vm.info.user,
               handleChange: _vm.handleChange
             }
           }),

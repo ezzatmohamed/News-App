@@ -6,6 +6,8 @@
                 v-bind:name ="name"
                 @input ="onChange"
                 v-bind:placeholder ="name"
+                :value="value"
+
         />
     </div>
 </template>
@@ -27,6 +29,9 @@
       title:{
         type:String,
         default:""
+      },
+      value: {
+        type:String
       },
       handleChange:{
         type:Function
