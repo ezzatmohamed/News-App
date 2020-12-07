@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -632,6 +632,193 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__form_form_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    //
+  },
+
+  components: {
+    Form: __WEBPACK_IMPORTED_MODULE_0__form_form_vue___default.a
+  }
+});
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("heading", { staticClass: "mb-6" }, [_vm._v("Create Favorite")]),
+      _vm._v(" "),
+      _c("Form")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
+  }
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(16)
+}
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(18)
+/* template */
+var __vue_template__ = __webpack_require__(19)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-023ff5f4"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/form.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-023ff5f4", Component.options)
+  } else {
+    hotAPI.reload("data-v-023ff5f4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(17);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("d1b83c0a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-023ff5f4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./form.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-023ff5f4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./form.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-container[data-v-023ff5f4]{\n    width:40%;\n    position: absolute;\n    padding:40px;\n    top:50%;\n    left:50%;\n    text-align: center;\n    -webkit-transform:translate(-50%,-50%);\n            transform:translate(-50%,-50%)\n}\n.form-container form[data-v-023ff5f4]{\n    background-color: #ebebeb;\n    padding: 12px;\n}\n#form-title[data-v-023ff5f4]{\n    background: #28d;\n    padding: 20px;\n    font-size: 1.4em;\n    font-weight: normal;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}\n.form-input[data-v-023ff5f4] {\n    padding: 12px;\n}\n.form-input input[data-v-023ff5f4] {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n}\n.form-input input[type=\"email\"][data-v-023ff5f4],\n  .form-input input[type=\"password\"][data-v-023ff5f4] {\n    background: #fff;\n    border-color: #bbb;\n    color: #555;\n}\n  \n  /* Text fields' focus effect */\n.form-input input[type=\"email\"][data-v-023ff5f4]:focus,\n  .form-input input[type=\"password\"][data-v-023ff5f4]:focus {\n    border-color: #888;\n}\n.form-button[data-v-023ff5f4]  {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n.form-button[data-v-023ff5f4]:hover {\n    background: #17c;\n}\n.form-button[data-v-023ff5f4]:focus {\n    border-color: #05a;\n}\n#BOD[data-v-023ff5f4]{\n      color:#05a;\n      text-transform: uppercase;\n      font-size: 2vh;\n      padding:13px;\n}\n.form-container a[data-v-023ff5f4]{\n    text-decoration: underline;\n    color: #05a;\n}\n#link[data-v-023ff5f4]{\n    padding: 10px;\n    font-size: 2vh;\n    text-transform: uppercase;\n}\nbutton[data-v-023ff5f4]:disabled,\nbutton[disabled][data-v-023ff5f4],\nbutton[data-v-023ff5f4]:disabled:hover,\nbutton[disabled][data-v-023ff5f4]:hover{\n  background-color: #cccccc;\n  color: #666666;\n}\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -669,81 +856,203 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        //
+    name: "form",
+
+    data: function data() {
+        return {
+            title: "",
+            author: "",
+            description: "",
+            image: "",
+            date: "",
+            url: ""
+        };
+    },
+
+    methods: {
+        onSubmit: function onSubmit() {
+            console.log(this.date);
+        }
     }
+
 });
 
 /***/ }),
-/* 10 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("heading", { staticClass: "mb-6" }, [_vm._v("Create Favorite")]),
+  return _c("div", [
+    _c("div", { staticClass: "form-container" }, [
+      _c("p", { attrs: { id: "form-title" } }, [_vm._v("Favorite Creation")]),
       _vm._v(" "),
       _c(
-        "card",
+        "form",
         {
-          staticClass: "bg-90 flex flex-col items-center justify-center",
-          staticStyle: { "min-height": "300px" }
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
         },
         [
-          _c(
-            "svg",
-            {
-              staticClass: "spin fill-80 mb-6",
-              attrs: {
-                width: "69",
-                height: "72",
-                viewBox: "0 0 23 24",
-                xmlns: "http://www.w3.org/2000/svg"
-              }
-            },
-            [
-              _c("path", {
-                attrs: {
-                  d:
-                    "M20.12 20.455A12.184 12.184 0 0 1 11.5 24a12.18 12.18 0 0 1-9.333-4.319c4.772 3.933 11.88 3.687 16.36-.738a7.571 7.571 0 0 0 0-10.8c-3.018-2.982-7.912-2.982-10.931 0a3.245 3.245 0 0 0 0 4.628 3.342 3.342 0 0 0 4.685 0 1.114 1.114 0 0 1 1.561 0 1.082 1.082 0 0 1 0 1.543 5.57 5.57 0 0 1-7.808 0 5.408 5.408 0 0 1 0-7.714c3.881-3.834 10.174-3.834 14.055 0a9.734 9.734 0 0 1 .03 13.855zM4.472 5.057a7.571 7.571 0 0 0 0 10.8c3.018 2.982 7.912 2.982 10.931 0a3.245 3.245 0 0 0 0-4.628 3.342 3.342 0 0 0-4.685 0 1.114 1.114 0 0 1-1.561 0 1.082 1.082 0 0 1 0-1.543 5.57 5.57 0 0 1 7.808 0 5.408 5.408 0 0 1 0 7.714c-3.881 3.834-10.174 3.834-14.055 0a9.734 9.734 0 0 1-.015-13.87C5.096 1.35 8.138 0 11.5 0c3.75 0 7.105 1.68 9.333 4.319C16.06.386 8.953.632 4.473 5.057z",
-                  "fill-rule": "evenodd"
+          _c("div", { staticClass: "form-input" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.title,
+                  expression: "title"
                 }
-              })
-            ]
-          ),
+              ],
+              attrs: { type: "text", name: "title", placeholder: "Title" },
+              domProps: { value: _vm.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.title = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-input" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.author,
+                  expression: "author"
+                }
+              ],
+              attrs: { type: "text", name: "author", placeholder: "Author" },
+              domProps: { value: _vm.author },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.author = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-input" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              attrs: {
+                type: "text",
+                name: "description",
+                placeholder: "Description"
+              },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-input" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.image,
+                  expression: "image"
+                }
+              ],
+              attrs: { type: "text", name: "image", placeholder: "Image url" },
+              domProps: { value: _vm.image },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.image = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-input" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.url,
+                  expression: "url"
+                }
+              ],
+              attrs: { type: "text", name: "url", placeholder: "Article Url" },
+              domProps: { value: _vm.url },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.url = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-input" }, [
+            _c("p", { attrs: { id: "BOD" } }, [_vm._v("Publish Date")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.date,
+                  expression: "date"
+                }
+              ],
+              attrs: { type: "date", name: "date" },
+              domProps: { value: _vm.date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.date = $event.target.value
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
           _c(
-            "h1",
-            { staticClass: "text-white text-4xl text-90 font-light mb-6" },
-            [_vm._v("\n          test:  We're in a black hole.\n        ")]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-white-50% text-lg" }, [
-            _vm._v(
-              "\n            You can edit this tool's component at:\n            "
-            ),
-            _c(
-              "code",
-              {
-                staticClass:
-                  "ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1"
-              },
-              [
-                _vm._v(
-                  "\n                /nova-components/CreateFavorite/resources/js/components/Tool.vue\n            "
-                )
-              ]
-            )
-          ])
+            "button",
+            { staticClass: "form-button", attrs: { type: "submit" } },
+            [_vm._v("Create")]
+          )
         ]
       )
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -751,15 +1060,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-023ff5f4", module.exports)
   }
 }
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
