@@ -4,41 +4,19 @@
 </template>
 
 <script>
+  import './buttonInput.css';
   export default {
     name:"buttonInput",
-    props:["type","text"],    
+    props:{
+      type:{
+        type:String,
+        default:"button"
+      },
+      text:{
+        type:String,
+        default:"Click"
+      }
+    },
   }
 </script>
  
-
-<style scoped>
-
-    .form-button  {
-        box-sizing: border-box;
-        display: block;
-        width: 100%;
-        border-width: 1px;
-        border-style: solid;
-        padding: 16px;
-        outline: 0;
-        font-family: inherit;
-        font-size: 0.95em;
-        background: #28d;
-        border-color: transparent;
-        color: #fff;
-        cursor: pointer;
-    }
-    
-    .form-button:hover {
-        background: #17c;
-    }
-    .form-button:focus {
-        border-color: #05a;
-    }
-
-    #link{
-        padding: 10px;
-        font-size: 2vh;
-        text-transform: uppercase;
-    }
-</style>

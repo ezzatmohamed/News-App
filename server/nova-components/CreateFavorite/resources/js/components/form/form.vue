@@ -28,12 +28,17 @@ import buttonInput from './buttonInput/buttonInput'
 import formInput from './formInput/formInput'
 import selectInput from './selectInput/selectInput'
 import { retrieveUsers } from './../../helpers/retrieveUsers.js'
-
+import './form.css'
 
     export default {
         components: { formInput ,buttonInput,selectInput},
         name: "form",
-        props:["title"],
+        props:{
+            title:{
+                type:String,
+                default:"Form"
+            }
+        },
         data(){
             return{
                 info:{
@@ -78,32 +83,3 @@ import { retrieveUsers } from './../../helpers/retrieveUsers.js'
 
     }
 </script>
-
-<style scoped>
-    .form-container{
-        width:40%;
-        position: relative;
-        padding:20px;
-        /* top:50%; */
-        /* left:50%; */
-        margin:auto;
-        text-align: center;
-        /* transform:translate(-50%,-50%) */
-    }
-    .form-container form{
-        background-color: #ebebeb;
-        padding: 2px;
-    }
-
-    #form-title{
-        background: #28d;
-        padding: 20px;
-        font-size: 1.4em;
-        font-weight: normal;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-    }
-    
-
-</style>
