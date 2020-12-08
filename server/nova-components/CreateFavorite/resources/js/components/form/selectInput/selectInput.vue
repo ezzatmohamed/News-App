@@ -15,7 +15,7 @@
 import  './selectInput.css'
 
   export default {
-    name:"selectInput",
+    name:"select-input",
     props: { 
       options:{
         type:Array,

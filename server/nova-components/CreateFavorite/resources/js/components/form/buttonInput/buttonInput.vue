@@ -6,7 +6,7 @@
 <script>
   import './buttonInput.css';
   export default {
-    name:"buttonInput",
+    name:"button-input",
     props:{
       type:{
         type:String,

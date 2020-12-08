@@ -4,18 +4,17 @@
             <div class="form-container">
                 <p id="form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
-                    
-                    <formInput type="text" name="title"        :value="info.title"     :handleChange="handleChange"  /> 
-                    <formInput type="text" name="author"       :value="info.author"     :handleChange="handleChange" /> 
-                    <formInput type="text" name="description"  :value="info.description"    :handleChange="handleChange" /> 
-                    <formInput type="text" name="urlToImage"   :value="info.urlToImage"    :handleChange="handleChange" /> 
-                    <formInput type="text" name="url"          :value="info.url"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="title"        :value="info.title"     :handleChange="handleChange"  /> 
+                    <form-input type="text" name="author"       :value="info.author"     :handleChange="handleChange" /> 
+                    <form-input type="text" name="description"  :value="info.description"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="urlToImage"   :value="info.urlToImage"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="url"          :value="info.url"    :handleChange="handleChange" /> 
 
-                    <formInput type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
+                    <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
 
-                    <selectInput name="user" :options="users" :value="info.user"  :handleChange="handleChange" />
+                    <select-input name="user" :options="users" :value="info.user"  :handleChange="handleChange" />
 
-                    <buttonInput type="submit"  text="Create" />
+                    <button-input type="submit"  text="Create" />
                 </form>
             </div>
         </div>
@@ -27,7 +26,7 @@
 import buttonInput from './buttonInput/buttonInput'
 import formInput from './formInput/formInput'
 import selectInput from './selectInput/selectInput'
-import { retrieveUsers } from './../../helpers/retrieveUsers.js'
+import { parseNovaApi } from './../../helpers/parseNovaApi.js'
 import './form.css'
 
     export default {
@@ -68,7 +67,6 @@ import './form.css'
                                         url:"",
                                         user:0
                                     }
-                        console.log(this.info)
                     })
                     .catch(err=>{
                         Nova.error(`Error: ${err.message}`)
@@ -80,12 +78,31 @@ import './form.css'
             }
         },
         created: function(){
-            retrieveUsers(Nova)
+
+            Nova.request()
+            .get('/nova-api/users')
             .then(res=>{
-                this.users=res
+                const users = parseNovaApi(res)
+                let options = []
+
+                if(users && users.length){
+                    
+                    users.forEach(user => {
+
+                        let data = {value:-1,key:""}
+                        user.forEach(item=>{
+                            
+                            if(item.attribute == "id")
+                                data.value = item.value
+                            else if (item.attribute == "name")
+                                data.key = item.value
+                        })
+                        options.push(data)
+                    })
+                    this.users=options
+                }
             })
             .catch(err=>{
-                
                 Nova.error("Error Retrieving users")
             })
         }

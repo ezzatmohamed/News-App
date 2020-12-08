@@ -16,7 +16,7 @@
   import './formInput.css'
 
   export default {
-    name:"formInput",
+    name:"form-input",
     props: {
       type:{
         type:String,
