@@ -1066,15 +1066,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formInput_formInput__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_parseNovaApi_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_css__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__form_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputs_index_js__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_index_js__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_css__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__form_css__);
 //
 //
 //
@@ -1099,15 +1094,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { formInput: __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default.a, buttonInput: __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default.a, selectInput: __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default.a },
+    components: { formInput: __WEBPACK_IMPORTED_MODULE_0__inputs_index_js__["b" /* formInput */], buttonInput: __WEBPACK_IMPORTED_MODULE_0__inputs_index_js__["a" /* buttonInput */], selectInput: __WEBPACK_IMPORTED_MODULE_0__inputs_index_js__["c" /* selectInput */] },
     name: "form",
     props: {
         title: {
@@ -1150,14 +1143,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         handleChange: function handleChange(payload) {
-            this.info[payload.name] = payload.value;
+            if (payload && payload.name && payload.value) this.info[payload.name] = payload.value;
         }
     },
     created: function created() {
         var _this2 = this;
 
         Nova.request().get('/nova-api/users').then(function (res) {
-            var users = Object(__WEBPACK_IMPORTED_MODULE_3__helpers_parseNovaApi_js__["a" /* parseNovaApi */])(res);
+
+            var users = Object(__WEBPACK_IMPORTED_MODULE_1__helpers_index_js__["a" /* parseNovaApi */])(res);
             var options = [];
 
             if (users && users.length) {
@@ -1167,7 +1161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var data = { value: -1, key: "" };
                     user.forEach(function (item) {
 
-                        if (item.attribute == "id") data.value = item.value;else if (item.attribute == "name") data.key = item.value;
+                        if (item && item.attribute && item.attribute == "id") data.value = item.value ? item.value : -1;else if (item && item.attribute && item.attribute == "name") data.key = item.value ? item.value : "";
                     });
                     options.push(data);
                 });
@@ -1181,127 +1175,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(14)
-/* template */
-var __vue_template__ = __webpack_require__(18)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/form/buttonInput/buttonInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-32e25261", Component.options)
-  } else {
-    hotAPI.reload("data-v-32e25261", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_css__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_css__);
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "button-input",
-  props: {
-    type: {
-      type: String,
-      default: "button"
-    },
-    text: {
-      type: String,
-      default: "Click"
-    }
-  }
-});
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(16);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./buttonInput.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./buttonInput.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n#link{\n    padding: 10px;\n    font-size: 2vh;\n    text-transform: uppercase;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
 /* 17 */
 /***/ (function(module, exports) {
 
@@ -1397,390 +1274,17 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    { staticClass: "form-button", attrs: { type: _vm.submit } },
-    [_vm._v(_vm._s(_vm.text))]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-32e25261", module.exports)
-  }
-}
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(20)
-/* template */
-var __vue_template__ = __webpack_require__(23)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/form/formInput/formInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-83dfcf06", Component.options)
-  } else {
-    hotAPI.reload("data-v-83dfcf06", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__formInput_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "form-input",
-  props: {
-    type: {
-      type: String,
-      default: ''
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      default: ""
-    },
-    value: {
-      type: String,
-      default: ''
-    },
-    handleChange: {
-      type: Function
-    }
-  },
-  methods: {
-    onChange: function onChange(e) {
-      if (typeof this.handleChange === 'function') this.handleChange(e.target);
-    }
-  }
-
-});
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(22);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./formInput.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./formInput.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".form-input {\n    padding: 12px;\n  }\n\n.form-input input {\nbox-sizing: border-box;\ndisplay: block;\nwidth: 100%;\nborder-width: 1px;\nborder-style: solid;\npadding: 16px;\noutline: 0;\nfont-family: inherit;\nfont-size: 0.95em;\n}\n\n.form-input input[type=\"email\"],\n.form-input input[type=\"password\"] {\nbackground: #fff;\nborder-color: #bbb;\ncolor: #555;\n}\n\n\n#input-title{\n    color:#05a;\n    text-transform: uppercase;\n    font-size: 2vh;\n    padding:13px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-input" }, [
-    _c("p", { attrs: { id: "input-title" } }, [_vm._v(_vm._s(_vm.title))]),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
-      domProps: { value: _vm.value },
-      on: { input: _vm.onChange }
-    })
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-83dfcf06", module.exports)
-  }
-}
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(25)
-/* template */
-var __vue_template__ = __webpack_require__(28)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/form/selectInput/selectInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5c197c4d", Component.options)
-  } else {
-    hotAPI.reload("data-v-5c197c4d", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__selectInput_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "select-input",
-  props: {
-    options: {
-      type: Array,
-      default: []
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    value: {
-      type: String
-    },
-    handleChange: {
-      type: Function
-    }
-  },
-  methods: {
-    onChange: function onChange(e) {
-      if (typeof this.handleChange === 'function') this.handleChange(e.target);
-    }
-  }
-});
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(27);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./selectInput.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./selectInput.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".big {\n    font-size: 1.2em;\n  }\n\n.small {\n  font-size: .7em;\n}\n\n.square {\n  width: .7em;\n  height: .7em;\n  margin: .5em;\n  display: inline-block;\n}\n\n/* Custom dropdown */\n.custom-dropdown {\n  display: inline-block;\n  vertical-align: middle;\n  margin:auto;\n  padding:10px;\n  margin-bottom:5px;\n\n}\n\n.custom-dropdown select {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border: 0;\n  margin: 0;\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "custom-dropdown big" }, [
-    _c(
-      "select",
-      {
-        attrs: { name: _vm.name },
-        domProps: { value: _vm.value },
-        on: { input: _vm.onChange }
-      },
-      [
-        _c("option", { key: "0", attrs: { value: "0", disabled: "" } }, [
-          _vm._v("Please select a user")
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.options, function(option) {
-          return _c(
-            "option",
-            { key: option.key, domProps: { value: option.value } },
-            [_vm._v(" \n            " + _vm._s(option.key) + " \n        ")]
-          )
-        })
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5c197c4d", module.exports)
-  }
-}
-
-/***/ }),
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
 /* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1848,7 +1352,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, ".form-container{\n    width:40%;\n    position: relative;\n    padding:20px;\n    /* top:50%; */\n    /* left:50%; */\n    margin:auto;\n    text-align: center;\n    /* transform:translate(-50%,-50%) */\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n#form-title{\n    background: #28d;\n    padding: 20px;\n    font-size: 1.4em;\n    font-weight: normal;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}", ""]);
+exports.push([module.i, ".form-container{\n    width:40%;\n    position: relative;\n    padding:20px;\n    margin:auto;\n    text-align: center;\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n.form-title{\n    background: #28d;\n    padding: 20px;\n    font-size: 1.4em;\n    font-weight: normal;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}", ""]);
 
 // exports
 
@@ -1863,7 +1367,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form-container" }, [
-      _c("p", { attrs: { id: "form-title" } }, [_vm._v(_vm._s(_vm.title))]),
+      _c("p", { staticClass: "form-title" }, [_vm._v(_vm._s(_vm.title))]),
       _vm._v(" "),
       _c(
         "form",
@@ -1982,6 +1486,539 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 35 */,
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default.a; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formInput_formInput__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default.a; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default.a; });
+
+
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(38)
+/* template */
+var __vue_template__ = __webpack_require__(41)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/inputs/buttonInput/buttonInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3977e16b", Component.options)
+  } else {
+    hotAPI.reload("data-v-3977e16b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_css__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_css__);
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "button-input",
+  props: {
+    type: {
+      type: String,
+      default: "button"
+    },
+    text: {
+      type: String,
+      default: "Click"
+    }
+  }
+});
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(40);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!./buttonInput.css", function() {
+			var newContent = require("!!../../../../../../node_modules/css-loader/index.js!./buttonInput.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n#link{\n    padding: 10px;\n    font-size: 2vh;\n    text-transform: uppercase;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    { staticClass: "form-button", attrs: { type: _vm.submit } },
+    [_vm._v(_vm._s(_vm.text))]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3977e16b", module.exports)
+  }
+}
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(43)
+/* template */
+var __vue_template__ = __webpack_require__(46)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/inputs/formInput/formInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4a0abc87", Component.options)
+  } else {
+    hotAPI.reload("data-v-4a0abc87", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__formInput_css__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "form-input",
+  props: {
+    type: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      default: ""
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    handleChange: {
+      type: Function
+    }
+  },
+  methods: {
+    onChange: function onChange(e) {
+      if (typeof this.handleChange === 'function') this.handleChange(e.target);
+    }
+  }
+
+});
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(45);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!./formInput.css", function() {
+			var newContent = require("!!../../../../../../node_modules/css-loader/index.js!./formInput.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".form-input {\n    padding: 12px;\n  }\n\n.form-input input {\nbox-sizing: border-box;\ndisplay: block;\nwidth: 100%;\nborder-width: 1px;\nborder-style: solid;\npadding: 16px;\noutline: 0;\nfont-family: inherit;\nfont-size: 0.95em;\n}\n\n.form-input input[type=\"email\"],\n.form-input input[type=\"password\"] {\nbackground: #fff;\nborder-color: #bbb;\ncolor: #555;\n}\n\n\n.input-title{\n    color:#05a;\n    text-transform: uppercase;\n    font-size: 2vh;\n    padding:13px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-input" }, [
+    _c("p", { staticClass: "input-title" }, [_vm._v(_vm._s(_vm.title))]),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
+      domProps: { value: _vm.value },
+      on: { input: _vm.onChange }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4a0abc87", module.exports)
+  }
+}
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(48)
+/* template */
+var __vue_template__ = __webpack_require__(51)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/inputs/selectInput/selectInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62af0b57", Component.options)
+  } else {
+    hotAPI.reload("data-v-62af0b57", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__selectInput_css__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "select-input",
+  props: {
+    options: {
+      type: Array,
+      default: []
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: String
+    },
+    handleChange: {
+      type: Function
+    }
+  },
+  methods: {
+    onChange: function onChange(e) {
+      if (typeof this.handleChange === 'function') this.handleChange(e.target);
+    }
+  }
+});
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(50);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!./selectInput.css", function() {
+			var newContent = require("!!../../../../../../node_modules/css-loader/index.js!./selectInput.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".big {\n    font-size: 1.2em;\n  }\n\n.small {\n  font-size: .7em;\n}\n\n.square {\n  width: .7em;\n  height: .7em;\n  margin: .5em;\n  display: inline-block;\n}\n\n/* Custom dropdown */\n.custom-dropdown {\n  display: inline-block;\n  vertical-align: middle;\n  margin:auto;\n  padding:10px;\n  margin-bottom:5px;\n\n}\n\n.custom-dropdown select {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border: 0;\n  margin: 0;\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "custom-dropdown big" }, [
+    _c(
+      "select",
+      {
+        attrs: { name: _vm.name },
+        domProps: { value: _vm.value },
+        on: { input: _vm.onChange }
+      },
+      [
+        _c("option", { key: "0", attrs: { value: "0", disabled: "" } }, [
+          _vm._v("Please select a user")
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.options, function(option) {
+          return _c(
+            "option",
+            { key: option.key, domProps: { value: option.value } },
+            [_vm._v(" \n            " + _vm._s(option.key) + " \n        ")]
+          )
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-62af0b57", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(29);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
+
 
 /***/ })
 /******/ ]);

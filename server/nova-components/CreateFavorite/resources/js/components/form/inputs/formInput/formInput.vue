@@ -1,7 +1,7 @@
 
 <template>
     <div class="form-input">
-        <p id ="input-title" >{{title}}</p>
+        <p class ="input-title" >{{title}}</p>
         <input  v-bind:type ="type"
                 v-bind:name ="name"
                 @input ="onChange"

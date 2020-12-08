@@ -22,7 +22,7 @@ color: #555;
 }
 
 
-#input-title{
+.input-title{
     color:#05a;
     text-transform: uppercase;
     font-size: 2vh;

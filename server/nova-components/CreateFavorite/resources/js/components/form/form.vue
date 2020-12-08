@@ -2,7 +2,7 @@
 
     <div>
             <div class="form-container">
-                <p id="form-title">{{title}}</p>
+                <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
                     <form-input type="text" name="title"        :value="info.title"     :handleChange="handleChange"  /> 
                     <form-input type="text" name="author"       :value="info.author"     :handleChange="handleChange" /> 
@@ -23,10 +23,8 @@
 
 
 <script>
-import buttonInput from './buttonInput/buttonInput'
-import formInput from './formInput/formInput'
-import selectInput from './selectInput/selectInput'
-import { parseNovaApi } from './../../helpers/parseNovaApi.js'
+import {buttonInput,formInput,selectInput} from './inputs/index.js'
+import { parseNovaApi } from './../../helpers/index.js'
 import './form.css'
 
     export default {
@@ -74,7 +72,8 @@ import './form.css'
             }
             ,
             handleChange(payload) {
-                this.info[payload.name] = payload.value;
+                if(payload && payload.name && payload.value)
+                    this.info[payload.name] = payload.value;
             }
         },
         created: function(){
@@ -82,6 +81,7 @@ import './form.css'
             Nova.request()
             .get('/nova-api/users')
             .then(res=>{
+
                 const users = parseNovaApi(res)
                 let options = []
 
@@ -91,16 +91,17 @@ import './form.css'
 
                         let data = {value:-1,key:""}
                         user.forEach(item=>{
-                            
-                            if(item.attribute == "id")
-                                data.value = item.value
-                            else if (item.attribute == "name")
-                                data.key = item.value
+
+                            if(item && item.attribute && item.attribute == "id")
+                                data.value = item.value ? item.value : -1
+                            else if (item && item.attribute && item.attribute == "name")
+                                data.key = item.value ? item.value : ""
                         })
                         options.push(data)
                     })
                     this.users=options
                 }
+                
             })
             .catch(err=>{
                 Nova.error("Error Retrieving users")
