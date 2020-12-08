@@ -1126,18 +1126,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             users: [],
             error: ''
-
         };
     },
 
     computed: {
         canSubmit: function canSubmit() {
-            return !(this.info.url.length && this.info.user && this.info.title.length);
+            return !(this.info.url.length && this.info.user);
         }
     },
     methods: {
         validateForm: function validateForm() {
-            this.error = '';
             if (!this.validateUrl(this.info.url)) {
                 this.error = 'Invalid Url';
                 return;
@@ -1147,6 +1145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return;
             }
 
+            this.error = '';
             this.onSubmit();
         },
         onSubmit: function onSubmit() {
@@ -1420,17 +1419,6 @@ var render = function() {
           _c("form-input", {
             attrs: {
               type: "text",
-              name: "title",
-              req: true,
-              title: "Title",
-              value: _vm.info.title,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
-              type: "text",
               name: "url",
               req: true,
               title: "URL",
@@ -1445,6 +1433,16 @@ var render = function() {
               options: _vm.users,
               req: true,
               value: _vm.info.user,
+              handleChange: _vm.handleChange
+            }
+          }),
+          _vm._v(" "),
+          _c("form-input", {
+            attrs: {
+              type: "text",
+              name: "title",
+              title: "Title",
+              value: _vm.info.title,
               handleChange: _vm.handleChange
             }
           }),
