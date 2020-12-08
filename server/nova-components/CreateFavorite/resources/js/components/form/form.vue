@@ -2,8 +2,9 @@
 
     <div>
             <div class="form-container">
+                <div class="error-box" v-if="error!=''">Error : {{error}}</div>
                 <p class = "form-title">{{title}}</p>
-                <form v-on:submit.prevent="onSubmit" >
+                <form v-on:submit.prevent="validateForm" >
                     <form-input type="text" name="title"       :req="true"     title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     <form-input type="text" name="url"         :req="true"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
                     <select-input name="user" :options="users" :req="true"  :value="info.user"  :handleChange="handleChange" />
@@ -13,7 +14,6 @@
                     <form-input type="text" name="urlToImage"  title="Image" :value="info.urlToImage"    :handleChange="handleChange" /> 
 
                     <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
-              
                     <button-input :disabled="canSubmit" type="submit"  text="Create" />
                 </form>
             </div>
@@ -47,15 +47,32 @@ import './form.css'
                 url:"",
                 user:0
             },
-                users:[]
+                users:[],
+                error:''
+
             }
         },
         computed: {
             canSubmit: function(){
-                return !(this.info.url.length > 1 && this.info.user > 0 && this.info.title.length > 1 )
+                return !(this.info.url.length && this.info.user && this.info.title.length  )
             }
         },
         methods:{
+            validateForm(){
+                this.error = ''
+                if( !this.validateUrl(this.info.url) )
+                {   
+                    this.error = 'Invalid Url'
+                    return
+                }
+                else if( this.info.urlToImage && !this.validateUrl(this.info.urlToImage) ){
+
+                    this.error = 'Invalid Image Url'
+                    return
+                }
+                
+                this.onSubmit()
+            },
             onSubmit(){
                 Nova.request()
                     .post('/nova-api/favorites',this.info)
@@ -77,9 +94,15 @@ import './form.css'
             }
             ,
             handleChange(payload) {
-                if(payload && payload.name && payload.value)
+                if(payload && payload.name && typeof payload.value !== 'undefined')
+                {
                     this.info[payload.name] = payload.value;
-            },            
+                }
+            },     
+            validateUrl(value) {
+            return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value);
+            },
+
         },
         created: function(){
 

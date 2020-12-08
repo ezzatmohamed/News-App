@@ -1124,16 +1124,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: "",
                 user: 0
             },
-            users: []
+            users: [],
+            error: ''
+
         };
     },
 
     computed: {
         canSubmit: function canSubmit() {
-            return !(this.info.url.length > 1 && this.info.user > 0 && this.info.title.length > 1);
+            return !(this.info.url.length && this.info.user && this.info.title.length);
         }
     },
     methods: {
+        validateForm: function validateForm() {
+            this.error = '';
+            if (!this.validateUrl(this.info.url)) {
+                this.error = 'Invalid Url';
+                return;
+            } else if (this.info.urlToImage && !this.validateUrl(this.info.urlToImage)) {
+
+                this.error = 'Invalid Image Url';
+                return;
+            }
+
+            this.onSubmit();
+        },
         onSubmit: function onSubmit() {
             var _this = this;
 
@@ -1153,7 +1168,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         handleChange: function handleChange(payload) {
-            if (payload && payload.name && payload.value) this.info[payload.name] = payload.value;
+            if (payload && payload.name && typeof payload.value !== 'undefined') {
+                this.info[payload.name] = payload.value;
+            }
+        },
+        validateUrl: function validateUrl(value) {
+            return (/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
+            );
         }
     },
     created: function created() {
@@ -1377,6 +1398,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form-container" }, [
+      _vm.error != ""
+        ? _c("div", { staticClass: "error-box" }, [
+            _vm._v("Error : " + _vm._s(_vm.error))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("p", { staticClass: "form-title" }, [_vm._v(_vm._s(_vm.title))]),
       _vm._v(" "),
       _c(
@@ -1385,7 +1412,7 @@ var render = function() {
           on: {
             submit: function($event) {
               $event.preventDefault()
-              return _vm.onSubmit($event)
+              return _vm.validateForm($event)
             }
           }
         },
@@ -1780,6 +1807,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     onChange: function onChange(e) {
+      console.log(1);
       if (typeof this.handleChange === 'function') this.handleChange(e.target);
     }
   }

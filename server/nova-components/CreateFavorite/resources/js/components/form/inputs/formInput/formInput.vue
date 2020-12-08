@@ -45,6 +45,7 @@
     },
     methods: {
       onChange(e) {
+        console.log(1)
         if(typeof this.handleChange === 'function')
             this.handleChange(e.target)
 
