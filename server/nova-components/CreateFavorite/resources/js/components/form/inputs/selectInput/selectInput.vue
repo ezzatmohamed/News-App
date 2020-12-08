@@ -6,6 +6,7 @@
                 {{option.key}} 
             </option>
         </select>
+        <span v-if="req===true">*</span>
     </div>
 </template>
 
@@ -27,6 +28,10 @@ import  './selectInput.css'
       },
       value: {
         type:String
+      },
+      req:{
+        type:Boolean,
+        default:false
       },
       handleChange:{
         type:Function

@@ -1098,6 +1098,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -1127,6 +1128,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        canSubmit: function canSubmit() {
+            return !(this.info.url.length > 1 && this.info.user > 0 && this.info.title.length > 1);
+        }
+    },
     methods: {
         onSubmit: function onSubmit() {
             var _this = this;
@@ -1356,7 +1362,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, ".form-container{\n    width:50%;\n    position: relative;\n    padding:20px;\n    margin:auto;\n    text-align: center;\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n.form-title{\n    background: #252d37;\n    padding: 7px;\n    font-size: 17px;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}", ""]);
+exports.push([module.i, ".form-container{\n    width:50%;\n    position: relative;\n    padding:20px;\n    margin:auto;\n    text-align: center;\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n.form-title{\n    background: #252d37;\n    padding: 7px;\n    font-size: 17px;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}\n.error-box {\n    padding: 10px;\n    background-color: rgb(175, 76, 76); \n    color: white;\n    margin-bottom: 15px;\n    width:80%;\n    margin:5px auto;\n    border-radius: 6px;\n    text-align: center;\n    display: block;\n}", ""]);
 
 // exports
 
@@ -1388,8 +1394,30 @@ var render = function() {
             attrs: {
               type: "text",
               name: "title",
+              req: true,
               title: "Title",
               value: _vm.info.title,
+              handleChange: _vm.handleChange
+            }
+          }),
+          _vm._v(" "),
+          _c("form-input", {
+            attrs: {
+              type: "text",
+              name: "url",
+              req: true,
+              title: "URL",
+              value: _vm.info.url,
+              handleChange: _vm.handleChange
+            }
+          }),
+          _vm._v(" "),
+          _c("select-input", {
+            attrs: {
+              name: "user",
+              options: _vm.users,
+              req: true,
+              value: _vm.info.user,
               handleChange: _vm.handleChange
             }
           }),
@@ -1426,16 +1454,6 @@ var render = function() {
           _vm._v(" "),
           _c("form-input", {
             attrs: {
-              type: "text",
-              name: "url",
-              title: "URL",
-              value: _vm.info.url,
-              handleChange: _vm.handleChange2
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
               type: "date",
               name: "publishedAt",
               title: "Publish Date",
@@ -1444,16 +1462,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("select-input", {
-            attrs: {
-              name: "user",
-              options: _vm.users,
-              value: _vm.info.user,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("button-input", { attrs: { type: "submit", text: "Create" } })
+          _c("button-input", {
+            attrs: { disabled: _vm.canSubmit, type: "submit", text: "Create" }
+          })
         ],
         1
       )
@@ -1587,6 +1598,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     text: {
       type: String,
       default: ""
+    },
+    disabled: {
+      type: Boolean,
+      default: true
     }
   }
 });
@@ -1631,7 +1646,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n", ""]);
+exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n    margin-top: 2%;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n.form-button:disabled,\n.form-button[disabled]{\n  background-color: #cccccc;\n  color: #666666;\n  cursor: default;\n}", ""]);
 
 // exports
 
@@ -1646,7 +1661,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "button",
-    { staticClass: "form-button", attrs: { type: _vm.submit } },
+    {
+      staticClass: "form-button",
+      attrs: { disabled: _vm.disabled, type: _vm.submit }
+    },
     [_vm._v(_vm._s(_vm.text))]
   )
 }
@@ -1729,6 +1747,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -1750,6 +1769,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     value: {
       type: String,
       default: ''
+    },
+    req: {
+      type: Boolean,
+      default: false
     },
     handleChange: {
       type: Function
@@ -1803,7 +1826,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.form-input-box input {\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  border-color: rgb(26 102 188);\n  padding: 11px;\n  font-family: inherit;\n}\n.input-title{\n    color:rgb(26 102 188);\n    font-size: 14px;\n    padding:13px 13px 13px 0px;\n    float:left;\n}\n", ""]);
+exports.push([module.i, "\n.form-input-box input {\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  border-color: rgb(26 102 188);\n  padding: 11px;\n  font-family: inherit;\n}\n.input-title{\n    color:rgb(26 102 188);\n    font-size: 14px;\n    padding:13px 13px 13px 0px;\n    float:left;\n}\n\n.form-input-box span{\n  color:red;\n} ", ""]);
 
 // exports
 
@@ -1817,7 +1840,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-input-box" }, [
-    _c("p", { staticClass: "input-title" }, [_vm._v(_vm._s(_vm.title))]),
+    _c("p", { staticClass: "input-title" }, [
+      _vm._v(_vm._s(_vm.title) + " "),
+      _vm.req === true ? _c("span", [_vm._v("*")]) : _vm._e()
+    ]),
     _vm._v(" "),
     _c("input", {
       attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
@@ -1904,6 +1930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -1920,6 +1947,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     value: {
       type: String
+    },
+    req: {
+      type: Boolean,
+      default: false
     },
     handleChange: {
       type: Function
@@ -1972,7 +2003,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, ".big {\n    font-size: 1.2em;\n  }\n\n.small {\n  font-size: .7em;\n}\n\n.square {\n  width: .7em;\n  height: .7em;\n  margin: .5em;\n  display: inline-block;\n}\n\n/* Custom dropdown */\n.custom-dropdown {\n  display: inline-block;\n  vertical-align: middle;\n  margin:auto;\n  padding:10px;\n  margin-bottom:5px;\n\n}\n\n.custom-dropdown select {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border: 0;\n  margin: 0;\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button;\n}\n", ""]);
+exports.push([module.i, "\n.custom-dropdown {\n  display: inline-block;\n  margin:auto;\n  padding:10px;\n}\n\n.custom-dropdown select {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button;\n}\n.custom-dropdown span{\n  color:red;\n} ", ""]);
 
 // exports
 
@@ -2007,7 +2038,9 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _vm.req === true ? _c("span", [_vm._v("*")]) : _vm._e()
   ])
 }
 var staticRenderFns = []

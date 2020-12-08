@@ -18,3 +18,14 @@
     text-transform: uppercase;
     color: #fff;
 }
+.error-box {
+    padding: 10px;
+    background-color: rgb(175, 76, 76); 
+    color: white;
+    margin-bottom: 15px;
+    width:80%;
+    margin:5px auto;
+    border-radius: 6px;
+    text-align: center;
+    display: block;
+}

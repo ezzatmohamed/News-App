@@ -1,7 +1,8 @@
 
 <template>
     <div class="form-input-box">
-        <p class ="input-title" >{{title}}</p>
+      <!-- {{require}} -->
+        <p class ="input-title" >{{title}} <span v-if="req===true">*</span></p>
         <input  v-bind:type ="type"
                 v-bind:name ="name"
                 @input ="onChange"
@@ -33,6 +34,10 @@
       value: {
         type:String,
         default:''
+      },
+      req: {
+        type:Boolean,
+        default:false
       },
       handleChange:{
         type:Function

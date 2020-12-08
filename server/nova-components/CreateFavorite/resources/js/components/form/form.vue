@@ -4,16 +4,17 @@
             <div class="form-container">
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
-                    <form-input type="text" name="title"       title="Title" :value="info.title"     :handleChange="handleChange"  /> 
+                    <form-input type="text" name="title"       :req="true"     title="Title" :value="info.title"     :handleChange="handleChange"  /> 
+                    <form-input type="text" name="url"         :req="true"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
+                    <select-input name="user" :options="users" :req="true"  :value="info.user"  :handleChange="handleChange" />
+
                     <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
                     <form-input type="text" name="description" title="Description" :value="info.description"    :handleChange="handleChange" /> 
                     <form-input type="text" name="urlToImage"  title="Image" :value="info.urlToImage"    :handleChange="handleChange" /> 
-                    <form-input type="text" name="url"         title="URL" :value="info.url"    :handleChange="handleChange2" /> 
 
                     <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
-                    <select-input name="user" :options="users" :value="info.user"  :handleChange="handleChange" />
-
-                    <button-input type="submit"  text="Create" />
+              
+                    <button-input :disabled="canSubmit" type="submit"  text="Create" />
                 </form>
             </div>
         </div>
@@ -49,6 +50,11 @@ import './form.css'
                 users:[]
             }
         },
+        computed: {
+            canSubmit: function(){
+                return !(this.info.url.length > 1 && this.info.user > 0 && this.info.title.length > 1 )
+            }
+        },
         methods:{
             onSubmit(){
                 Nova.request()
@@ -73,7 +79,7 @@ import './form.css'
             handleChange(payload) {
                 if(payload && payload.name && payload.value)
                     this.info[payload.name] = payload.value;
-            }
+            },            
         },
         created: function(){
 

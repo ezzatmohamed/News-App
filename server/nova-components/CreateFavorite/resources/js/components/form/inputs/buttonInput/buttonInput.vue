@@ -1,6 +1,6 @@
 
 <template>
-    <button class="form-button" :type="submit" >{{text}}</button>
+    <button :disabled="disabled" class="form-button" :type="submit" >{{text}}</button>
 </template>
 
 <script>
@@ -15,6 +15,10 @@
       text:{
         type:String,
         default:""
+      },
+      disabled:{
+        type:Boolean,
+        default:true
       }
     },
   }
