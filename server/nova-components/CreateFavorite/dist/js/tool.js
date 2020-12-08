@@ -1098,7 +1098,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -1357,7 +1356,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, ".form-container{\n    width:40%;\n    position: relative;\n    padding:20px;\n    margin:auto;\n    text-align: center;\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n.form-title{\n    background: #28d;\n    padding: 20px;\n    font-size: 1.4em;\n    font-weight: normal;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}", ""]);
+exports.push([module.i, ".form-container{\n    width:50%;\n    position: relative;\n    padding:20px;\n    margin:auto;\n    text-align: center;\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n.form-title{\n    background: #252d37;\n    padding: 7px;\n    font-size: 17px;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}", ""]);
 
 // exports
 
@@ -1389,6 +1388,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "title",
+              title: "Title",
               value: _vm.info.title,
               handleChange: _vm.handleChange
             }
@@ -1398,6 +1398,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "author",
+              title: "Author",
               value: _vm.info.author,
               handleChange: _vm.handleChange
             }
@@ -1407,6 +1408,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "description",
+              title: "Description",
               value: _vm.info.description,
               handleChange: _vm.handleChange
             }
@@ -1416,6 +1418,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "urlToImage",
+              title: "Image",
               value: _vm.info.urlToImage,
               handleChange: _vm.handleChange
             }
@@ -1425,6 +1428,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "url",
+              title: "URL",
               value: _vm.info.url,
               handleChange: _vm.handleChange2
             }
@@ -1799,7 +1803,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, ".form-input {\n    padding: 12px;\n  }\n\n.form-input input {\nbox-sizing: border-box;\ndisplay: block;\nwidth: 100%;\nborder-width: 1px;\nborder-style: solid;\npadding: 16px;\noutline: 0;\nfont-family: inherit;\nfont-size: 0.95em;\n}\n\n.form-input input[type=\"email\"],\n.form-input input[type=\"password\"] {\nbackground: #fff;\nborder-color: #bbb;\ncolor: #555;\n}\n\n\n.input-title{\n    color:#05a;\n    text-transform: uppercase;\n    font-size: 2vh;\n    padding:13px;\n}\n", ""]);
+exports.push([module.i, "\n.form-input-box input {\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  border-color: rgb(26 102 188);\n  padding: 11px;\n  font-family: inherit;\n}\n.input-title{\n    color:rgb(26 102 188);\n    font-size: 14px;\n    padding:13px 13px 13px 0px;\n    float:left;\n}\n", ""]);
 
 // exports
 
@@ -1812,7 +1816,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-input" }, [
+  return _c("div", { staticClass: "form-input-box" }, [
     _c("p", { staticClass: "input-title" }, [_vm._v(_vm._s(_vm.title))]),
     _vm._v(" "),
     _c("input", {

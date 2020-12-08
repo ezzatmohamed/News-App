@@ -4,14 +4,13 @@
             <div class="form-container">
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
-                    <form-input type="text" name="title"        :value="info.title"     :handleChange="handleChange"  /> 
-                    <form-input type="text" name="author"       :value="info.author"     :handleChange="handleChange" /> 
-                    <form-input type="text" name="description"  :value="info.description"    :handleChange="handleChange" /> 
-                    <form-input type="text" name="urlToImage"   :value="info.urlToImage"    :handleChange="handleChange" /> 
-                    <form-input type="text" name="url"          :value="info.url"    :handleChange="handleChange2" /> 
+                    <form-input type="text" name="title"       title="Title" :value="info.title"     :handleChange="handleChange"  /> 
+                    <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
+                    <form-input type="text" name="description" title="Description" :value="info.description"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="urlToImage"  title="Image" :value="info.urlToImage"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="url"         title="URL" :value="info.url"    :handleChange="handleChange2" /> 
 
                     <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
-
                     <select-input name="user" :options="users" :value="info.user"  :handleChange="handleChange" />
 
                     <button-input type="submit"  text="Create" />

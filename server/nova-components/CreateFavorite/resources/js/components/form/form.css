@@ -1,5 +1,5 @@
 .form-container{
-    width:40%;
+    width:50%;
     position: relative;
     padding:20px;
     margin:auto;
@@ -11,10 +11,9 @@
 }
 
 .form-title{
-    background: #28d;
-    padding: 20px;
-    font-size: 1.4em;
-    font-weight: normal;
+    background: #252d37;
+    padding: 7px;
+    font-size: 17px;
     text-align: center;
     text-transform: uppercase;
     color: #fff;

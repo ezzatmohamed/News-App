@@ -1,6 +1,6 @@
 
 <template>
-    <div class="form-input">
+    <div class="form-input-box">
         <p class ="input-title" >{{title}}</p>
         <input  v-bind:type ="type"
                 v-bind:name ="name"
