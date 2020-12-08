@@ -8,7 +8,7 @@
                     <form-input type="text" name="author"       :value="info.author"     :handleChange="handleChange" /> 
                     <form-input type="text" name="description"  :value="info.description"    :handleChange="handleChange" /> 
                     <form-input type="text" name="urlToImage"   :value="info.urlToImage"    :handleChange="handleChange" /> 
-                    <form-input type="text" name="url"          :value="info.url"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="url"          :value="info.url"    :handleChange="handleChange2" /> 
 
                     <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
 

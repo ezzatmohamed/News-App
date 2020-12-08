@@ -1497,7 +1497,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: ''
     },
     name: {
       type: String,
@@ -1508,7 +1508,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: ""
     },
     value: {
-      type: String
+      type: String,
+      default: ''
     },
     handleChange: {
       type: Function
@@ -1516,7 +1517,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     onChange: function onChange(e) {
-      this.handleChange(e.target);
+      if (typeof this.handleChange === 'function') this.handleChange(e.target);
     }
   }
 
@@ -1686,7 +1687,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     onChange: function onChange(e) {
-      this.handleChange(e.target);
+      if (typeof this.handleChange === 'function') this.handleChange(e.target);
     }
   }
 });
@@ -1731,7 +1732,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, ".big {\n    font-size: 1.2em;\n  }\n\n  .small {\n    font-size: .7em;\n  }\n\n  .square {\n    width: .7em;\n    height: .7em;\n    margin: .5em;\n    display: inline-block;\n  }\n\n  /* Custom dropdown */\n  .custom-dropdown {\n    display: inline-block;\n    vertical-align: middle;\n    /* margin: 10px; demo only */\n    margin:auto;\n    padding:10px;\n    margin-bottom:5px;\n\n  }\n\n  .custom-dropdown select {\n    background-color: #1a66bc;\n    color: #fff;\n    font-size: inherit;\n    padding: .5em;\n    padding-right: 2.5em;\t\n    border: 0;\n    margin: 0;\n    border-radius: 3px;\n    text-indent: 0.01px;\n    text-overflow: '';\n    -webkit-appearance: button; /* hide default arrow in chrome OSX */\n  }\n", ""]);
+exports.push([module.i, ".big {\n    font-size: 1.2em;\n  }\n\n.small {\n  font-size: .7em;\n}\n\n.square {\n  width: .7em;\n  height: .7em;\n  margin: .5em;\n  display: inline-block;\n}\n\n/* Custom dropdown */\n.custom-dropdown {\n  display: inline-block;\n  vertical-align: middle;\n  margin:auto;\n  padding:10px;\n  margin-bottom:5px;\n\n}\n\n.custom-dropdown select {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border: 0;\n  margin: 0;\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button;\n}\n", ""]);
 
 // exports
 
@@ -1916,7 +1917,7 @@ var render = function() {
               type: "text",
               name: "url",
               value: _vm.info.url,
-              handleChange: _vm.handleChange
+              handleChange: _vm.handleChange2
             }
           }),
           _vm._v(" "),

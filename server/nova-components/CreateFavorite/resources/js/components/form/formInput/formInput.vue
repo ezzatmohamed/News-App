@@ -20,7 +20,7 @@
     props: {
       type:{
         type:String,
-        default:'text'
+        default:''
       },
       name:{
         type:String,
@@ -31,7 +31,8 @@
         default:""
       },
       value: {
-        type:String
+        type:String,
+        default:''
       },
       handleChange:{
         type:Function
@@ -39,7 +40,9 @@
     },
     methods: {
       onChange(e) {
-        this.handleChange(e.target)
+        if(typeof this.handleChange === 'function')
+            this.handleChange(e.target)
+
       }
     }
     

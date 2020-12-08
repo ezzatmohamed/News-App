@@ -34,7 +34,8 @@ import  './selectInput.css'
     } ,
     methods: {
       onChange(e) {
-        this.handleChange(e.target)
+        if(typeof this.handleChange === 'function')
+            this.handleChange(e.target)
       }
     }
   }
