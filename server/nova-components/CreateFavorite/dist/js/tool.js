@@ -1109,13 +1109,11 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("select-input", {
-            key: "name",
             attrs: {
               name: "user",
               options: _vm.users,
               req: true,
               value: _vm.info.user,
-              id: "id",
               handleChange: _vm.handleChange
             }
           }),

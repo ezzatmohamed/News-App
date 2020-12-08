@@ -6,7 +6,7 @@
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="validateForm" >
                     <form-input type="text" name="url"         :req="true"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
-                    <select-input name="user" :options="users"  :req="true"  :value="info.user" key="name" id="id"  :handleChange="handleChange" />
+                    <select-input name="user" :options="users"  :req="true"  :value="info.user"  :handleChange="handleChange" />
                     <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     
                     <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
