@@ -623,9 +623,18 @@ module.exports = __webpack_require__(34);
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_form_vue__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_form_form_vue__);
+
 
 Nova.booting(function (Vue, router, store) {
+
+  Vue.component('Form', __WEBPACK_IMPORTED_MODULE_0__components_form_form_vue___default.a);
+
   router.addRoutes([{
     name: 'create-favorite',
     path: '/create-favorite',
@@ -991,8 +1000,6 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form_vue__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__form_form_vue__);
 //
 //
 //
@@ -1001,16 +1008,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
+// import Form from './form/form.vue'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     //
   },
 
-  components: {
-    Form: __WEBPACK_IMPORTED_MODULE_0__form_form_vue___default.a
-  }
+  components: {}
 });
 
 /***/ }),
@@ -1573,11 +1578,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: {
     type: {
       type: String,
-      default: "button"
+      default: ""
     },
     text: {
       type: String,
-      default: "Click"
+      default: ""
     }
   }
 });
@@ -1622,7 +1627,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n#link{\n    padding: 10px;\n    font-size: 2vh;\n    text-transform: uppercase;\n}\n\n", ""]);
+exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n", ""]);
 
 // exports
 

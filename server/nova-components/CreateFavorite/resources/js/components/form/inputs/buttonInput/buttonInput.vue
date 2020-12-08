@@ -10,11 +10,11 @@
     props:{
       type:{
         type:String,
-        default:"button"
+        default:""
       },
       text:{
         type:String,
-        default:"Click"
+        default:""
       }
     },
   }
