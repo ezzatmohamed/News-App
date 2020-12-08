@@ -3,7 +3,7 @@ import Form from './components/form/form.vue'
 
 Nova.booting((Vue, router, store) => {
 
-  Vue.component('Form',Form)
+  Vue.component('form-component',Form)
   
   router.addRoutes([
     {

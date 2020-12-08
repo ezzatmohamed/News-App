@@ -6,7 +6,7 @@
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="validateForm" >
                     <form-input type="text" name="url"         :req="true"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
-                    <select-input name="user" :options="users"  :req="true"  :value="info.user"  :handleChange="handleChange" />
+                    <select-input name="user" :options="users"  :req="true"  :value="info.user" key="name" id="id"  :handleChange="handleChange" />
                     <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     
                     <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
@@ -23,8 +23,8 @@
 
 
 <script>
-import {buttonInput,formInput,selectInput} from './inputs/index.js'
-import { parseNovaApi,validateUrl } from './../../helpers/index.js'
+import {buttonInput,formInput,selectInput} from './../inputs/'
+import { parseNovaApi,validateUrl } from './../../helpers'
 import './form.css'
 
     export default {
@@ -33,7 +33,7 @@ import './form.css'
         props:{
             title:{
                 type:String,
-                default:"Form"
+                default:""
             }
         },
         data(){
@@ -53,7 +53,7 @@ import './form.css'
         },
         computed: {
             canSubmit(){
-                return !( this.info.url && this.info.url.length && this.info.user   )
+                return !( this.info.url && this.info.url.length && this.info.user )
             }
         },
         methods:{

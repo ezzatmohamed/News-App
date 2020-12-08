@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Form title="Favorite Creation"/>
+        <form-component title="Favorite Creation"/>
 
     </div>
 </template>
