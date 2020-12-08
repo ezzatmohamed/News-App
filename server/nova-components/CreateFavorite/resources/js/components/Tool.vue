@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import Form from './form/form.vue'
 
 export default {
     mounted() {
@@ -17,7 +16,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* Scoped Styles */
-</style>

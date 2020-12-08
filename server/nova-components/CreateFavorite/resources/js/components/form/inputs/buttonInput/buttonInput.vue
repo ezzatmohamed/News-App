@@ -1,6 +1,6 @@
 
 <template>
-    <button :disabled="disabled" class="form-button" :type="submit" >{{text}}</button>
+    <button :disabled="disabled" class="form-button" :type="type" >{{text}}</button>
 </template>
 
 <script>

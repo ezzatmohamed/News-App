@@ -2,8 +2,8 @@
     <div class="custom-dropdown big">
         <select :value="value" v-bind:name ="name" @input="onChange">
             <option  value=0  disabled key=0>Please select a user</option>
-            <option v-for="option in options" :key="option.key" :value="option.value"> 
-                {{option.key}} 
+            <option v-for="option in options" :key="option.id" :value="option.id"> 
+                {{option.name}} 
             </option>
         </select>
         <span v-if="req===true">*</span>
