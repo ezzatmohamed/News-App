@@ -18,7 +18,7 @@ class FavoritePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAn('admin');
+        return true;
     }
 
     /**
