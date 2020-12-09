@@ -2,17 +2,12 @@
 <template>
     <div>
       <table class = "table-container">
-        <tr class = "table-header">
-            <th>ID</th>
-            <th>Title</th>
-            <th>Url</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Author</th>
-            <th>Published At</th>
-            <th>User</th>
-        </tr>
-        <row v-for="data in rowsData" :key="data.id" :cells="data"/>
+        <thead>
+            <tr class = "table-header">
+                <th v-for="col in columns" :key="col">{{col}}</th>
+            </tr>
+        </thead>
+        <row v-for="data in rowsData" :key="data.id" :cells="data" :columns="columns"/>
       </table>
     </div>
 </template>
@@ -26,7 +21,13 @@
     components:{row},
     data(){
       return{
-        rowsData:[]
+        rowsData:[],
+      }
+    },
+    props:{
+      columns:{
+        type:Array,
+        default:[]
       }
     },
     created()
@@ -36,7 +37,7 @@
             .then(res=>{
                 if(res)
                 {
-                    const favorites = parseNovaApi(res,["id","url","title","urlToImage","description","author","publishedAt","user"])
+                    const favorites = parseNovaApi(res,this.columns)
                     this.rowsData = favorites ? favorites : []
                 } 
             })
