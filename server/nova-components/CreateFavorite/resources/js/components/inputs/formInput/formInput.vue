@@ -13,7 +13,7 @@
         <input  v-bind:type ="type"
                 v-bind:name ="name"
                 @input ="onChange"
-                v-bind:placeholder ="name"
+                v-bind:placeholder ="title"
                 :value="value"
 
         />

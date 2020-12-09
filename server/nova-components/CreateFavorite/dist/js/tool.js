@@ -1102,7 +1102,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("input", {
-        attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
+        attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.title },
         domProps: { value: _vm.value },
         on: { input: _vm.onChange }
       })
