@@ -22,7 +22,7 @@
         },
         {
             "type": "path",
-            "url": "./nova-components/TestTool"
+            "url": "./nova-components/FavoritesGrid"
         }
     ],
     "require": {
@@ -37,7 +37,8 @@
         "tymon/jwt-auth": "^1.0",
         "yadahan/nova-bouncer": "^0.6.0",
         "newsapp/create-favorite": "*",
-        "newsapp/test-tool": "*"
+        "newsapp/test-tool": "*",
+        "newsapp/favorites-grid": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
