@@ -729,7 +729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { formInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["b" /* formInput */], buttonInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["a" /* buttonInput */], selectInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["c" /* selectInput */] },
-    name: "form",
+    name: "form-component",
     props: {
         title: {
             type: String,
@@ -765,7 +765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return true;
         },
         canSubmit: function canSubmit() {
-            return !(this.info.url && this.info.url.length && this.info.user && this.validateForm);
+            return !(this.info && this.info.url && this.info.url.length && this.info.user && this.validateForm);
         }
     },
     methods: {
@@ -1695,7 +1695,7 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(31)
+var __vue_script__ = null
 /* template */
 var __vue_template__ = __webpack_require__(32)
 /* template functional */
@@ -1736,29 +1736,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    //
-  },
-
-  components: {}
-});
-
-/***/ }),
+/* 31 */,
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -28,7 +28,7 @@ import './form.css'
 
     export default {
         components: { formInput ,buttonInput,selectInput},
-        name: "form",
+        name: "form-component",
         props:{
             title:{
                 type:String,
@@ -64,7 +64,7 @@ import './form.css'
                 return true
             },
             canSubmit(){
-                return !( this.info.url && this.info.url.length && this.info.user && this.validateForm )
+                return !( this.info && this.info.url && this.info.url.length && this.info.user && this.validateForm )
             }
         },
         methods:{
