@@ -7,6 +7,7 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Newsapp\CreateFavorite\CreateFavorite;
+use Bouncer;
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -79,7 +80,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new \Yadahan\BouncerTool\BouncerTool(),
-            new CreateFavorite
+            (new CreateFavorite)->canSee(function ($request) {
+                return Bouncer::is($request->user())->an('admin');
+            }),
 
         ];
     }
