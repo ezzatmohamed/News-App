@@ -6,7 +6,7 @@
                 {{option.name}} 
             </option>
         </select>
-        <span v-if="req===true">*</span>
+        <span v-if="required">*</span>
     </div>
 </template>
 
@@ -29,7 +29,7 @@ import  './selectInput.css'
       value: {
         type:String
       },
-      req:{
+      required:{
         type:Boolean,
         default:false
       },

@@ -2,7 +2,7 @@
 <template>
     <div class="form-input-box">
       <!-- {{require}} -->
-        <p class ="input-title" >{{title}} <span v-if="req===true">*</span></p>
+        <p class ="input-title" >{{title}} <span v-if="required">*</span></p>
         <input  v-bind:type ="type"
                 v-bind:name ="name"
                 @input ="onChange"
@@ -35,7 +35,7 @@
         type:String,
         default:''
       },
-      req: {
+      required: {
         type:Boolean,
         default:false
       },
