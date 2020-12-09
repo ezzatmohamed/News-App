@@ -722,7 +722,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -749,29 +748,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 user: 0
             },
             users: [],
-            error: ''
+            errors: {
+                url: '',
+                urlToImage: ''
+            }
         };
     },
 
     computed: {
+        validateForm: function validateForm() {
+            if (this.errors && this.info) {
+                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
+                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
+                return !this.errors.url && !this.errors.urlToImage;
+            }
+            return true;
+        },
         canSubmit: function canSubmit() {
-            return !(this.info.url && this.info.url.length && this.info.user);
+            return !(this.info.url && this.info.url.length && this.info.user && this.validateForm);
         }
     },
     methods: {
-        validateForm: function validateForm() {
-            if (!Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["b" /* validateUrl */])(this.info.url)) {
-                this.error = 'Invalid Url';
-                return;
-            } else if (this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["b" /* validateUrl */])(this.info.urlToImage)) {
-
-                this.error = 'Invalid Image Url';
-                return;
-            }
-
-            this.error = '';
-            this.onSubmit();
-        },
         onSubmit: function onSubmit() {
             var _this = this;
 
@@ -1142,6 +1139,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1167,6 +1171,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     required: {
       type: Boolean,
       default: false
+    },
+
+    errorMessage: {
+      type: String,
+      default: ''
     },
     handleChange: {
       type: Function
@@ -1220,7 +1229,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.form-input-box input {\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  border-color: rgb(26 102 188);\n  padding: 11px;\n  font-family: inherit;\n}\n.input-title{\n    color:rgb(26 102 188);\n    font-size: 14px;\n    padding:13px 13px 13px 0px;\n    float:left;\n}\n\n.form-input-box span{\n  color:red;\n} ", ""]);
+exports.push([module.i, "\n.form-input-box input {\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  border-color: rgb(26 102 188);\n  padding: 11px;\n  font-family: inherit;\n}\n.input-title{\n    color:rgb(26 102 188);\n    font-size: 14px;\n    padding:13px 13px 13px 0px;\n    float:left;\n}\n\n.form-input-box span{\n  color:red;\n} \n\n.error-msg{\n  margin-left: 4px;\n  font-size: 12px;\n}\n.error-input input{\n  border-color: red;\n}", ""]);
 
 // exports
 
@@ -1233,18 +1242,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-input-box" }, [
-    _c("p", { staticClass: "input-title" }, [
-      _vm._v(_vm._s(_vm.title) + " "),
-      _vm.required ? _c("span", [_vm._v("*")]) : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
-      domProps: { value: _vm.value },
-      on: { input: _vm.onChange }
-    })
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "form-input-box",
+      class: { "error-input": _vm.errorMessage }
+    },
+    [
+      _c("p", { staticClass: "input-title" }, [
+        _vm._v(_vm._s(_vm.title) + " \n      "),
+        _vm.required
+          ? _c("span", { staticClass: "required-astrisk" }, [_vm._v("*")])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.errorMessage
+          ? _c("span", { staticClass: "error-msg" }, [
+              _vm._v("Error: " + _vm._s(_vm.errorMessage))
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.name },
+        domProps: { value: _vm.value },
+        on: { input: _vm.onChange }
+      })
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1557,12 +1581,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form-container" }, [
-      _vm.error != ""
-        ? _c("div", { staticClass: "error-box" }, [
-            _vm._v("Error : " + _vm._s(_vm.error))
-          ])
-        : _vm._e(),
-      _vm._v(" "),
       _c("p", { staticClass: "form-title" }, [_vm._v(_vm._s(_vm.title))]),
       _vm._v(" "),
       _c(
@@ -1571,7 +1589,7 @@ var render = function() {
           on: {
             submit: function($event) {
               $event.preventDefault()
-              return _vm.validateForm($event)
+              return _vm.onSubmit($event)
             }
           }
         },
@@ -1580,7 +1598,9 @@ var render = function() {
             attrs: {
               type: "text",
               name: "url",
+              errorMessage: _vm.errors.url,
               required: true,
+              validate: _vm.validateUrl,
               title: "URL",
               value: _vm.info.url,
               handleChange: _vm.handleChange
@@ -1631,6 +1651,7 @@ var render = function() {
             attrs: {
               type: "text",
               name: "urlToImage",
+              errorMessage: _vm.errors.urlToImage,
               title: "Image",
               value: _vm.info.urlToImage,
               handleChange: _vm.handleChange

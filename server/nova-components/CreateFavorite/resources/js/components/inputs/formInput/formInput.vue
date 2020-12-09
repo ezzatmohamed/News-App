@@ -1,8 +1,15 @@
 
 <template>
-    <div class="form-input-box">
+    <div class="form-input-box"
+         v-bind:class="{ 'error-input': errorMessage}"
+    >
       <!-- {{require}} -->
-        <p class ="input-title" >{{title}} <span v-if="required">*</span></p>
+        <p class ="input-title" >{{title}} 
+          <span class="required-astrisk" v-if="required">*</span>
+          <span class="error-msg" v-if="errorMessage">Error: {{errorMessage}}</span>
+        
+        </p>
+        
         <input  v-bind:type ="type"
                 v-bind:name ="name"
                 @input ="onChange"
@@ -38,6 +45,11 @@
       required: {
         type:Boolean,
         default:false
+      }
+      ,
+      errorMessage:{
+        type:String,
+        default:''
       },
       handleChange:{
         type:Function
@@ -47,7 +59,6 @@
       onChange(e) {
         if(typeof this.handleChange === 'function')
             this.handleChange(e.target)
-
       }
     }
     

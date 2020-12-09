@@ -2,16 +2,15 @@
 
     <div>
             <div class="form-container">
-                <div class="error-box" v-if="error!=''">Error : {{error}}</div>
                 <p class = "form-title">{{title}}</p>
-                <form v-on:submit.prevent="validateForm" >
-                    <form-input type="text" name="url"         :required="true"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
+                <form v-on:submit.prevent="onSubmit" >
+                    <form-input type="text" name="url"          :errorMessage="errors.url" :required="true"  :validate="validateUrl"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
                     <select-input name="user" :options="users"  :required="true"  :value="info.user"  :handleChange="handleChange" />
                     <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     
                     <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
                     <form-input type="text" name="description" title="Description" :value="info.description"    :handleChange="handleChange" /> 
-                    <form-input type="text" name="urlToImage"  title="Image" :value="info.urlToImage"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="urlToImage"  :errorMessage="errors.urlToImage" title="Image" :value="info.urlToImage"    :handleChange="handleChange" /> 
 
                     <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
                     <button-input :disabled="canSubmit" type="submit"  text="Create" />
@@ -48,30 +47,28 @@ import './form.css'
                 user:0
             },
                 users:[],
-                error:''
+                errors:{
+                    url:'',
+                    urlToImage:''
+                }
             }
         },
         computed: {
+            validateForm(){
+                if(this.errors  && this.info)
+                {
+                    this.errors.url        =   this.info.url && !validateUrl(this.info.url) ?  'Invalid Url' : ''
+                    this.errors.urlToImage =   this.info.urlToImage && !validateUrl(this.info.urlToImage) ? 'Invalid Image Url' : ''
+                    return !this.errors.url && !this.errors.urlToImage
+                }
+                return true
+            },
             canSubmit(){
-                return !( this.info.url && this.info.url.length && this.info.user )
+                return !( this.info.url && this.info.url.length && this.info.user && this.validateForm )
             }
         },
         methods:{
-            validateForm(){
-                if( !validateUrl(this.info.url) )
-                {   
-                    this.error = 'Invalid Url'
-                    return
-                }
-                else if( this.info.urlToImage && !validateUrl(this.info.urlToImage) ){
-
-                    this.error = 'Invalid Image Url'
-                    return
-                }
-
-                this.error = ''
-                this.onSubmit()
-            },
+            
             onSubmit(){
                 Nova.request()
                     .post('/nova-api/favorites',this.info)

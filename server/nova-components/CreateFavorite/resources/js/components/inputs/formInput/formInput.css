@@ -17,3 +17,11 @@
 .form-input-box span{
   color:red;
 } 
+
+.error-msg{
+  margin-left: 4px;
+  font-size: 12px;
+}
+.error-input input{
+  border-color: red;
+}
