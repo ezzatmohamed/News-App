@@ -54,17 +54,8 @@ import './favoriteForm.css'
             }
         },
         computed: {
-            validateForm(){
-                if(this.errors  && this.info)
-                {
-                    this.errors.url        =   this.info.url && !validateUrl(this.info.url) ?  'Invalid Url' : ''
-                    this.errors.urlToImage =   this.info.urlToImage && !validateUrl(this.info.urlToImage) ? 'Invalid Image Url' : ''
-                    return !this.errors.url && !this.errors.urlToImage
-                }
-                return true
-            },
             canSubmit(){
-                return !( this.validateForm && this.info && this.info.url && this.info.url.length && this.info.user  )
+                return !( this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user  )
             }
         },
         methods:{
@@ -87,6 +78,15 @@ import './favoriteForm.css'
                     .catch(err=>{
                         Nova.error(`Error: ${err.message}`)
                     })
+            },
+            validateForm(){
+                if(this.errors  && this.info)
+                {
+                    this.errors.url        =   this.info.url && !validateUrl(this.info.url) ?  'Invalid Url' : ''
+                    this.errors.urlToImage =   this.info.urlToImage && !validateUrl(this.info.urlToImage) ? 'Invalid Image Url' : ''
+                    return !this.errors.url && !this.errors.urlToImage
+                }
+                return true
             }
             ,
             handleChange(payload) {

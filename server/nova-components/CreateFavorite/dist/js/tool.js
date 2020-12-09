@@ -1571,16 +1571,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        validateForm: function validateForm() {
-            if (this.errors && this.info) {
-                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
-                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
-                return !this.errors.url && !this.errors.urlToImage;
-            }
-            return true;
-        },
         canSubmit: function canSubmit() {
-            return !(this.validateForm && this.info && this.info.url && this.info.url.length && this.info.user);
+            return !(this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user);
         }
     },
     methods: {
@@ -1601,6 +1593,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 Nova.error('Error: ' + err.message);
             });
+        },
+        validateForm: function validateForm() {
+            if (this.errors && this.info) {
+                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
+                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
+                return !this.errors.url && !this.errors.urlToImage;
+            }
+            return true;
         },
         handleChange: function handleChange(payload) {
             if (payload && payload.name && typeof payload.value !== 'undefined') {
