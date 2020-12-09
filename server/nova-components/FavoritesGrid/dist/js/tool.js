@@ -364,7 +364,20 @@ var render = function() {
         attrs: { link: "create-favorite", text: "Create New Favorite" }
       }),
       _vm._v(" "),
-      _c("favorites-table")
+      _c("favorites-table", {
+        attrs: {
+          columns: [
+            "id",
+            "title",
+            "url",
+            "urlToImage",
+            "description",
+            "author",
+            "publishedAt",
+            "user"
+          ]
+        }
+      })
     ],
     1
   )
@@ -926,11 +939,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -943,12 +951,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       rowsData: []
     };
   },
+
+  props: {
+    columns: {
+      type: Array,
+      default: []
+    }
+  },
   created: function created() {
     var _this = this;
 
     Nova.request().get('/nova-api/favorites').then(function (res) {
       if (res) {
-        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, ["id", "url", "title", "urlToImage", "description", "author", "publishedAt", "user"]);
+        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, _this.columns);
         _this.rowsData = favorites ? favorites : [];
       }
     }).catch(function (err) {
@@ -1015,40 +1030,29 @@ var render = function() {
       "table",
       { staticClass: "table-container" },
       [
-        _vm._m(0),
+        _c("thead", [
+          _c(
+            "tr",
+            { staticClass: "table-header" },
+            _vm._l(_vm.columns, function(col) {
+              return _c("th", { key: col }, [_vm._v(_vm._s(col))])
+            }),
+            0
+          )
+        ]),
         _vm._v(" "),
         _vm._l(_vm.rowsData, function(data) {
-          return _c("row", { key: data.id, attrs: { cells: data } })
+          return _c("row", {
+            key: data.id,
+            attrs: { cells: data, columns: _vm.columns }
+          })
         })
       ],
       2
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "table-header" }, [
-      _c("th", [_vm._v("ID")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Title")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Url")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Image")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Description")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Author")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Published At")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("User")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -1125,20 +1129,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "row",
-    props: {
-        cells: {
-            type: Array,
-            default: []
-        }
+  name: "row",
+  props: {
+    cells: {
+      type: Array,
+      default: []
+    },
+    columns: {
+      type: Array,
+      default: []
     }
+  }
 });
 
 /***/ }),
@@ -1149,23 +1153,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", { staticClass: "table-row" }, [
-    _c("th", [_vm._v(_vm._s(_vm.cells.id))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.title))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.url))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.imageToUrl))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.description))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.author))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.publishedAt))]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.cells.user))])
-  ])
+  return _c(
+    "tr",
+    { staticClass: "table-row" },
+    _vm._l(_vm.columns, function(col) {
+      return _c("th", { key: col }, [
+        _vm._v("\n      " + _vm._s(_vm.cells[col]) + "\n    ")
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

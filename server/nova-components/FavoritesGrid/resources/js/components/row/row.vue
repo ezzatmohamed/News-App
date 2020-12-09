@@ -2,14 +2,10 @@
 <template>
 
     <tr class="table-row">
-        <th>{{cells.id}}</th>
-        <th>{{cells.title}}</th>
-        <th>{{cells.url}}</th>
-        <th>{{cells.imageToUrl}}</th>
-        <th>{{cells.description}}</th>
-        <th>{{cells.author}}</th>
-        <th>{{cells.publishedAt}}</th>
-        <th>{{cells.user}}</th>
+        <th v-for="col in columns" :key="col">
+          {{cells[col]}}
+        </th>
+        
     </tr>
         
 </template>
@@ -22,6 +18,10 @@
         cells:{
             type:Array,
             default:[]
+        },
+        columns:{
+          type:Array,
+          default:[]
         }
     },
   }
