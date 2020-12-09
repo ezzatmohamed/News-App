@@ -1,0 +1,24 @@
+
+.link-input {
+    box-sizing: border-box;
+    display: block;
+    width: 20%;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 0.95em;
+    background: #28d;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px auto 60px auto;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.link-input:hover {
+    background: #17c;
+}
+.link-input:focus {
+    border-color: #05a;
+}

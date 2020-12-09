@@ -1,11 +1,15 @@
 
 <template>
-    <tr class="table-row"
-        v-bind:class="{'table-header': isHeader}"
-    >
-        <th v-for="cell in cells" :key="cell.id">
-            {{cell}}
-        </th>
+
+    <tr class="table-row">
+        <th>{{cells.id}}</th>
+        <th>{{cells.title}}</th>
+        <th>{{cells.url}}</th>
+        <th>{{cells.imageToUrl}}</th>
+        <th>{{cells.description}}</th>
+        <th>{{cells.author}}</th>
+        <th>{{cells.publishedAt}}</th>
+        <th>{{cells.user}}</th>
     </tr>
         
 </template>
@@ -18,10 +22,6 @@
         cells:{
             type:Array,
             default:[]
-        },
-        isHeader:{
-            type:Boolean,
-            default:false
         }
     },
   }

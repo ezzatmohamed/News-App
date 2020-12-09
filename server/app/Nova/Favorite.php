@@ -81,6 +81,13 @@ class Favorite extends Resource
             ];
     }
 
+    // Return all favorites for admin but for regulars,return only their favorites
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if( $request->user()->isAn('admin') )
+            return $query;
+        $result = $query->where('user_id', $request->user()->id);
+    }
     /**
      * Get the cards available for the request.
      *
