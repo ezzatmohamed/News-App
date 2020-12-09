@@ -94,6 +94,7 @@ import './form.css'
                 {
                     this.info[payload.name] = payload.value;
                 }
+                this.validateForm
             },     
           
 
