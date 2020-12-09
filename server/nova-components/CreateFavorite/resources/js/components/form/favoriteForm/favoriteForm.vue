@@ -22,13 +22,13 @@
 
 
 <script>
-import {buttonInput,formInput,selectInput} from './../inputs/'
-import { parseNovaApi,validateUrl } from './../../helpers'
-import './form.css'
+import {buttonInput,formInput,selectInput} from './../../inputs/'
+import { parseNovaApi,validateUrl } from './../../../helpers/'
+import './favoriteForm.css'
 
     export default {
         components: { formInput ,buttonInput,selectInput},
-        name: "form-component",
+        name: "favorite-form",
         props:{
             title:{
                 type:String,

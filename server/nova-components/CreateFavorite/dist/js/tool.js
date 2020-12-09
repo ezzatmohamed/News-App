@@ -627,13 +627,12 @@ module.exports = __webpack_require__(33);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_form_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_form_form_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form___ = __webpack_require__(35);
 
 
 Nova.booting(function (Vue, router, store) {
 
-  Vue.component('form-component', __WEBPACK_IMPORTED_MODULE_0__components_form_form_vue___default.a);
+  Vue.component('favorite-form', __WEBPACK_IMPORTED_MODULE_0__components_form___["a" /* favoriteForm */]);
 
   router.addRoutes([{
     name: 'create-favorite',
@@ -643,169 +642,8 @@ Nova.booting(function (Vue, router, store) {
 });
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(6)
-/* template */
-var __vue_template__ = __webpack_require__(29)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/form/form.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-023ff5f4", Component.options)
-  } else {
-    hotAPI.reload("data-v-023ff5f4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputs___ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_css__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__form_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: { formInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["b" /* formInput */], buttonInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["a" /* buttonInput */], selectInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["c" /* selectInput */] },
-    name: "form-component",
-    props: {
-        title: {
-            type: String,
-            default: ""
-        }
-    },
-    data: function data() {
-        return {
-            info: {
-                title: "",
-                author: "",
-                description: "",
-                urlToImage: "",
-                publishedAt: "",
-                url: "",
-                user: 0
-            },
-            users: [],
-            errors: {
-                url: '',
-                urlToImage: ''
-            }
-        };
-    },
-
-    computed: {
-        validateForm: function validateForm() {
-            if (this.errors && this.info) {
-                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
-                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
-                return !this.errors.url && !this.errors.urlToImage;
-            }
-            return true;
-        },
-        canSubmit: function canSubmit() {
-            return !(this.info && this.info.url && this.info.url.length && this.info.user && this.validateForm);
-        }
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            var _this = this;
-
-            Nova.request().post('/nova-api/favorites', this.info).then(function (res) {
-                Nova.success('Created successfully');
-                _this.info = {
-                    title: "",
-                    author: "",
-                    description: "",
-                    urlToImage: "",
-                    publishedAt: "",
-                    url: "",
-                    user: 0
-                };
-            }).catch(function (err) {
-                Nova.error('Error: ' + err.message);
-            });
-        },
-        handleChange: function handleChange(payload) {
-            if (payload && payload.name && typeof payload.value !== 'undefined') {
-                this.info[payload.name] = payload.value;
-            }
-            this.validateForm;
-        }
-    },
-    created: function created() {
-        var _this2 = this;
-
-        Nova.request().get('/nova-api/users').then(function (res) {
-            _this2.users = Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["a" /* parseNovaApi */])(res, ["id", "name"]);
-        }).catch(function (err) {
-            Nova.error(err);
-        });
-    }
-});
-
-/***/ }),
+/* 5 */,
+/* 6 */,
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1528,13 +1366,268 @@ var validateUrl = function validateUrl(value) {
 };
 
 /***/ }),
-/* 27 */
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(32)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Tool.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68ff5483", Component.options)
+  } else {
+    hotAPI.reload("data-v-68ff5483", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 31 */,
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [_c("favorite-form", { attrs: { title: "Favorite Creation" } })],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
+  }
+}
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 34 */,
+/* 35 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm___default.a; });
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(37)
+/* template */
+var __vue_template__ = __webpack_require__(40)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/form/favoriteForm/favoriteForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5cf55b2f", Component.options)
+  } else {
+    hotAPI.reload("data-v-5cf55b2f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputs___ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers___ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__favoriteForm_css__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__favoriteForm_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__favoriteForm_css__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: { formInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["b" /* formInput */], buttonInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["a" /* buttonInput */], selectInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["c" /* selectInput */] },
+    name: "favorite-form",
+    props: {
+        title: {
+            type: String,
+            default: ""
+        }
+    },
+    data: function data() {
+        return {
+            info: {
+                title: "",
+                author: "",
+                description: "",
+                urlToImage: "",
+                publishedAt: "",
+                url: "",
+                user: 0
+            },
+            users: [],
+            errors: {
+                url: '',
+                urlToImage: ''
+            }
+        };
+    },
+
+    computed: {
+        validateForm: function validateForm() {
+            if (this.errors && this.info) {
+                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
+                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
+                return !this.errors.url && !this.errors.urlToImage;
+            }
+            return true;
+        },
+        canSubmit: function canSubmit() {
+            return !(this.info && this.info.url && this.info.url.length && this.info.user && this.validateForm);
+        }
+    },
+    methods: {
+        onSubmit: function onSubmit() {
+            var _this = this;
+
+            Nova.request().post('/nova-api/favorites', this.info).then(function (res) {
+                Nova.success('Created successfully');
+                _this.info = {
+                    title: "",
+                    author: "",
+                    description: "",
+                    urlToImage: "",
+                    publishedAt: "",
+                    url: "",
+                    user: 0
+                };
+            }).catch(function (err) {
+                Nova.error('Error: ' + err.message);
+            });
+        },
+        handleChange: function handleChange(payload) {
+            if (payload && payload.name && typeof payload.value !== 'undefined') {
+                this.info[payload.name] = payload.value;
+            }
+            this.validateForm;
+        }
+    },
+    created: function created() {
+        var _this2 = this;
+
+        Nova.request().get('/nova-api/users').then(function (res) {
+            _this2.users = Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["a" /* parseNovaApi */])(res, ["id", "name"]);
+        }).catch(function (err) {
+            Nova.error(err);
+        });
+    }
+});
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(28);
+var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1548,8 +1641,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./form.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./form.css");
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./favoriteForm.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./favoriteForm.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -1559,7 +1652,7 @@ if(false) {
 }
 
 /***/ }),
-/* 28 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -1573,7 +1666,7 @@ exports.push([module.i, ".form-container{\n    width:50%;\n    position: relativ
 
 
 /***/ }),
-/* 29 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1683,87 +1776,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-023ff5f4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5cf55b2f", module.exports)
   }
 }
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__(32)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Tool.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-68ff5483", Component.options)
-  } else {
-    hotAPI.reload("data-v-68ff5483", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 31 */,
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [_c("form-component", { attrs: { title: "Favorite Creation" } })],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
-  }
-}
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
