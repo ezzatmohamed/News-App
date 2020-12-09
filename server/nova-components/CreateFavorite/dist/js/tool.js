@@ -1435,7 +1435,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "custom-dropdown big" }, [
+  return _c("div", { staticClass: "custom-dropdown" }, [
     _c(
       "select",
       {
@@ -1601,7 +1601,6 @@ var render = function() {
               name: "url",
               errorMessage: _vm.errors.url,
               required: true,
-              validate: _vm.validateUrl,
               title: "URL",
               value: _vm.info.url,
               handleChange: _vm.handleChange

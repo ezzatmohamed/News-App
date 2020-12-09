@@ -1,5 +1,5 @@
 <template>
-    <div class="custom-dropdown big">
+    <div class="custom-dropdown">
         <select :value="value" v-bind:name ="name" @input="onChange">
             <option  value=0  disabled key=0>Please select a user</option>
             <option v-for="option in options" :key="option.name" :value="option.id"> 

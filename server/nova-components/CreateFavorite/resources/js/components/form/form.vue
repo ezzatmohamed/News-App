@@ -4,7 +4,7 @@
             <div class="form-container">
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
-                    <form-input type="text" name="url"          :errorMessage="errors.url" :required="true"  :validate="validateUrl"   title="URL" :value="info.url"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="url"          :errorMessage="errors.url" :required="true"     title="URL" :value="info.url"    :handleChange="handleChange" /> 
                     <select-input name="user" :options="users"  :required="true"  :value="info.user"  :handleChange="handleChange" />
                     <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     
