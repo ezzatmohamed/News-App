@@ -81,9 +81,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new \Yadahan\BouncerTool\BouncerTool(),
-            (new CreateFavorite)->canSee(function ($request) {
-                return Bouncer::is($request->user())->an('admin');
-            }),
+            new CreateFavorite,
             new FavoritesGrid
 
         ];

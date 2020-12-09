@@ -86,7 +86,7 @@ class Favorite extends Resource
     {
         if( $request->user()->isAn('admin') )
             return $query;
-        $result = $query->where('user_id', $request->user()->id);
+        return $query->where('user_id', $request->user()->id);
     }
     /**
      * Get the cards available for the request.
