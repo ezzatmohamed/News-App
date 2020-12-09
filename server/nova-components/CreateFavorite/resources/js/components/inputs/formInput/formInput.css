@@ -1,0 +1,27 @@
+
+.form-input-box input {
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(26 102 188);
+  padding: 11px;
+  font-family: inherit;
+}
+.input-title{
+    color:rgb(26 102 188);
+    font-size: 14px;
+    padding:13px 13px 13px 0px;
+    float:left;
+}
+
+.form-input-box span{
+  color:red;
+} 
+
+.error-msg{
+  margin-left: 4px;
+  font-size: 12px;
+}
+.error-input input{
+  border-color: red;
+}

@@ -11,6 +11,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/CreateFavorite"
         }
     ],
     "require": {
@@ -23,7 +27,8 @@
         "laravel/tinker": "^2.5",
         "silber/bouncer": "v1.0.0-rc.9",
         "tymon/jwt-auth": "^1.0",
-        "yadahan/nova-bouncer": "^0.6.0"
+        "yadahan/nova-bouncer": "^0.6.0",
+        "newsapp/create-favorite": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

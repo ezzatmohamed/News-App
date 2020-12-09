@@ -1,0 +1,31 @@
+
+.form-button  {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    padding: 16px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 0.95em;
+    background: #28d;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+.form-button:hover {
+    background: #17c;
+}
+.form-button:focus {
+    border-color: #05a;
+}
+
+.form-button:disabled,
+.form-button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}
