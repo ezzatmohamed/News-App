@@ -15,6 +15,10 @@
         {
             "type": "path",
             "url": "./nova-components/CreateFavorite"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/FavoritesGrid"
         }
     ],
     "require": {
@@ -28,7 +32,8 @@
         "silber/bouncer": "v1.0.0-rc.9",
         "tymon/jwt-auth": "^1.0",
         "yadahan/nova-bouncer": "^0.6.0",
-        "newsapp/create-favorite": "*"
+        "newsapp/create-favorite": "*",
+        "newsapp/favorites-grid": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

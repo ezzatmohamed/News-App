@@ -9,7 +9,9 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js",
         "build-create-favorite": "cd nova-components/CreateFavorite && npm run dev",
-        "build-create-favorite-prod": "cd nova-components/CreateFavorite && npm run prod"
+        "build-create-favorite-prod": "cd nova-components/CreateFavorite && npm run prod",
+        "build-favorites-grid": "cd nova-components/FavoritesGrid && npm run dev",
+        "build-favorites-grid-prod": "cd nova-components/FavoritesGrid && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.19",
