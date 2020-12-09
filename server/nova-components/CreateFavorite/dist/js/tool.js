@@ -1580,7 +1580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return true;
         },
         canSubmit: function canSubmit() {
-            return !(this.info && this.info.url && this.info.url.length && this.info.user && this.validateForm);
+            return !(this.validateForm && this.info && this.info.url && this.info.url.length && this.info.user);
         }
     },
     methods: {
@@ -1606,7 +1606,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (payload && payload.name && typeof payload.value !== 'undefined') {
                 this.info[payload.name] = payload.value;
             }
-            this.validateForm;
         }
     },
     created: function created() {

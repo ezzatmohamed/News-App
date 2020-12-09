@@ -64,7 +64,7 @@ import './favoriteForm.css'
                 return true
             },
             canSubmit(){
-                return !( this.info && this.info.url && this.info.url.length && this.info.user && this.validateForm )
+                return !( this.validateForm && this.info && this.info.url && this.info.url.length && this.info.user  )
             }
         },
         methods:{
@@ -94,7 +94,6 @@ import './favoriteForm.css'
                 {
                     this.info[payload.name] = payload.value;
                 }
-                this.validateForm
             },     
           
 
