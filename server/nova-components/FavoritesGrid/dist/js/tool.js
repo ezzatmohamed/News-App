@@ -800,7 +800,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".table-container{\n    position: relative;\n    margin:auto;\n    width:80%;\n    padding: 20px;\n}\n.table-header{\n    background-color:  #28d;\n    color:white;\n    padding:20px;\n}\n", ""]);
+exports.push([module.i, ".table-container{\n    position: relative;\n    padding: 20px;\n    margin:auto;\n\n}\n.table-header th{\n    background-color:  #28d;\n    color:white;\n    padding:20px 0;\n}\n.container{\n    max-width: 100%;\n    overflow: auto;\n}\n", ""]);
 
 // exports
 
@@ -1023,7 +1023,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n}\n", ""]);
+exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    max-width: 300px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n    word-break: break-all;\n\n}\n", ""]);
 
 // exports
 
@@ -1120,7 +1120,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container" }, [
     _c(
       "table",
       { staticClass: "table-container" },
