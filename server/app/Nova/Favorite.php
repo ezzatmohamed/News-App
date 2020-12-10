@@ -77,7 +77,13 @@ class Favorite extends Resource
             ->sortable()
             ->rules('required', 'max:255'),
 
-            BelongsTo::make('User')
+            BelongsTo::make('User'),
+
+            Text::make('email','email', function () {
+                if($this->user&& $this->user->email)
+                    return $this->user->email;
+            })->readonly(),
+
             ];
     }
 

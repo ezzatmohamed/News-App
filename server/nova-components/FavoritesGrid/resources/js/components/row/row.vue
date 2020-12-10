@@ -3,7 +3,8 @@
 
     <tr class="table-row">
         <th v-for="column in columns" :key="column">
-          {{cells[column]}}
+          {{cells[column]}}          
+          <span v-if="!cells[column]">{{column}} is not available</span>
         </th>
         
     </tr>
