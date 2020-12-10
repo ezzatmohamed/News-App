@@ -1400,7 +1400,7 @@ var render = function() {
             urlToImage: "Image",
             description: "Description",
             author: "Author",
-            publishAt: "Date",
+            publishedAt: "Date",
             user: "User"
           }
         }
