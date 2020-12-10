@@ -1039,9 +1039,9 @@ var render = function() {
   return _c(
     "tr",
     { staticClass: "table-row" },
-    _vm._l(_vm.columns, function(col) {
-      return _c("th", { key: col }, [
-        _vm._v("\n      " + _vm._s(_vm.cells[col]) + "\n    ")
+    _vm._l(_vm.columns, function(column) {
+      return _c("th", { key: column }, [
+        _vm._v("\n      " + _vm._s(_vm.cells[column]) + "\n    ")
       ])
     }),
     0
@@ -1129,8 +1129,8 @@ var render = function() {
           _c(
             "tr",
             { staticClass: "table-header" },
-            _vm._l(_vm.columns, function(col) {
-              return _c("th", { key: col }, [_vm._v(_vm._s(col))])
+            _vm._l(_vm.columns, function(column) {
+              return _c("th", { key: column }, [_vm._v(_vm._s(column))])
             }),
             0
           )
