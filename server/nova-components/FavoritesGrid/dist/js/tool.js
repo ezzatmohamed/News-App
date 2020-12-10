@@ -737,9 +737,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: { row: __WEBPACK_IMPORTED_MODULE_1__row_row___default.a },
   data: function data() {
     return {
-      rowsData: [],
-      columnTitle: [],
-      columnProp: []
+      rowsData: []
     };
   },
 
@@ -752,14 +750,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    // Separate Columns (key&value) pairs into ColumnTitle and ColumnProp
+    // Get Column Attribute from columns titles
+    var columnAttribute = [];
     for (var key in this.columns) {
-      this.columnProp.push(key);
-      this.columnTitle.push(this.columns[key]);
-    }
-    Nova.request().get('/nova-api/favorites').then(function (res) {
+      columnAttribute.push(key);
+    }Nova.request().get('/nova-api/favorites').then(function (res) {
       if (res) {
-        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, _this.columnProp);
+        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
         _this.rowsData = favorites ? favorites : [];
       }
     }).catch(function (err) {
@@ -986,8 +983,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: []
     },
     columns: {
-      type: Array,
-      default: []
+      type: Object,
+      default: {}
     }
   }
 });
@@ -1032,7 +1029,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    max-width: 300px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n    word-break: break-all;\n\n}\n.table-row span{\n    color:red;\n    font-size: 13px;\n    word-break: normal;\n\n}\n", ""]);
+exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n    word-break: break-all;\n\n}\n.table-row span{\n    color:red;\n    font-size: 13px;\n    word-break: normal;\n\n}\n", ""]);
 
 // exports
 
@@ -1048,11 +1045,11 @@ var render = function() {
   return _c(
     "tr",
     { staticClass: "table-row" },
-    _vm._l(_vm.columns, function(column) {
-      return _c("th", { key: column }, [
-        _vm._v("\n      " + _vm._s(_vm.cells[column]) + "          \n      "),
-        !_vm.cells[column]
-          ? _c("span", [_vm._v(_vm._s(column) + " is not available")])
+    _vm._l(_vm.columns, function(title, attribute) {
+      return _c("th", { key: attribute }, [
+        _vm._v("\n      " + _vm._s(_vm.cells[attribute]) + "\n      "),
+        !_vm.cells[attribute]
+          ? _c("span", [_vm._v(_vm._s(title) + " is not available")])
           : _vm._e()
       ])
     }),
@@ -1141,7 +1138,7 @@ var render = function() {
           _c(
             "tr",
             { staticClass: "table-header" },
-            _vm._l(_vm.columnTitle, function(title) {
+            _vm._l(_vm.columns, function(title) {
               return _c("th", { key: title }, [_vm._v(_vm._s(title))])
             }),
             0
@@ -1151,7 +1148,7 @@ var render = function() {
         _vm._l(_vm.rowsData, function(data) {
           return _c("row", {
             key: data.id,
-            attrs: { cells: data, columns: _vm.columnProp }
+            attrs: { cells: data, columns: _vm.columns }
           })
         })
       ],

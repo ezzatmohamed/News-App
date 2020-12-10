@@ -2,9 +2,9 @@
 <template>
 
     <tr class="table-row">
-        <th v-for="column in columns" :key="column">
-          {{cells[column]}}          
-          <span v-if="!cells[column]">{{column}} is not available</span>
+        <th v-for="(title,attribute) in columns" :key="attribute">
+          {{cells[attribute]}}
+          <span v-if="!cells[attribute]">{{title}} is not available</span>
         </th>
         
     </tr>
@@ -21,8 +21,8 @@
             default:[]
         },
         columns:{
-          type:Array,
-          default:[]
+          type:Object,
+          default:{}
         }
     },
   }
