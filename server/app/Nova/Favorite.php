@@ -88,6 +88,14 @@ class Favorite extends Resource
             return $query;
         return $query->where('user_id', $request->user()->id);
     }
+
+
+    // Display resources in the Nav-Bar for admins onlyf
+    public static function availableForNavigation(Request $request)
+    {
+        return $request->user()->isAn('admin');
+    }
+    
     /**
      * Get the cards available for the request.
      *
