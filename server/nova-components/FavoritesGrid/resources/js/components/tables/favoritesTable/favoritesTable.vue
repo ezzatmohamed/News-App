@@ -29,8 +29,8 @@
     },
     props:{
       columns:{
-        type:Array,
-        default:[]
+        type:Object,
+        default:{}
       }
     },
     created()

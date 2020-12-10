@@ -745,8 +745,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   props: {
     columns: {
-      type: Array,
-      default: []
+      type: Object,
+      default: {}
     }
   },
   created: function created() {
