@@ -8,6 +8,8 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Newsapp\CreateFavorite\CreateFavorite;
 use Bouncer;
+use Newsapp\TestTool\TestTool;
+
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -83,7 +85,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             (new CreateFavorite)->canSee(function ($request) {
                 return Bouncer::is($request->user())->an('admin');
             }),
-
+            new TestTool,
         ];
     }
 
