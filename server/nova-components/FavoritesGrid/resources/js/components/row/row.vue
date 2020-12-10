@@ -2,8 +2,8 @@
 <template>
 
     <tr class="table-row">
-        <th v-for="col in columns" :key="col">
-          {{cells[col]}}
+        <th v-for="column in columns" :key="column">
+          {{cells[column]}}
         </th>
         
     </tr>

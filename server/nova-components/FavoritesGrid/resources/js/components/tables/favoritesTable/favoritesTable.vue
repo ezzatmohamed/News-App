@@ -4,7 +4,7 @@
       <table class = "table-container">
         <thead>
             <tr class = "table-header">
-                <th v-for="col in columns" :key="col">{{col}}</th>
+                <th v-for="column in columns" :key="column">{{column}}</th>
             </tr>
         </thead>
         <row v-for="data in rowsData" :key="data.id" :cells="data" :columns="columns"/>
