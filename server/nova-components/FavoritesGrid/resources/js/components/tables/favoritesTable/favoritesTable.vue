@@ -4,10 +4,10 @@
       <table class = "table-container">
         <thead>
             <tr class = "table-header">
-                <th v-for="column in columns" :key="column">{{column}}</th>
+                <th v-for="title in columnTitle" :key="title">{{title}}</th>
             </tr>
         </thead>
-        <row v-for="data in rowsData" :key="data.id" :cells="data" :columns="columns"/>
+        <row v-for="data in rowsData" :key="data.id" :cells="data" :columns="columnProp"/>
       </table>
     </div>
 </template>
@@ -16,12 +16,15 @@
   import './favoritesTable.css';
   import row from './../../row/row'
   import {parseNovaApi} from './../../../../../../CreateFavorite/resources/js/helpers'
+
   export default {
     name:"favorites-table",
     components:{row},
     data(){
       return{
         rowsData:[],
+        columnTitle:[],
+        columnProp:[],
       }
     },
     props:{
@@ -32,12 +35,18 @@
     },
     created()
     {
+        // Separate Columns (key&value) pairs into ColumnTitle and ColumnProp
+        for( let key in this.columns)
+        {
+            this.columnProp.push(key)
+            this.columnTitle.push(this.columns[key])
+        }
         Nova.request()
             .get('/nova-api/favorites')
             .then(res=>{
                 if(res)
                 {
-                    const favorites = parseNovaApi(res,this.columns)
+                    const favorites = parseNovaApi(res,this.columnProp)
                     this.rowsData = favorites ? favorites : []
                 } 
             })

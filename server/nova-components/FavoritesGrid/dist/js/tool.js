@@ -731,12 +731,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "favorites-table",
   components: { row: __WEBPACK_IMPORTED_MODULE_1__row_row___default.a },
   data: function data() {
     return {
-      rowsData: []
+      rowsData: [],
+      columnTitle: [],
+      columnProp: []
     };
   },
 
@@ -749,9 +752,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
+    // Separate Columns (key&value) pairs into ColumnTitle and ColumnProp
+    for (var key in this.columns) {
+      this.columnProp.push(key);
+      this.columnTitle.push(this.columns[key]);
+    }
     Nova.request().get('/nova-api/favorites').then(function (res) {
       if (res) {
-        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, _this.columns);
+        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, _this.columnProp);
         _this.rowsData = favorites ? favorites : [];
       }
     }).catch(function (err) {
@@ -1129,8 +1137,8 @@ var render = function() {
           _c(
             "tr",
             { staticClass: "table-header" },
-            _vm._l(_vm.columns, function(column) {
-              return _c("th", { key: column }, [_vm._v(_vm._s(column))])
+            _vm._l(_vm.columnTitle, function(title) {
+              return _c("th", { key: title }, [_vm._v(_vm._s(title))])
             }),
             0
           )
@@ -1139,7 +1147,7 @@ var render = function() {
         _vm._l(_vm.rowsData, function(data) {
           return _c("row", {
             key: data.id,
-            attrs: { cells: data, columns: _vm.columns }
+            attrs: { cells: data, columns: _vm.columnProp }
           })
         })
       ],
@@ -1358,6 +1366,15 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 27 */
@@ -1376,16 +1393,16 @@ var render = function() {
       _vm._v(" "),
       _c("favorites-table", {
         attrs: {
-          columns: [
-            "id",
-            "title",
-            "url",
-            "urlToImage",
-            "description",
-            "author",
-            "publishedAt",
-            "user"
-          ]
+          columns: {
+            id: "ID",
+            title: "Title",
+            url: "Url",
+            urlToImage: "Image",
+            description: "Description",
+            author: "Author",
+            publishAt: "Date",
+            user: "User"
+          }
         }
       })
     ],
