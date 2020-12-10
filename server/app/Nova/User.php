@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -85,6 +86,20 @@ class User extends Resource
         ];
     }
 
+    // Return all users for admin 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if( $request->user()->isAn('admin') )
+            return $query;
+        return $query->where('id', $request->user()->id);
+    }
+
+
+    // Display resources in the Nav-Bar for admins onlyf
+    public static function availableForNavigation(Request $request)
+    {
+        return $request->user()->isAn('admin');
+    }
     /**
      * Get the cards available for the request.
      *
