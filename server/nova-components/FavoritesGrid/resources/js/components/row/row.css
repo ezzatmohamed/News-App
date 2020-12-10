@@ -4,7 +4,10 @@
 }
 .table-row th{
     min-width: 100px;
+    max-width: 300px;
     padding:20px;
     border-width: 1px;
     border-color:#28d;
+    word-break: break-all;
+
 }

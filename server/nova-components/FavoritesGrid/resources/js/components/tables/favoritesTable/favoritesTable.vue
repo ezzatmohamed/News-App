@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="container">
       <table class = "table-container">
         <thead>
             <tr class = "table-header">

@@ -1,11 +1,15 @@
 .table-container{
     position: relative;
-    margin:auto;
-    width:80%;
     padding: 20px;
+    margin:auto;
+
 }
-.table-header{
+.table-header th{
     background-color:  #28d;
     color:white;
-    padding:20px;
+    padding:20px 0;
+}
+.container{
+    max-width: 100%;
+    overflow: auto;
 }

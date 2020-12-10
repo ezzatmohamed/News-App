@@ -100,6 +100,12 @@ class User extends Resource
     {
         return $request->user()->isAn('admin');
     }
+
+    public static function relatableQuery(NovaRequest $request, $query)
+    {
+        if($request->user()->isAn('admin') ||  $query->where('id', $request->user()->id) )
+            return $query;
+    }
     /**
      * Get the cards available for the request.
      *
