@@ -1,14 +1,15 @@
 <template>
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
-        <favorites-table :columns="{id:'ID',
-                                    title:'Title',
+        <favorites-table :columns="{title:'Title',
                                     url:'Url',
                                     urlToImage:'Image',
                                     description:'Description',
                                     author:'Author',
                                     publishedAt:'Date',
-                                    user:'User'}" 
+                                    user:'Username',
+                                    email:'Email'
+                                    }" 
                                     />
 
     </div>

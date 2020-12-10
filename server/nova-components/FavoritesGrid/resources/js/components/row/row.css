@@ -11,3 +11,9 @@
     word-break: break-all;
 
 }
+.table-row span{
+    color:red;
+    font-size: 13px;
+    word-break: normal;
+
+}

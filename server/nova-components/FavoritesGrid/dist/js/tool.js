@@ -975,6 +975,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1031,7 +1032,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    max-width: 300px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n    word-break: break-all;\n\n}\n", ""]);
+exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    max-width: 300px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n    word-break: break-all;\n\n}\n.table-row span{\n    color:red;\n    font-size: 13px;\n    word-break: normal;\n\n}\n", ""]);
 
 // exports
 
@@ -1049,7 +1050,10 @@ var render = function() {
     { staticClass: "table-row" },
     _vm._l(_vm.columns, function(column) {
       return _c("th", { key: column }, [
-        _vm._v("\n      " + _vm._s(_vm.cells[column]) + "\n    ")
+        _vm._v("\n      " + _vm._s(_vm.cells[column]) + "          \n      "),
+        !_vm.cells[column]
+          ? _c("span", [_vm._v(_vm._s(column) + " is not available")])
+          : _vm._e()
       ])
     }),
     0
@@ -1375,6 +1379,7 @@ module.exports = Component.exports
 //
 //
 //
+//
 
 /***/ }),
 /* 27 */
@@ -1394,14 +1399,14 @@ var render = function() {
       _c("favorites-table", {
         attrs: {
           columns: {
-            id: "ID",
             title: "Title",
             url: "Url",
             urlToImage: "Image",
             description: "Description",
             author: "Author",
             publishedAt: "Date",
-            user: "User"
+            user: "Username",
+            email: "Email"
           }
         }
       })
