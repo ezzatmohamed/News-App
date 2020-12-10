@@ -82,7 +82,7 @@ class Favorite extends Resource
             Text::make('email','email', function () {
                 if($this->user&& $this->user->email)
                     return $this->user->email;
-            })->readonly(),
+            })->onlyOnIndex(),
 
             ];
     }
