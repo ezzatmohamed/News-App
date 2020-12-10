@@ -4,10 +4,10 @@
       <table class = "table-container">
         <thead>
             <tr class = "table-header">
-                <th v-for="title in columnTitle" :key="title">{{title}}</th>
+                <th v-for="title in columns" :key="title">{{title}}</th>
             </tr>
         </thead>
-        <row v-for="data in rowsData" :key="data.id" :cells="data" :columns="columnProp"/>
+        <row v-for="data in rowsData" :key="data.id" :cells="data" :columns="columns"/>
       </table>
     </div>
 </template>
@@ -22,9 +22,7 @@
     components:{row},
     data(){
       return{
-        rowsData:[],
-        columnTitle:[],
-        columnProp:[],
+        rowsData:[]
       }
     },
     props:{
@@ -35,18 +33,17 @@
     },
     created()
     {
-        // Separate Columns (key&value) pairs into ColumnTitle and ColumnProp
+        // Get Column Attribute from columns titles
+        let columnAttribute = []
         for( let key in this.columns)
-        {
-            this.columnProp.push(key)
-            this.columnTitle.push(this.columns[key])
-        }
+            columnAttribute.push(key)
+        
         Nova.request()
             .get('/nova-api/favorites')
             .then(res=>{
                 if(res)
                 {
-                    const favorites = parseNovaApi(res,this.columnProp)
+                    const favorites = parseNovaApi(res,columnAttribute)
                     this.rowsData = favorites ? favorites : []
 
                 } 
