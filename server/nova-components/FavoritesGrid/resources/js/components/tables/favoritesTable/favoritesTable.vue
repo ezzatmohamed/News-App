@@ -48,6 +48,7 @@
                 {
                     const favorites = parseNovaApi(res,this.columnProp)
                     this.rowsData = favorites ? favorites : []
+                    
                 } 
             })
             .catch(err=>{
