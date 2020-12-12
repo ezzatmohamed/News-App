@@ -301,7 +301,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(13);
+var	fixUrls = __webpack_require__(10);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -618,7 +618,7 @@ function updateLink (link, options, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
-module.exports = __webpack_require__(33);
+module.exports = __webpack_require__(28);
 
 
 /***/ }),
@@ -627,17 +627,21 @@ module.exports = __webpack_require__(33);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form___ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_tables___ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_linkInput_linkInput__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_linkInput_linkInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_linkInput_linkInput__);
+
 
 
 Nova.booting(function (Vue, router, store) {
 
-  Vue.component('favorite-form', __WEBPACK_IMPORTED_MODULE_0__components_form___["a" /* favoriteForm */]);
+  Vue.component('favorites-table', __WEBPACK_IMPORTED_MODULE_0__components_tables___["a" /* favoritesTable */]);
+  Vue.component('link-input', __WEBPACK_IMPORTED_MODULE_1__components_linkInput_linkInput___default.a);
 
   router.addRoutes([{
-    name: 'create-favorite',
-    path: '/create-favorite',
-    component: __webpack_require__(31)
+    name: 'favorites-grid',
+    path: '/favorites-grid',
+    component: __webpack_require__(25)
   }]);
 });
 
@@ -646,9 +650,9 @@ Nova.booting(function (Vue, router, store) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__favoriteForm_favoriteForm___default.a; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_favoritesTable__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_favoritesTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoritesTable_favoritesTable__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__favoritesTable_favoritesTable___default.a; });
 
 
 /***/ }),
@@ -660,7 +664,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(7)
 /* template */
-var __vue_template__ = __webpack_require__(30)
+var __vue_template__ = __webpack_require__(19)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -677,7 +681,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/form/favoriteForm/favoriteForm.vue"
+Component.options.__file = "resources/js/components/tables/favoritesTable/favoritesTable.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -686,9 +690,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5cf55b2f", Component.options)
+    hotAPI.createRecord("data-v-1acd0b30", Component.options)
   } else {
-    hotAPI.reload("data-v-5cf55b2f", Component.options)
+    hotAPI.reload("data-v-1acd0b30", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -704,19 +708,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputs___ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers___ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__favoriteForm_css__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__favoriteForm_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__favoriteForm_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_css__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoritesTable_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__row_row__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__ = __webpack_require__(16);
 //
 //
 //
@@ -737,188 +733,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { formInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["b" /* formInput */], buttonInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["a" /* buttonInput */], selectInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["c" /* selectInput */] },
-    name: "favorite-form",
-    props: {
-        title: {
-            type: String,
-            default: ""
-        }
-    },
-    data: function data() {
-        return {
-            info: {
-                title: "",
-                author: "",
-                description: "",
-                urlToImage: "",
-                publishedAt: "",
-                url: "",
-                user: 0
-            },
-            users: [],
-            errors: {
-                url: '',
-                urlToImage: ''
-            }
-        };
-    },
+  name: "favorites-table",
+  components: { row: __WEBPACK_IMPORTED_MODULE_1__row_row___default.a },
+  data: function data() {
+    return {
+      rowsData: []
+    };
+  },
 
-    computed: {
-        canSubmit: function canSubmit() {
-            return !(this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user);
-        }
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            var _this = this;
-
-            Nova.request().post('/nova-api/favorites', this.info).then(function (res) {
-                Nova.success('Created successfully');
-                _this.info = {
-                    title: "",
-                    author: "",
-                    description: "",
-                    urlToImage: "",
-                    publishedAt: "",
-                    url: "",
-                    user: 0
-                };
-            }).catch(function (err) {
-                Nova.error('Error: ' + err.message);
-            });
-        },
-        validateForm: function validateForm() {
-            if (this.errors && this.info) {
-                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
-                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
-                return !this.errors.url && !this.errors.urlToImage;
-            }
-            return true;
-        },
-        handleChange: function handleChange(payload) {
-            if (payload && payload.name && typeof payload.value !== 'undefined') {
-                this.info[payload.name] = payload.value;
-            }
-        }
-    },
-    created: function created() {
-        var _this2 = this;
-
-        Nova.request().get('/nova-api/users').then(function (res) {
-            _this2.users = Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["a" /* parseNovaApi */])(res, ["id", "name"]);
-        }).catch(function (err) {
-            Nova.error(err);
-        });
+  props: {
+    columns: {
+      type: Object,
+      default: {}
     }
+  },
+  created: function created() {
+    var _this = this;
+
+    // Get Column Attribute from columns titles
+    var columnAttribute = [];
+    for (var key in this.columns) {
+      columnAttribute.push(key);
+    }Nova.request().get('/nova-api/favorites').then(function (res) {
+      if (res) {
+        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
+        _this.rowsData = favorites ? favorites : [];
+      }
+    }).catch(function (err) {
+      Nova.error("Error fetching favorites");
+    });
+  }
 });
 
 /***/ }),
 /* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__buttonInput_buttonInput___default.a; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formInput_formInput__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__formInput_formInput___default.a; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__selectInput_selectInput___default.a; });
-
-
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(10)
-/* template */
-var __vue_template__ = __webpack_require__(14)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/inputs/buttonInput/buttonInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-619b6d46", Component.options)
-  } else {
-    hotAPI.reload("data-v-619b6d46", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_css__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttonInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttonInput_css__);
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "button-input",
-  props: {
-    type: {
-      type: String,
-      default: ""
-    },
-    text: {
-      type: String,
-      default: ""
-    },
-    disabled: {
-      type: Boolean,
-      default: true
-    }
-  }
-});
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(12);
+var content = __webpack_require__(9);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -932,8 +786,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./buttonInput.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./buttonInput.css");
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./favoritesTable.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./favoritesTable.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -943,7 +797,7 @@ if(false) {
 }
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -951,13 +805,13 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.form-button  {\n    box-sizing: border-box;\n    display: block;\n    width: 100%;\n    border-width: 1px;\n    border-style: solid;\n    padding: 16px;\n    outline: 0;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n    margin-top: 2%;\n}\n\n.form-button:hover {\n    background: #17c;\n}\n.form-button:focus {\n    border-color: #05a;\n}\n\n.form-button:disabled,\n.form-button[disabled]{\n  background-color: #cccccc;\n  color: #666666;\n  cursor: default;\n}", ""]);
+exports.push([module.i, ".table-container{\n    position: relative;\n    padding: 20px;\n    margin:auto;\n\n}\n.table-header th{\n    background-color:  #28d;\n    color:white;\n    padding:20px 0;\n}\n.container{\n    max-width: 100%;\n    overflow: auto;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 13 */
+/* 10 */
 /***/ (function(module, exports) {
 
 
@@ -1052,42 +906,15 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "form-button",
-      attrs: { disabled: _vm.disabled, type: _vm.type }
-    },
-    [_vm._v(_vm._s(_vm.text))]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-619b6d46", module.exports)
-  }
-}
-
-/***/ }),
-/* 15 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(16)
+var __vue_script__ = __webpack_require__(12)
 /* template */
-var __vue_template__ = __webpack_require__(19)
+var __vue_template__ = __webpack_require__(15)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1104,7 +931,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/inputs/formInput/formInput.vue"
+Component.options.__file = "resources/js/components/row/row.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1113,9 +940,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-476c6de2", Component.options)
+    hotAPI.createRecord("data-v-02e189ac", Component.options)
   } else {
-    hotAPI.reload("data-v-476c6de2", Component.options)
+    hotAPI.reload("data-v-02e189ac", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1124,376 +951,135 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__row_css__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__row_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__row_css__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "row",
+  props: {
+    cells: {
+      type: Array,
+      default: []
+    },
+    columns: {
+      type: Object,
+      default: {}
+    }
+  }
+});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(14);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./row.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./row.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".table-row{\n    border-width: 1px;\n    border-color:#28d;\n}\n.table-row th{\n    min-width: 100px;\n    padding:20px;\n    border-width: 1px;\n    border-color:#28d;\n    word-break: break-all;\n\n}\n.table-row span{\n    color:red;\n    font-size: 13px;\n    word-break: normal;\n\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "tr",
+    { staticClass: "table-row" },
+    _vm._l(_vm.columns, function(title, attribute) {
+      return _c("th", { key: attribute }, [
+        _vm._v("\n      " + _vm._s(_vm.cells[attribute]) + "\n      "),
+        !_vm.cells[attribute]
+          ? _c("span", [_vm._v(_vm._s(title) + " is not available")])
+          : _vm._e()
+      ])
+    }),
+    0
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-02e189ac", module.exports)
+  }
+}
 
 /***/ }),
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__formInput_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(17);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(18);
+/* unused harmony namespace reexport */
 
 
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "form-input",
-  props: {
-    type: {
-      type: String,
-      default: ''
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      default: ""
-    },
-    value: {
-      type: String,
-      default: ''
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-
-    errorMessage: {
-      type: String,
-      default: ''
-    },
-    handleChange: {
-      type: Function
-    }
-  },
-  methods: {
-    onChange: function onChange(e) {
-      if (typeof this.handleChange === 'function') this.handleChange(e.target);
-    }
-  }
-
-});
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(18);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./formInput.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./formInput.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.form-input-box input {\n  width: 100%;\n  border-width: 1px;\n  border-style: solid;\n  border-color: rgb(26 102 188);\n  padding: 11px;\n  font-family: inherit;\n}\n.input-title{\n    color:rgb(26 102 188);\n    font-size: 14px;\n    padding:13px 13px 13px 0px;\n    float:left;\n}\n\n.form-input-box span{\n  color:red;\n} \n\n.error-msg{\n  margin-left: 4px;\n  font-size: 12px;\n}\n.error-input input{\n  border-color: red;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "form-input-box",
-      class: { "error-input": _vm.errorMessage }
-    },
-    [
-      _c("p", { staticClass: "input-title" }, [
-        _vm._v(_vm._s(_vm.title) + " \n      "),
-        _vm.required
-          ? _c("span", { staticClass: "required-astrisk" }, [_vm._v("*")])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.errorMessage
-          ? _c("span", { staticClass: "error-msg" }, [
-              _vm._v("Error: " + _vm._s(_vm.errorMessage))
-            ])
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.title },
-        domProps: { value: _vm.value },
-        on: { input: _vm.onChange }
-      })
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-476c6de2", module.exports)
-  }
-}
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(21)
-/* template */
-var __vue_template__ = __webpack_require__(24)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/inputs/selectInput/selectInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ea5ad19c", Component.options)
-  } else {
-    hotAPI.reload("data-v-ea5ad19c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__selectInput_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "select-input",
-  props: {
-    options: {
-      type: Array,
-      default: []
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    value: {
-      type: String
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    handleChange: {
-      type: Function
-    }
-  },
-  methods: {
-    onChange: function onChange(e) {
-      if (typeof this.handleChange === 'function') this.handleChange(e.target);
-    }
-  }
-});
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(23);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(2)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./selectInput.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./selectInput.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-dropdown {\n  display: inline-block;\n  margin:auto;\n  padding:10px;\n}\n\n.custom-dropdown select {\n  background-color: #1a66bc;\n  color: #fff;\n  font-size: inherit;\n  padding: .5em;\n  padding-right: 2.5em;\t\n  border-radius: 3px;\n  text-indent: 0.01px;\n  text-overflow: '';\n  -webkit-appearance: button;\n}\n.custom-dropdown span{\n  color:red;\n} ", ""]);
-
-// exports
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "custom-dropdown" }, [
-    _c(
-      "select",
-      {
-        attrs: { name: _vm.name },
-        domProps: { value: _vm.value },
-        on: { input: _vm.onChange }
-      },
-      [
-        _c("option", { key: "0", attrs: { value: "0", disabled: "" } }, [
-          _vm._v("Please select a user")
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.options, function(option) {
-          return _c(
-            "option",
-            { key: option.name, domProps: { value: option.id } },
-            [_vm._v(" \n            " + _vm._s(option.name) + " \n        ")]
-          )
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _vm.required ? _c("span", [_vm._v("*")]) : _vm._e()
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ea5ad19c", module.exports)
-  }
-}
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(26);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(27);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__validateUrl__["a"]; });
-
-
-
-/***/ }),
-/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1524,11 +1110,11 @@ var parseNovaApi = function parseNovaApi(result, attributes) {
 };
 
 /***/ }),
-/* 27 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return validateUrl; });
+/* unused harmony export validateUrl */
 
 var validateUrl = function validateUrl(value) {
     return (/^(?:(?:(?:https?|ftp):)?\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{1,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
@@ -1536,13 +1122,134 @@ var validateUrl = function validateUrl(value) {
 };
 
 /***/ }),
-/* 28 */
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "table",
+      { staticClass: "table-container" },
+      [
+        _c("thead", [
+          _c(
+            "tr",
+            { staticClass: "table-header" },
+            _vm._l(_vm.columns, function(title) {
+              return _c("th", { key: title }, [_vm._v(_vm._s(title))])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.rowsData, function(data) {
+          return _c("row", {
+            key: data.id,
+            attrs: { cells: data, columns: _vm.columns }
+          })
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1acd0b30", module.exports)
+  }
+}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(21)
+/* template */
+var __vue_template__ = __webpack_require__(24)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/linkInput/linkInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-912093d4", Component.options)
+  } else {
+    hotAPI.reload("data-v-912093d4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linkInput_css__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linkInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__linkInput_css__);
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "link-input",
+  props: {
+    link: {
+      type: String,
+      default: ""
+    },
+    text: {
+      type: String,
+      default: ""
+    }
+  }
+});
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(23);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1556,8 +1263,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./favoriteForm.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./favoriteForm.css");
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./linkInput.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./linkInput.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -1567,7 +1274,7 @@ if(false) {
 }
 
 /***/ }),
-/* 29 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -1575,114 +1282,21 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, ".form-container{\n    width:50%;\n    position: relative;\n    padding:20px;\n    margin:auto;\n    text-align: center;\n}\n.form-container form{\n    background-color: #ebebeb;\n    padding: 2px;\n}\n\n.form-title{\n    background: #252d37;\n    padding: 7px;\n    font-size: 17px;\n    text-align: center;\n    text-transform: uppercase;\n    color: #fff;\n}\n.error-box {\n    padding: 10px;\n    background-color: rgb(175, 76, 76); \n    color: white;\n    margin-bottom: 15px;\n    width:80%;\n    margin:5px auto;\n    border-radius: 6px;\n    text-align: center;\n    display: block;\n}", ""]);
+exports.push([module.i, "\n.link-input {\n    box-sizing: border-box;\n    display: block;\n    width: 20%;\n    padding: 16px;\n    font-family: inherit;\n    font-size: 0.95em;\n    background: #28d;\n    border-color: transparent;\n    color: #fff;\n    cursor: pointer;\n    margin: 10px auto 60px auto;\n    border-radius: 10px;\n    text-decoration: none;\n    text-align: center;\n}\n\n.link-input:hover {\n    background: #17c;\n}\n.link-input:focus {\n    border-color: #05a;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 30 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "form-container" }, [
-      _c("p", { staticClass: "form-title" }, [_vm._v(_vm._s(_vm.title))]),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.onSubmit($event)
-            }
-          }
-        },
-        [
-          _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "url",
-              errorMessage: _vm.errors.url,
-              required: true,
-              title: "URL",
-              value: _vm.info.url,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("select-input", {
-            attrs: {
-              name: "user",
-              options: _vm.users,
-              required: true,
-              value: _vm.info.user,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "title",
-              title: "Title",
-              value: _vm.info.title,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "author",
-              title: "Author",
-              value: _vm.info.author,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "description",
-              title: "Description",
-              value: _vm.info.description,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "urlToImage",
-              errorMessage: _vm.errors.urlToImage,
-              title: "Image",
-              value: _vm.info.urlToImage,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("form-input", {
-            attrs: {
-              type: "date",
-              name: "publishedAt",
-              title: "Publish Date",
-              value: _vm.info.publishedAt,
-              handleChange: _vm.handleChange
-            }
-          }),
-          _vm._v(" "),
-          _c("button-input", {
-            attrs: { disabled: _vm.canSubmit, type: "submit", text: "Create" }
-          })
-        ],
-        1
-      )
-    ])
+  return _c("a", { staticClass: "link-input", attrs: { href: _vm.link } }, [
+    _vm._v(_vm._s(_vm.text))
   ])
 }
 var staticRenderFns = []
@@ -1691,20 +1305,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5cf55b2f", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-912093d4", module.exports)
   }
 }
 
 /***/ }),
-/* 31 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(26)
 /* template */
-var __vue_template__ = __webpack_require__(32)
+var __vue_template__ = __webpack_require__(27)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1743,7 +1357,29 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 32 */
+/* 26 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1752,7 +1388,26 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("favorite-form", { attrs: { title: "Favorite Creation" } })],
+    [
+      _c("link-input", {
+        attrs: { link: "create-favorite", text: "Create New Favorite" }
+      }),
+      _vm._v(" "),
+      _c("favorites-table", {
+        attrs: {
+          columns: {
+            title: "Title",
+            url: "Url",
+            urlToImage: "Image",
+            description: "Description",
+            author: "Author",
+            publishedAt: "Date",
+            user: "Username",
+            email: "Email"
+          }
+        }
+      })
+    ],
     1
   )
 }
@@ -1767,7 +1422,7 @@ if (false) {
 }
 
 /***/ }),
-/* 33 */
+/* 28 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

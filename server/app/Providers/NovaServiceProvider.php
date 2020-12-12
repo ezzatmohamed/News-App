@@ -7,6 +7,7 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Newsapp\CreateFavorite\CreateFavorite;
+use Newsapp\FavoritesGrid\FavoritesGrid;
 use Bouncer;
 use Newsapp\TestTool\TestTool;
 
@@ -82,10 +83,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new \Yadahan\BouncerTool\BouncerTool(),
-            (new CreateFavorite)->canSee(function ($request) {
-                return Bouncer::is($request->user())->an('admin');
-            }),
             new TestTool,
+            new CreateFavorite,
+            new FavoritesGrid
+
         ];
     }
 

@@ -1,0 +1,1 @@
+export {default as favoritesTable} from './favoritesTable/favoritesTable'

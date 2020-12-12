@@ -18,7 +18,7 @@ class FavoritePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAn('admin');
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class FavoritePolicy
      */
     public function create(User $user)
     {
-        return $user->isAn('admin');
+        return true;
     }
 
     /**

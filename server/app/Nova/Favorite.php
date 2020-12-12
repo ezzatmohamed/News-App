@@ -77,10 +77,31 @@ class Favorite extends Resource
             ->sortable()
             ->rules('required', 'max:255'),
 
-            BelongsTo::make('User')
+            BelongsTo::make('User'),
+
+            Text::make('email','email', function () {
+                if($this->user&& $this->user->email)
+                    return $this->user->email;
+            })->onlyOnIndex(),
+
             ];
     }
 
+    // Return all favorites for admin but for regulars,return only their favorites
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if( $request->user()->isAn('admin') )
+            return $query;
+        return $query->where('user_id', $request->user()->id);
+    }
+
+
+    // Display resources in the Nav-Bar for admins onlyf
+    public static function availableForNavigation(Request $request)
+    {
+        return $request->user()->isAn('admin');
+    }
+    
     /**
      * Get the cards available for the request.
      *
