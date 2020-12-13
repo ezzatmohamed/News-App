@@ -1,4 +1,4 @@
-import {favoriteForm} from './components/form/'
+import {favoriteForm} from './../../../StoryBook/resources/js/components/form'
 
 
 Nova.booting((Vue, router, store) => {

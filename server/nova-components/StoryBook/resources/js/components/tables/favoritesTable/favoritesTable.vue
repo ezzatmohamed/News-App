@@ -15,7 +15,7 @@
 <script>
   import './favoritesTable.css';
   import row from './../../row/row'
-  import {parseNovaApi} from './../../../../../../CreateFavorite/resources/js/helpers'
+  import {parseNovaApi} from './../../../../../../StoryBook/resources/js/helpers'
 
   export default {
     name:"favorites-table",

@@ -23,6 +23,10 @@
         {
             "type": "path",
             "url": "./nova-components/FavoritesGrid"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/StoryBook"
         }
     ],
     "require": {
@@ -39,7 +43,8 @@
         "newsapp/create-favorite": "*",
         "newsapp/test-tool": "*",
         "newsapp/favorites-grid": "*",
-        "venturecraft/revisionable": "1.*"
+        "venturecraft/revisionable": "1.*",
+        "newsapp/story-book": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -83,6 +88,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-        
     }
 }
