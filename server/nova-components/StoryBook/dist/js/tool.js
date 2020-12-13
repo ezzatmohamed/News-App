@@ -619,9 +619,9 @@ function updateLink (link, options, obj) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(18);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
+/* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(19);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__validateUrl__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__validateUrl__["a"]; });
 
 
 
@@ -744,7 +744,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoritesTable_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__row_row__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers__ = __webpack_require__(3);
 //
 //
 //
@@ -759,7 +758,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -1085,7 +1083,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return parseNovaApi; });
+/* unused harmony export parseNovaApi */
 
 var parseNovaApi = function parseNovaApi(result, attributes) {
 
@@ -1989,13 +1987,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: String,
             default: ""
         },
-        usersApi: {
-            type: String,
-            default: ""
+        onSubmitFunction: {
+            type: Function
         },
-        createFavoriteApi: {
-            type: String,
-            default: ""
+        selectOptionList: {
+            type: Array,
+            default: []
         }
     },
     data: function data() {
@@ -2024,27 +2021,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         onSubmit: function onSubmit() {
-            var _this = this;
-
-            Nova.request().post(this.createFavoriteApi, this.info).then(function (res) {
-                Nova.success('Created successfully');
-                _this.info = {
-                    title: "",
-                    author: "",
-                    description: "",
-                    urlToImage: "",
-                    publishedAt: "",
-                    url: "",
-                    user: 0
-                };
-            }).catch(function (err) {
-                Nova.error('Error: ' + err.message);
-            });
+            if (this.info && typeof this.clearForm === 'function') this.onSubmitFunction(this.info, this.clearForm);
         },
         validateForm: function validateForm() {
             if (this.errors && this.info) {
-                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
-                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
+                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["a" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
+                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["a" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
                 return !this.errors.url && !this.errors.urlToImage;
             }
             return true;
@@ -2053,17 +2035,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (payload && payload.name && typeof payload.value !== 'undefined') {
                 this.info[payload.name] = payload.value;
             }
+        },
+        clearForm: function clearForm() {
+            this.info = {
+                title: "",
+                author: "",
+                description: "",
+                urlToImage: "",
+                publishedAt: "",
+                url: "",
+                user: 0
+            };
         }
-    },
-    created: function created() {
-        var _this2 = this;
-
-        Nova.request().get(this.usersApi).then(function (res) {
-            _this2.users = Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["a" /* parseNovaApi */])(res, ["id", "name"]);
-        }).catch(function (err) {
-            Nova.error(err);
-        });
     }
+
 });
 
 /***/ }),
@@ -2150,7 +2135,7 @@ var render = function() {
             attrs: {
               name: "user",
               title: "Please select a user",
-              options: _vm.users,
+              options: _vm.selectOptionList,
               required: true,
               value: _vm.info.user,
               optionKey: "name",

@@ -15,8 +15,7 @@
 <script>
   import './favoritesTable.css';
   import row from './../../row/row'
-  import {parseNovaApi} from './../../../helpers'
-
+  
   export default {
     name:"favorites-table",
     components:{row},
