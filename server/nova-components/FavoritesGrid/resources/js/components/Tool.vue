@@ -11,6 +11,7 @@
                                     email:'Email',
                                     deleted_at:'Is Deleted'
                                     }" 
+                         favoritesApi = "/nova-api/favorites"
                                     />
 
     </div>

@@ -244,6 +244,7 @@ module.exports = Component.exports
 //
 //
 //
+//
 
 /***/ }),
 
@@ -273,7 +274,8 @@ var render = function() {
             user: "Username",
             email: "Email",
             deleted_at: "Is Deleted"
-          }
+          },
+          favoritesApi: "/nova-api/favorites"
         }
       })
     ],

@@ -15,7 +15,7 @@
 <script>
   import './favoritesTable.css';
   import row from './../../row/row'
-  import {parseNovaApi} from './../../../../../../StoryBook/resources/js/helpers'
+  import {parseNovaApi} from './../../../helpers'
 
   export default {
     name:"favorites-table",
@@ -29,6 +29,10 @@
       columns:{
         type:Object,
         default:{}
+      },
+      favoritesApi:{
+        type:String,
+        default:""
       }
     },
     created()

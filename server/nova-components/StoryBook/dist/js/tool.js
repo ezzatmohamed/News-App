@@ -898,7 +898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoritesTable_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__row_row__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__StoryBook_resources_js_helpers__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers__ = __webpack_require__(21);
 //
 //
 //
@@ -931,6 +931,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     columns: {
       type: Object,
       default: {}
+    },
+    favoritesApi: {
+      type: String,
+      default: ""
     }
   },
   created: function created() {
@@ -940,9 +944,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var columnAttribute = [];
     for (var key in this.columns) {
       columnAttribute.push(key);
-    }Nova.request().get('/nova-api/favorites').then(function (res) {
+    }Nova.request().get(this.favoritesApi).then(function (res) {
       if (res) {
-        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__StoryBook_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
+        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* parseNovaApi */])(res, columnAttribute);
         _this.rowsData = favorites ? favorites : [];
       }
     }).catch(function (err) {
