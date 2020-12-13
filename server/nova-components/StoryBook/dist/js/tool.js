@@ -2006,7 +2006,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: "",
                 user: 0
             },
-            users: [],
             errors: {
                 url: '',
                 urlToImage: ''
@@ -2021,7 +2020,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         onSubmit: function onSubmit() {
-            if (this.info && typeof this.clearForm === 'function') this.onSubmitFunction(this.info, this.clearForm);
+            if (this.info && typeof this.onSubmitFunction === 'function' && typeof this.clearForm === 'function') this.onSubmitFunction(this.info, this.clearForm);
         },
         validateForm: function validateForm() {
             if (this.errors && this.info) {
