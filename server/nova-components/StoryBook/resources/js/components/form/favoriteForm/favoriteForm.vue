@@ -45,15 +45,14 @@ import './favoriteForm.css'
         data(){
             return{
                 info:{
-                    title:"",
+                    title:"", 
                     author:"",
                     description:"",
                     urlToImage:"",
                     publishedAt:"",
                     url:"",
                     user:0
-            },
-                users:[],
+            }, 
                 errors:{
                     url:'',
                     urlToImage:''
@@ -68,7 +67,7 @@ import './favoriteForm.css'
         methods:{
             
             onSubmit(){
-                if(this.info && typeof this.clearForm === 'function')
+                if( this.info && typeof this.onSubmitFunction === 'function' && typeof this.clearForm === 'function' )
                     this.onSubmitFunction(this.info,this.clearForm)
             },
             validateForm(){
