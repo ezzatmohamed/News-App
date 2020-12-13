@@ -1,7 +1,7 @@
 <template>
     <div class="custom-dropdown">
         <select :value="value" v-bind:name ="name" @input="onChange">
-            <option  value=0  disabled key=0>Please select a user</option>
+            <option  value=0  disabled key=0>{{title}}</option>
             <option v-for="option in options" :key="option[optionKey]" :value="option[optionValue]"> 
                 {{option[optionKey]}} 
             </option>
@@ -25,6 +25,10 @@ import  './selectInput.css'
       name:{
         type:String,
         required:true
+      },
+      title:{
+        type:String,
+        default:""
       },
       value: {
         type:String
