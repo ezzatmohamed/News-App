@@ -63,8 +63,9 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -173,7 +174,8 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
@@ -181,29 +183,8 @@ module.exports = __webpack_require__(14);
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-
-Nova.booting(function (Vue, router, store) {
-  router.addRoutes([{
-    name: 'favorites-grid',
-    path: '/favorites-grid',
-    component: __webpack_require__(11)
-  }]);
-});
-
-/***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -250,9 +231,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports) {
 
+/***/ 12:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__ = __webpack_require__(41);
 //
 //
 //
@@ -264,16 +249,47 @@ module.exports = Component.exports
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "favorites-grid",
+    data: function data() {
+        return {
+            rowsData: [],
+            columns: {
+                title: 'Title',
+                url: 'Url',
+                urlToImage: 'Image',
+                description: 'Description',
+                author: 'Author',
+                publishedAt: 'Date',
+                user: 'Username',
+                email: 'Email'
+            }
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        // Get Column Attribute from columns titles
+        var columnAttribute = [];
+        for (var key in this.columns) {
+            columnAttribute.push(key);
+        }Nova.request().get('/nova-api/favorites').then(function (res) {
+            if (res) {
+                var favorites = Object(__WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
+                _this.rowsData = favorites ? favorites : [];
+            }
+        }).catch(function (err) {
+            Nova.error("Error fetching favorites");
+        });
+    }
+});
 
 /***/ }),
-/* 13 */
+
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -288,19 +304,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("favorites-table", {
-        attrs: {
-          columns: {
-            title: "Title",
-            url: "Url",
-            urlToImage: "Image",
-            description: "Description",
-            author: "Author",
-            publishedAt: "Date",
-            user: "Username",
-            email: "Email"
-          },
-          favoritesApi: "/nova-api/favorites"
-        }
+        attrs: { columns: _vm.columns, rowsData: _vm.rowsData }
       })
     ],
     1
@@ -317,10 +321,85 @@ if (false) {
 }
 
 /***/ }),
-/* 14 */
+
+/***/ 14:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+Nova.booting(function (Vue, router, store) {
+  router.addRoutes([{
+    name: 'favorites-grid',
+    path: '/favorites-grid',
+    component: __webpack_require__(11)
+  }]);
+});
+
+/***/ }),
+
+/***/ 41:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(42);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(43);
+/* unused harmony namespace reexport */
+
+
+
+/***/ }),
+
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return parseNovaApi; });
+
+var parseNovaApi = function parseNovaApi(result, attributes) {
+
+    if (!Array.isArray(attributes)) return [];
+
+    if (!result || !result.data || !result.data.resources) return [];
+
+    var resources = [];
+
+    result.data.resources.forEach(function (item) {
+
+        var itemFields = {};
+        if (item && item.fields) {
+            item.fields.forEach(function (field) {
+                var attribute = field.attribute ? field.attribute : "";
+                var value = field.value ? field.value : "";
+
+                if (attributes.includes(attribute)) itemFields[attribute] = value;
+            });
+            resources.push(itemFields);
+        }
+    });
+    return resources;
+};
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export validateUrl */
+
+var validateUrl = function validateUrl(value) {
+    return (/^(?:(?:(?:https?|ftp):)?\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{1,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
+    );
+};
+
 /***/ })
-/******/ ]);
+
+/******/ });

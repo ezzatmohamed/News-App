@@ -20,41 +20,15 @@
   export default {
     name:"favorites-table",
     components:{row},
-    data(){
-      return{
-        rowsData:[]
-      }
-    },
     props:{
       columns:{
         type:Object,
         default:{}
       },
-      favoritesApi:{
-        type:String,
-        default:""
+      rowsData:{
+        type:Array,
+        default:[]
       }
-    },
-    created()
-    {
-        // Get Column Attribute from columns titles
-        let columnAttribute = []
-        for( let key in this.columns)
-            columnAttribute.push(key)
-        
-        Nova.request()
-            .get(this.favoritesApi)
-            .then(res=>{
-                if(res)
-                {
-                    const favorites = parseNovaApi(res,columnAttribute)
-                    this.rowsData = favorites ? favorites : []
-
-                } 
-            })
-            .catch(err=>{
-              Nova.error("Error fetching favorites")
-            })
     }
   }
 </script>

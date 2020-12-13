@@ -767,37 +767,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "favorites-table",
   components: { row: __WEBPACK_IMPORTED_MODULE_1__row_row___default.a },
-  data: function data() {
-    return {
-      rowsData: []
-    };
-  },
-
   props: {
     columns: {
       type: Object,
       default: {}
     },
-    favoritesApi: {
-      type: String,
-      default: ""
+    rowsData: {
+      type: Array,
+      default: []
     }
-  },
-  created: function created() {
-    var _this = this;
-
-    // Get Column Attribute from columns titles
-    var columnAttribute = [];
-    for (var key in this.columns) {
-      columnAttribute.push(key);
-    }Nova.request().get(this.favoritesApi).then(function (res) {
-      if (res) {
-        var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* parseNovaApi */])(res, columnAttribute);
-        _this.rowsData = favorites ? favorites : [];
-      }
-    }).catch(function (err) {
-      Nova.error("Error fetching favorites");
-    });
   }
 });
 
