@@ -5,7 +5,7 @@
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
                     <form-input type="text" name="url"          :errorMessage="errors.url" :required="true"     title="URL" :value="info.url"    :handleChange="handleChange" /> 
-                    <select-input name="user" :options="users"  :required="true"  :value="info.user" optionKey="name" optionValue="id"  :handleChange="handleChange" />
+                    <select-input name="user" title="Please select a user" :options="users"  :required="true"  :value="info.user" optionKey="name" optionValue="id"  :handleChange="handleChange" />
                     <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     
                     <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 

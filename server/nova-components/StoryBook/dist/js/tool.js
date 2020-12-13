@@ -1725,6 +1725,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       required: true
     },
+    title: {
+      type: String,
+      default: ""
+    },
     value: {
       type: String
     },
@@ -1814,7 +1818,7 @@ var render = function() {
       },
       [
         _c("option", { key: "0", attrs: { value: "0", disabled: "" } }, [
-          _vm._v("Please select a user")
+          _vm._v(_vm._s(_vm.title))
         ]),
         _vm._v(" "),
         _vm._l(_vm.options, function(option) {
@@ -2248,6 +2252,7 @@ var render = function() {
           _c("select-input", {
             attrs: {
               name: "user",
+              title: "Please select a user",
               options: _vm.users,
               required: true,
               value: _vm.info.user,
