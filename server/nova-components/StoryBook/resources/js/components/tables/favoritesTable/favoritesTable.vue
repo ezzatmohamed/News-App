@@ -20,51 +20,15 @@
   export default {
     name:"favorites-table",
     components:{row},
-    data(){
-      return{
-        rowsData:[]
-      }
-    },
     props:{
       columns:{
         type:Object,
         default:{}
       },
-      favoritesApi:{
-        type:String,
-        default:""
+      rowsData:{
+        type:Array,
+        default:[]
       }
-    },
-    created()
-    {
-        // Get Column Attribute from columns titles
-        let columnAttribute = []
-        for( let key in this.columns)
-            columnAttribute.push(key)
-        
-        Nova.request()
-            .get('/nova-api/favorites?trashed=with')
-            .then(res=>{
-                if(res)
-                {
-                    const favorites = parseNovaApi(res,columnAttribute)
-                    this.rowsData = favorites ? favorites : []
-
-                    if(Array.isArray(this.rowsData))
-                    {
-                        this.rowsData.forEach((data,i)=>{
-                          
-                          data['deleted_at'] = res && res.data && 
-                                              res.data.resources[i] && 
-                                              res.data.resources[i].softDeleted ? "Yes" : "No" 
-                        })
-                    }
-
-                } 
-            })
-            .catch(err=>{
-              Nova.error(err)
-            })
     }
   }
 </script>

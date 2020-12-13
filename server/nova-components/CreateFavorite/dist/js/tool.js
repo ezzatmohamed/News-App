@@ -93,7 +93,7 @@ Nova.booting(function (Vue, router, store) {
 var disposed = false
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(10)
 /* template */
 var __vue_template__ = __webpack_require__(4)
 /* template functional */
@@ -279,6 +279,25 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ })
 /******/ ]);
