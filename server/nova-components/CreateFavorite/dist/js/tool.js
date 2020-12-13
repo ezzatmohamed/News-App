@@ -256,8 +256,8 @@ var render = function() {
       _c("favorite-form", {
         attrs: {
           title: "Favorite Creation",
-          usersApi: "/nova-api/users",
-          createFavoriteApi: "/nova-api/favorites"
+          selectOptionList: _vm.users,
+          onSubmitFunction: _vm.onFavoriteSubmit
         }
       })
     ],
@@ -286,8 +286,11 @@ if (false) {
 /* 8 */,
 /* 9 */,
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__ = __webpack_require__(11);
 //
 //
 //
@@ -298,6 +301,93 @@ if (false) {
 //
 //
 //
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "create-favorite",
+    data: function data() {
+        return {
+            users: []
+        };
+    },
+
+    methods: {
+        onFavoriteSubmit: function onFavoriteSubmit(info, clearForm) {
+            if (info && typeof clearForm === 'function') Nova.request().post('/nova-api/favorites', info).then(function (res) {
+                Nova.success('Created successfully');
+                clearForm();
+            }).catch(function (err) {
+                Nova.error('Error: ' + err.message);
+            });
+        }
+    },
+
+    created: function created() {
+        var _this = this;
+
+        Nova.request().get('/nova-api/users').then(function (res) {
+            _this.users = Object(__WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__["a" /* parseNovaApi */])(res, ["id", "name"]);
+        }).catch(function (err) {
+            Nova.error(err);
+        });
+    }
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(12);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(13);
+/* unused harmony namespace reexport */
+
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return parseNovaApi; });
+
+var parseNovaApi = function parseNovaApi(result, attributes) {
+
+    if (!Array.isArray(attributes)) return [];
+
+    if (!result || !result.data || !result.data.resources) return [];
+
+    var resources = [];
+
+    result.data.resources.forEach(function (item) {
+
+        var itemFields = {};
+        if (item && item.fields) {
+            item.fields.forEach(function (field) {
+                var attribute = field.attribute ? field.attribute : "";
+                var value = field.value ? field.value : "";
+
+                if (attributes.includes(attribute)) itemFields[attribute] = value;
+            });
+            resources.push(itemFields);
+        }
+    });
+    return resources;
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export validateUrl */
+
+var validateUrl = function validateUrl(value) {
+    return (/^(?:(?:(?:https?|ftp):)?\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{1,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
+    );
+};
 
 /***/ })
 /******/ ]);
