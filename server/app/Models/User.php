@@ -21,6 +21,8 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $revisionCreationsEnabled = true;
+    protected $revisionCleanup = true;   
+    protected $historyLimit = 500;
 
     protected $fillable = [
         'name',

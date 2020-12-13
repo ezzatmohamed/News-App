@@ -11,6 +11,9 @@ class Favorite extends Model
     use HasFactory, RevisionableTrait;
     
     protected $revisionCreationsEnabled = true;
+    protected $revisionCleanup = true;   
+    protected $historyLimit = 500; 
+
 
     protected $fillable = ['description','publishedAt','title','author','url','urlToImage'];
 
