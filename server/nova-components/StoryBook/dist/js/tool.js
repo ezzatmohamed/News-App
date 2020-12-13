@@ -1734,6 +1734,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     handleChange: {
       type: Function
+    },
+    optionKey: {
+      type: String,
+      default: ""
+    },
+    optionValue: {
+      type: String,
+      default: ""
     }
   },
   methods: {
@@ -1812,8 +1820,17 @@ var render = function() {
         _vm._l(_vm.options, function(option) {
           return _c(
             "option",
-            { key: option.name, domProps: { value: option.id } },
-            [_vm._v(" \n            " + _vm._s(option.name) + " \n        ")]
+            {
+              key: option[_vm.optionKey],
+              domProps: { value: option[_vm.optionValue] }
+            },
+            [
+              _vm._v(
+                " \n            " +
+                  _vm._s(option[_vm.optionKey]) +
+                  " \n        "
+              )
+            ]
           )
         })
       ],
@@ -2234,6 +2251,8 @@ var render = function() {
               options: _vm.users,
               required: true,
               value: _vm.info.user,
+              optionKey: "name",
+              optionValue: "id",
               handleChange: _vm.handleChange
             }
           }),

@@ -2,8 +2,8 @@
     <div class="custom-dropdown">
         <select :value="value" v-bind:name ="name" @input="onChange">
             <option  value=0  disabled key=0>Please select a user</option>
-            <option v-for="option in options" :key="option.name" :value="option.id"> 
-                {{option.name}} 
+            <option v-for="option in options" :key="option[optionKey]" :value="option[optionValue]"> 
+                {{option[optionKey]}} 
             </option>
         </select>
         <span v-if="required">*</span>
@@ -35,6 +35,14 @@ import  './selectInput.css'
       },
       handleChange:{
         type:Function
+      },
+      optionKey:{
+        type:String,
+        default:""
+      },
+      optionValue:{
+        type:String,
+        default:""
       }
     } ,
     methods: {
