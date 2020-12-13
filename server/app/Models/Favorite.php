@@ -4,10 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Venturecraft\Revisionable\RevisionableTrait;
 
 class Favorite extends Model
 {
-    use HasFactory;
+    use HasFactory, RevisionableTrait;
+    
+    protected $revisionCreationsEnabled = true;
+    protected $revisionCleanup = true;   
+    protected $historyLimit = 500; 
+
+
     protected $fillable = ['description','publishedAt','title','author','url','urlToImage'];
 
     public function user() 

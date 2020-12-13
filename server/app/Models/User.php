@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use \Venturecraft\Revisionable\RevisionableTrait;
 
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
-    use HasRolesAndAbilities;
+    use HasRolesAndAbilities,RevisionableTrait;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+    protected $revisionCreationsEnabled = true;
+    protected $revisionCleanup = true;   
+    protected $historyLimit = 500;
+
     protected $fillable = [
         'name',
         'email',
