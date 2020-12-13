@@ -10,6 +10,7 @@
                                     user:'Username',
                                     email:'Email'
                                     }" 
+                         favoritesApi = "/nova-api/favorites"
                                     />
 
     </div>

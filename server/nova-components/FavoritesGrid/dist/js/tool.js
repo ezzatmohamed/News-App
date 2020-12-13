@@ -270,6 +270,7 @@ module.exports = Component.exports
 //
 //
 //
+//
 
 /***/ }),
 /* 13 */
@@ -297,7 +298,8 @@ var render = function() {
             publishedAt: "Date",
             user: "Username",
             email: "Email"
-          }
+          },
+          favoritesApi: "/nova-api/favorites"
         }
       })
     ],
