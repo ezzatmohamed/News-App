@@ -33,6 +33,14 @@ import './favoriteForm.css'
             title:{
                 type:String,
                 default:""
+            },
+            usersApi:{
+                type:String,
+                default:""
+            },
+            createFavoriteApi:{
+                type:String,
+                default:""
             }
         },
         data(){
@@ -62,7 +70,7 @@ import './favoriteForm.css'
             
             onSubmit(){
                 Nova.request()
-                    .post('/nova-api/favorites',this.info)
+                    .post(this.createFavoriteApi,this.info)
                     .then(res=>{
                         Nova.success('Created successfully')
                         this.info = {
@@ -99,9 +107,8 @@ import './favoriteForm.css'
 
         },
         created(){
-
             Nova.request()
-            .get('/nova-api/users')
+            .get(this.usersApi)
             .then(res=>{
                 this.users = parseNovaApi(res,["id","name"])
 
