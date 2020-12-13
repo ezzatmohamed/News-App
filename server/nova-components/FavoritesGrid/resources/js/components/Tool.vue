@@ -8,7 +8,8 @@
                                     author:'Author',
                                     publishedAt:'Date',
                                     user:'Username',
-                                    email:'Email'
+                                    email:'Email',
+                                    deleted_at:'Is Deleted'
                                     }" 
                                     />
 

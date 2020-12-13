@@ -754,13 +754,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var columnAttribute = [];
     for (var key in this.columns) {
       columnAttribute.push(key);
-    }Nova.request().get('/nova-api/favorites').then(function (res) {
+    }Nova.request().get('/nova-api/favorites?trashed=with').then(function (res) {
       if (res) {
         var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
         _this.rowsData = favorites ? favorites : [];
+        _this.rowsData.forEach(function (data, i) {
+          data['deleted_at'] = res.data.resources[i].softDeleted ? "Yes" : "No";
+        });
       }
     }).catch(function (err) {
-      Nova.error("Error fetching favorites");
+      Nova.error(err);
     });
   }
 });
@@ -1377,6 +1380,7 @@ module.exports = Component.exports
 //
 //
 //
+//
 
 /***/ }),
 /* 27 */
@@ -1403,7 +1407,8 @@ var render = function() {
             author: "Author",
             publishedAt: "Date",
             user: "Username",
-            email: "Email"
+            email: "Email",
+            deleted_at: "Is Deleted"
           }
         }
       })

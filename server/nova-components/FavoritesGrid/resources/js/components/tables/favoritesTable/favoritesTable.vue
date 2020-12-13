@@ -39,17 +39,20 @@
             columnAttribute.push(key)
         
         Nova.request()
-            .get('/nova-api/favorites')
+            .get('/nova-api/favorites?trashed=with')
             .then(res=>{
                 if(res)
                 {
                     const favorites = parseNovaApi(res,columnAttribute)
                     this.rowsData = favorites ? favorites : []
+                    this.rowsData.forEach((data,i)=>{
+                      data['deleted_at'] = res.data.resources[i].softDeleted ? "Yes" : "No" 
+                    })
 
                 } 
             })
             .catch(err=>{
-              Nova.error("Error fetching favorites")
+              Nova.error(err)
             })
     }
   }
