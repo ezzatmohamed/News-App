@@ -11,7 +11,7 @@
 
 
 <script>
-import { mapState} from 'vuex'
+import { mapState, mapActions} from 'vuex'
 
 export default {
     name:"favorites-grid",
@@ -36,17 +36,16 @@ export default {
 
                 })
     },
+    methods:{
+        ...mapActions(['retrieveFavorites'],)
+    },
     created(){
         // Get Column Attribute from columns titles
         let columnAttribute = []
         for( let key in this.columns)
             columnAttribute.push(key)
-
-        this.$store.dispatch({
-                type:'retrieveFavorites',
-                columnAttribute: columnAttribute
-            }) 
-
+            
+        this.retrieveFavorites({columnAttribute})
         
     },
 

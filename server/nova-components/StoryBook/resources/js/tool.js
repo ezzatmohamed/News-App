@@ -1,6 +1,7 @@
 import {favoritesTable} from './components/tables'
 import {linkInput} from './components/inputs/'
 import {favoriteForm} from './components/form'
+
 import {favoriteModule} from './vuex/modules/'
  
 

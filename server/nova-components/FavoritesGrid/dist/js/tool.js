@@ -282,21 +282,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
         favoritesList: function favoritesList(state) {
             return state.favoriteModule.favoritesList;
         }
 
     })),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveFavorites'])),
     created: function created() {
         // Get Column Attribute from columns titles
         var columnAttribute = [];
         for (var key in this.columns) {
             columnAttribute.push(key);
-        }this.$store.dispatch({
-            type: 'retrieveFavorites',
-            columnAttribute: columnAttribute
-        });
+        }this.retrieveFavorites({ columnAttribute: columnAttribute });
     }
 });
 
@@ -312,10 +310,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* unused harmony export createLogger */
 /* unused harmony export createNamespacedHelpers */
 /* unused harmony export install */
-/* unused harmony export mapActions */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mapActions; });
 /* unused harmony export mapGetters */
 /* unused harmony export mapMutations */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapState; });
 /*!
  * vuex v3.6.0
  * (c) 2020 Evan You

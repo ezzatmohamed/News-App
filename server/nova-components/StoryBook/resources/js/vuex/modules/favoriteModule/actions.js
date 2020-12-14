@@ -2,7 +2,7 @@ import {parseNovaApi} from './../../../helpers'
 
 const actions = {
     
-    retrieveFavorites({commit,state},payload){
+    retrieveFavorites({commit},payload){
         
         Nova.request()
             .get('/nova-api/favorites?trashed=with')

@@ -658,6 +658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 Nova.booting(function (Vue, router, store) {
 
   store.registerModule('favoriteModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["a" /* favoriteModule */]);
@@ -2343,8 +2344,7 @@ if (false) {
 
 var actions = {
     retrieveFavorites: function retrieveFavorites(_ref, payload) {
-        var commit = _ref.commit,
-            state = _ref.state;
+        var commit = _ref.commit;
 
 
         Nova.request().get('/nova-api/favorites?trashed=with').then(function (res) {
@@ -2380,8 +2380,12 @@ var getters = {};
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var state = {
-    favoritesList: []
+var state = function state() {
+    return {
+
+        favoritesList: []
+
+    };
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (state);
