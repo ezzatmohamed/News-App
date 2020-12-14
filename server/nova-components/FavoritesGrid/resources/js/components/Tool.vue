@@ -2,21 +2,21 @@
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
         <favorites-table :columns="columns" 
-                         :rowsData="rowsData"
+                         :rowsData="favoritesList"
                                     />
+
 
     </div>
 </template>
 
 
 <script>
-import {parseNovaApi} from './../../../../StoryBook/resources/js/helpers'
+import { mapState} from 'vuex'
 
 export default {
     name:"favorites-grid",
     data(){
         return{
-            rowsData:[],
             columns:{
                         title:'Title',
                         url:'Url',
@@ -30,35 +30,24 @@ export default {
                     }
         }
     },
+    computed: {
+            ...mapState({
+                    favoritesList: state => state.favoriteModule.favoritesList,
+
+                })
+    },
     created(){
         // Get Column Attribute from columns titles
         let columnAttribute = []
         for( let key in this.columns)
             columnAttribute.push(key)
 
-        Nova.request()
-            .get('/nova-api/favorites?trashed=with')
-            .then(res=>{    
-                if(res)
-                {
-                    const favorites = parseNovaApi(res,columnAttribute)
-                    this.rowsData = favorites ? favorites : []
-                    
-                    if(Array.isArray(this.rowsData))
-                    {
-                        this.rowsData.forEach((data,i)=>{
-                          
-                          data['deleted_at'] = res && res.data && 
-                                              res.data.resources[i] && 
-                                              res.data.resources[i].softDeleted ? "Yes" : "No" 
-                        })
-                    }
+        this.$store.dispatch({
+                type:'retrieveFavorites',
+                columnAttribute: columnAttribute
+            }) 
 
-                } 
-            })
-            .catch(err=>{
-                Nova.error("Error fetching favorites")
-            })
+        
     },
 
 }
