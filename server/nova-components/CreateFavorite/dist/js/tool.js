@@ -251,6 +251,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(5);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _templateObject = _taggedTemplateLiteral([''], ['']);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
 //
 //
 //
@@ -266,11 +270,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "create-favorite",
-    data: function data() {
-        return {
-            users: []
-        };
-    },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
         usersList: function usersList(state) {
@@ -286,7 +285,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 Nova.error('Error: ' + err.message);
             });
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveUsers'])),
+    }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveUsers'])(_templateObject)),
     created: function created() {
         this.retrieveUsers();
     }

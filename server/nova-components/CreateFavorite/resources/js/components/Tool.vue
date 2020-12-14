@@ -13,11 +13,7 @@ import { mapState, mapActions} from 'vuex'
 
 export default {    
     name:"create-favorite",
-    data(){
-        return {
-            users:[]
-        }
-    },
+
     computed:{
             ...mapState({   
                     usersList: state => state.createFavoriteModule.usersList,
@@ -36,7 +32,7 @@ export default {
                     Nova.error(`Error: ${err.message}`)
                 })
         },
-        ...mapActions(['retrieveUsers'],)
+        ...mapActions(['retrieveUsers'],)``
     },
     created(){
         this.retrieveUsers()
