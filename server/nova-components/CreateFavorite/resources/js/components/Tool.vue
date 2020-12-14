@@ -1,7 +1,7 @@
 <template>
     <div>
         <favorite-form title="Favorite Creation"
-                       :selectOptionList="users"
+                       :selectOptionList="usersList"
                        :onSubmitFunction="onFavoriteSubmit"
                        /> 
 
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {parseNovaApi} from './../../../../StoryBook/resources/js/helpers'
+import { mapState, mapActions} from 'vuex'
 
 export default {    
     name:"create-favorite",
@@ -17,6 +17,11 @@ export default {
         return {
             users:[]
         }
+    },
+    computed:{
+            ...mapState({   
+                    usersList: state => state.createFavoriteModule.usersList,
+                }),
     },
     methods:{
         onFavoriteSubmit(info,clearForm){
@@ -30,18 +35,11 @@ export default {
                 .catch(err=>{
                     Nova.error(`Error: ${err.message}`)
                 })
-        }
-        }
-    ,
+        },
+        ...mapActions(['retrieveUsers'],)
+    },
     created(){
-        Nova.request()
-            .get('/nova-api/users')
-            .then(res=>{
-                this.users = parseNovaApi(res,["id","name"])
-            })
-            .catch(err=>{
-                Nova.error(err)
-            })
+        this.retrieveUsers()
     }
 }
     

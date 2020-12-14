@@ -33,9 +33,7 @@ export default {
     computed: {
             ...mapState({
                     favoritesList: state => state.favoriteModule.favoritesList,
-
                 }),
-            // ...mapState(['favoritesList'])
     },
     methods:{
         ...mapActions(['retrieveFavorites'],)

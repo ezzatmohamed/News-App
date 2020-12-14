@@ -286,7 +286,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         favoritesList: function favoritesList(state) {
             return state.favoriteModule.favoritesList;
         }
-
     })),
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveFavorites'])),
     created: function created() {
