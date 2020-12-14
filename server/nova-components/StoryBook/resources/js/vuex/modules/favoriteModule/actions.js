@@ -20,7 +20,7 @@ const actions = {
                                               res.data.resources[i].softDeleted ? "Yes" : "No" 
                         })
                     }
-                    commit('successRetrieve',favorites)
+                    commit('setFavoritesList',favorites)
                     
                 } 
 

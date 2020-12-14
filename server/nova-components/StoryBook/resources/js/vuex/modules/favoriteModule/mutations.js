@@ -1,6 +1,6 @@
 const mutations = {
 
-    successRetrieve(state,favorites){
+    setFavoritesList(state,favorites){
         state.favoritesList = favorites
     },
     

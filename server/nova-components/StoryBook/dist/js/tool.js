@@ -2357,7 +2357,7 @@ var actions = {
                         data['deleted_at'] = res && res.data && res.data.resources[i] && res.data.resources[i].softDeleted ? "Yes" : "No";
                     });
                 }
-                commit('successRetrieve', favorites);
+                commit('setFavoritesList', favorites);
             }
         }).catch(function (err) {
             Nova.error("Error fetching favorites");
@@ -2396,7 +2396,7 @@ var state = function state() {
 
 "use strict";
 var mutations = {
-    successRetrieve: function successRetrieve(state, favorites) {
+    setFavoritesList: function setFavoritesList(state, favorites) {
         state.favoritesList = favorites;
     }
 };
