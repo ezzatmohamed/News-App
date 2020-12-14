@@ -60,12 +60,79 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 0:
+__webpack_require__(1);
+module.exports = __webpack_require__(9);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+Nova.booting(function (Vue, router, store) {
+  router.addRoutes([{
+    name: 'favorites-grid',
+    path: '/favorites-grid',
+    component: __webpack_require__(2)
+  }]);
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(4)
+/* template */
+var __vue_template__ = __webpack_require__(8)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Tool.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68ff5483", Component.options)
+  } else {
+    hotAPI.reload("data-v-68ff5483", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -174,103 +241,12 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(4);
-module.exports = __webpack_require__(28);
-
-
-/***/ }),
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Nova.booting(function (Vue, router, store) {
-  router.addRoutes([{
-    name: 'favorites-grid',
-    path: '/favorites-grid',
-    component: __webpack_require__(25)
-  }]);
-});
-
-/***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(26)
-/* template */
-var __vue_template__ = __webpack_require__(27)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Tool.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-68ff5483", Component.options)
-  } else {
-    hotAPI.reload("data-v-68ff5483", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__ = __webpack_require__(5);
 //
 //
 //
@@ -298,7 +274,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 author: 'Author',
                 publishedAt: 'Date',
                 user: 'Username',
-                email: 'Email'
+                email: 'Email',
+                deleted_at: 'Is Deleted'
             }
         };
     },
@@ -309,10 +286,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var columnAttribute = [];
         for (var key in this.columns) {
             columnAttribute.push(key);
-        }Nova.request().get('/nova-api/favorites').then(function (res) {
+        }Nova.request().get('/nova-api/favorites?trashed=with').then(function (res) {
             if (res) {
                 var favorites = Object(__WEBPACK_IMPORTED_MODULE_0__StoryBook_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
                 _this.rowsData = favorites ? favorites : [];
+
+                if (Array.isArray(_this.rowsData)) {
+                    _this.rowsData.forEach(function (data, i) {
+
+                        data['deleted_at'] = res && res.data && res.data.resources[i] && res.data.resources[i].softDeleted ? "Yes" : "No";
+                    });
+                }
             }
         }).catch(function (err) {
             Nova.error("Error fetching favorites");
@@ -321,7 +305,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 27 */
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(6);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(7);
+/* unused harmony namespace reexport */
+
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return parseNovaApi; });
+
+var parseNovaApi = function parseNovaApi(result, attributes) {
+
+    if (!Array.isArray(attributes)) return [];
+
+    if (!result || !result.data || !result.data.resources) return [];
+
+    var resources = [];
+
+    result.data.resources.forEach(function (item) {
+
+        var itemFields = {};
+        if (item && item.fields) {
+            item.fields.forEach(function (field) {
+                var attribute = field.attribute ? field.attribute : "";
+                var value = field.value ? field.value : "";
+
+                if (attributes.includes(attribute)) itemFields[attribute] = value;
+            });
+            resources.push(itemFields);
+        }
+    });
+    return resources;
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export validateUrl */
+
+var validateUrl = function validateUrl(value) {
+    return (/^(?:(?:(?:https?|ftp):)?\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{1,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
+    );
+};
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -353,67 +392,10 @@ if (false) {
 }
 
 /***/ }),
-/* 28 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
-/* 29 */,
-/* 30 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__ = __webpack_require__(31);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__parseNovaApi__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validateUrl__ = __webpack_require__(32);
-/* unused harmony namespace reexport */
-
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return parseNovaApi; });
-
-var parseNovaApi = function parseNovaApi(result, attributes) {
-
-    if (!Array.isArray(attributes)) return [];
-
-    if (!result || !result.data || !result.data.resources) return [];
-
-    var resources = [];
-
-    result.data.resources.forEach(function (item) {
-
-        var itemFields = {};
-        if (item && item.fields) {
-            item.fields.forEach(function (field) {
-                var attribute = field.attribute ? field.attribute : "";
-                var value = field.value ? field.value : "";
-
-                if (attributes.includes(attribute)) itemFields[attribute] = value;
-            });
-            resources.push(itemFields);
-        }
-    });
-    return resources;
-};
-
-/***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export validateUrl */
-
-var validateUrl = function validateUrl(value) {
-    return (/^(?:(?:(?:https?|ftp):)?\/\/)?(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{1,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value)
-    );
-};
-
 /***/ })
-
-/******/ });
+/******/ ]);
