@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49fd0aca0d541540b98d6e51802021fa",
+    "content-hash": "457f7c2bda2c1003bdf2bee09699d4e8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2386,6 +2386,42 @@
                 "MIT"
             ],
             "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "newsapp/story-book",
+            "version": "dev-storyBookTool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/StoryBook",
+                "reference": "a2427a10dfdfa2fed69b3a189d1ab80d131c11fd"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Newsapp\\StoryBook\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Newsapp\\StoryBook\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova resource tool.",
             "keywords": [
                 "laravel",
                 "nova"

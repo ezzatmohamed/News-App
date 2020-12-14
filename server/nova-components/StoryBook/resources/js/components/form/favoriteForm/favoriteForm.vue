@@ -5,7 +5,7 @@
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
                     <form-input type="text" name="url"          :errorMessage="errors.url" :required="true"     title="URL" :value="info.url"    :handleChange="handleChange" /> 
-                    <select-input name="user" :options="users"  :required="true"  :value="info.user"  :handleChange="handleChange" />
+                    <select-input name="user" title="Please select a user" :options="selectOptionList"  :required="true"  :value="info.user" optionKey="name" optionValue="id"  :handleChange="handleChange" />
                     <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
                     
                     <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
@@ -23,7 +23,7 @@
 
 <script>
 import {buttonInput,formInput,selectInput} from './../../inputs/'
-import { parseNovaApi,validateUrl } from './../../../helpers/'
+import {validateUrl } from './../../../helpers/'
 import './favoriteForm.css'
 
     export default {
@@ -33,20 +33,26 @@ import './favoriteForm.css'
             title:{
                 type:String,
                 default:""
-            }
+            },
+            onSubmitFunction:{
+                type:Function,
+            },
+            selectOptionList:{
+                type:Array,
+                default:[]
+            },
         },
         data(){
             return{
                 info:{
-                title:"",
-                author:"",
-                description:"",
-                urlToImage:"",
-                publishedAt:"",
-                url:"",
-                user:0
-            },
-                users:[],
+                    title:"", 
+                    author:"",
+                    description:"",
+                    urlToImage:"",
+                    publishedAt:"",
+                    url:"",
+                    user:0
+            }, 
                 errors:{
                     url:'',
                     urlToImage:''
@@ -61,23 +67,8 @@ import './favoriteForm.css'
         methods:{
             
             onSubmit(){
-                Nova.request()
-                    .post('/nova-api/favorites',this.info)
-                    .then(res=>{
-                        Nova.success('Created successfully')
-                        this.info = {
-                                        title:"",
-                                        author:"",
-                                        description:"",
-                                        urlToImage:"",
-                                        publishedAt:"",
-                                        url:"",
-                                        user:0
-                                    }
-                    })
-                    .catch(err=>{
-                        Nova.error(`Error: ${err.message}`)
-                    })
+                if( this.info && typeof this.onSubmitFunction === 'function' && typeof this.clearForm === 'function' )
+                    this.onSubmitFunction(this.info,this.clearForm)
             },
             validateForm(){
                 if(this.errors  && this.info)
@@ -95,20 +86,19 @@ import './favoriteForm.css'
                     this.info[payload.name] = payload.value;
                 }
             },     
+            clearForm(){
+                this.info = {
+                                title:"",
+                                author:"",
+                                description:"",
+                                urlToImage:"",
+                                publishedAt:"",
+                                url:"",
+                                user:0
+                            }
+            }
           
 
-        },
-        created(){
-
-            Nova.request()
-            .get('/nova-api/users')
-            .then(res=>{
-                this.users = parseNovaApi(res,["id","name"])
-
-            })
-            .catch(err=>{
-                Nova.error(err)
-            })
         }
 
 

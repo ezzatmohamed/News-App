@@ -1,9 +1,7 @@
-import {favoriteForm} from './components/form/'
 
 
 Nova.booting((Vue, router, store) => {
 
-  Vue.component('favorite-form',favoriteForm)
   
   router.addRoutes([
     {
