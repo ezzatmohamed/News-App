@@ -45,8 +45,12 @@
                 {
                     const favorites = parseNovaApi(res,columnAttribute)
                     this.rowsData = favorites ? favorites : []
+
                     this.rowsData.forEach((data,i)=>{
-                      data['deleted_at'] = res.data.resources[i].softDeleted ? "Yes" : "No" 
+                      
+                      data['deleted_at'] = res && res.data && 
+                                           res.data.resources[i] && 
+                                           res.data.resources[i].softDeleted ? "Yes" : "No" 
                     })
 
                 } 

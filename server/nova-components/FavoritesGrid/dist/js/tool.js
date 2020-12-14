@@ -758,8 +758,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (res) {
         var favorites = Object(__WEBPACK_IMPORTED_MODULE_2__CreateFavorite_resources_js_helpers__["a" /* parseNovaApi */])(res, columnAttribute);
         _this.rowsData = favorites ? favorites : [];
+
         _this.rowsData.forEach(function (data, i) {
-          data['deleted_at'] = res.data.resources[i].softDeleted ? "Yes" : "No";
+
+          data['deleted_at'] = res && res.data && res.data.resources[i] && res.data.resources[i].softDeleted ? "Yes" : "No";
         });
       }
     }).catch(function (err) {
