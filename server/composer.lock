@@ -1482,7 +1482,7 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-revisionables",
+            "version": "dev-softDelete",
             "dist": {
                 "type": "path",
                 "url": "./nova",
@@ -2324,7 +2324,7 @@
         },
         {
             "name": "newsapp/create-favorite",
-            "version": "dev-revisionables",
+            "version": "dev-softDelete",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/CreateFavorite",
@@ -2360,7 +2360,7 @@
         },
         {
             "name": "newsapp/favorites-grid",
-            "version": "dev-revisionables",
+            "version": "dev-softDelete",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/FavoritesGrid",
@@ -2396,7 +2396,7 @@
         },
         {
             "name": "newsapp/test-tool",
-            "version": "dev-revisionables",
+            "version": "dev-softDelete",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/TestTool",

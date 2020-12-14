@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Venturecraft\Revisionable\RevisionableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Favorite extends Model
 {
     use HasFactory, RevisionableTrait;
+    use SoftDeletes;
     
     protected $revisionCreationsEnabled = true;
     protected $revisionCleanup = true;   
