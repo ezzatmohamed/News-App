@@ -1938,6 +1938,9 @@ Nova.booting(function (Vue, router, store) {
 
   Vue.component('favorites-table', __WEBPACK_IMPORTED_MODULE_0__components_tables__["a" /* favoritesTable */]);
   Vue.component('link-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["c" /* linkInput */]);
+  Vue.component('select-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["d" /* selectInput */]);
+  Vue.component('form-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["b" /* formInput */]);
+  Vue.component('button-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["a" /* buttonInput */]);
   Vue.component('favorite-form', __WEBPACK_IMPORTED_MODULE_2__components_form__["a" /* favoriteForm */]);
 
   Vue.component('story-book', __webpack_require__(65));
@@ -3194,11 +3197,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputs___ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers___ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__favoriteForm_css__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__favoriteForm_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__favoriteForm_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers___ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__favoriteForm_css__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__favoriteForm_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__favoriteForm_css__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -3229,9 +3231,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { formInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["b" /* formInput */], buttonInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["a" /* buttonInput */], selectInput: __WEBPACK_IMPORTED_MODULE_0__inputs___["d" /* selectInput */] },
     name: "favorite-form",
     props: {
         title: {
@@ -3247,7 +3247,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         canSubmit: function canSubmit() {
             return !(this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user);
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapState */])({
+    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])({
         info: function info(state) {
             return state.createFavoriteModule.info;
         },
@@ -3261,9 +3261,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         validateForm: function validateForm() {
             if (this.errors && this.info) {
-                if (this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url)) this.changeError({ name: "url", value: "Invalid Url" });else this.changeError({ name: "url", value: "" });
+                if (this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_0__helpers___["b" /* validateUrl */])(this.info.url)) this.changeError({ name: "url", value: "Invalid Url" });else this.changeError({ name: "url", value: "" });
 
-                if (this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage)) this.changeError({ name: "urlToImage", value: "Invalid Image Url" });else this.changeError({ name: "urlToImage", value: "" });
+                if (this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_0__helpers___["b" /* validateUrl */])(this.info.urlToImage)) this.changeError({ name: "urlToImage", value: "Invalid Image Url" });else this.changeError({ name: "urlToImage", value: "" });
 
                 return !this.errors.url && !this.errors.urlToImage;
             }
@@ -3274,7 +3274,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 this.changeInfo(payload);
             }
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* mapActions */])(['changeInfo', 'createFavorite', 'changeError']))
+    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* mapActions */])(['changeInfo', 'createFavorite', 'changeError']))
 
 });
 

@@ -14,8 +14,7 @@
 
 
 <script>
-import { mapState, mapActions} from 'vuex'
-import {selectInput} from './../../../../StoryBook/resources/js/components/inputs'
+import { mapState, mapActions} from 'vuex' 
 export default {
     name:"favorites-grid",
     data(){
@@ -50,7 +49,6 @@ export default {
                     favoriteFilter: state => state.favoriteModule.favoriteFilter,
                 }),
     },
-    components:{selectInput},
     methods:{
         ...mapActions(['retrieveFavorites'],),
         changeFilter(e){

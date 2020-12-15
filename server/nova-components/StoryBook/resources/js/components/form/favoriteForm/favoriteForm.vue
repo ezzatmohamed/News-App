@@ -21,14 +21,12 @@
 </template>
 
 <script>
-import {buttonInput,formInput,selectInput} from './../../inputs/'
 import {validateUrl } from './../../../helpers/'
 import { mapState, mapActions} from 'vuex'
 
 import './favoriteForm.css'
 
     export default {
-        components: { formInput ,buttonInput,selectInput},
         name: "favorite-form",
         props:{
             title:{
