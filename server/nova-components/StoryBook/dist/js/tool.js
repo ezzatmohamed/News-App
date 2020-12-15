@@ -675,6 +675,7 @@ Nova.booting(function (Vue, router, store) {
 
   store.registerModule('favoriteModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["b" /* favoriteModule */]);
   store.registerModule('createFavoriteModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["a" /* createFavoriteModule */]);
+  store.registerModule('userModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["c" /* userModule */]);
 
   Vue.component('favorites-table', __WEBPACK_IMPORTED_MODULE_0__components_tables__["a" /* favoritesTable */]);
   Vue.component('link-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["c" /* linkInput */]);
@@ -3466,6 +3467,9 @@ if (false) {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__favoriteModule__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createFavoriteModule__ = __webpack_require__(55);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__createFavoriteModule__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__userModule__ = __webpack_require__(65);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__userModule__["a"]; });
+
 
 
 
@@ -3601,23 +3605,13 @@ var actions = {
             Nova.error('Error: can\'t submit');
         });
     },
-    retrieveUsers: function retrieveUsers(_ref2) {
+    changeInfo: function changeInfo(_ref2, payload) {
         var commit = _ref2.commit;
-
-        Nova.request().get('/nova-api/users').then(function (res) {
-            var users = Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["a" /* parseNovaApi */])(res, ["id", "name"]);
-            commit('setUsersList', users);
-        }).catch(function (err) {
-            Nova.error(err);
-        });
-    },
-    changeInfo: function changeInfo(_ref3, payload) {
-        var commit = _ref3.commit;
 
         if (payload) commit('changeInfo', payload);
     },
-    changeError: function changeError(_ref4, payload) {
-        var commit = _ref4.commit;
+    changeError: function changeError(_ref3, payload) {
+        var commit = _ref3.commit;
 
         if (payload) commit('changeError', payload);
     }
@@ -3641,7 +3635,6 @@ var getters = {};
 var state = function state() {
     return {
 
-        usersList: [],
         info: {
             title: "",
             author: "",
@@ -3667,9 +3660,6 @@ var state = function state() {
 
 "use strict";
 var mutations = {
-    setUsersList: function setUsersList(state, users) {
-        state.usersList = users;
-    },
     changeInfo: function changeInfo(state, payload) {
 
         if (payload && payload.name && typeof payload.value !== 'undefined') {
@@ -3786,6 +3776,85 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */,
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mutations__ = __webpack_require__(69);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: __WEBPACK_IMPORTED_MODULE_2__state__["a" /* default */],
+    getters: __WEBPACK_IMPORTED_MODULE_1__getters__["a" /* default */],
+    actions: __WEBPACK_IMPORTED_MODULE_0__actions__["a" /* default */],
+    mutations: __WEBPACK_IMPORTED_MODULE_3__mutations__["a" /* default */]
+});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers__ = __webpack_require__(3);
+
+
+var actions = {
+    retrieveUsers: function retrieveUsers(_ref) {
+        var commit = _ref.commit;
+
+        Nova.request().get('/nova-api/users').then(function (res) {
+            var users = Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["a" /* parseNovaApi */])(res, ["id", "name"]);
+            commit('setUsersList', users);
+        }).catch(function (err) {
+            Nova.error(err);
+        });
+    }
+};
+/* harmony default export */ __webpack_exports__["a"] = (actions);
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var getters = {};
+
+/* harmony default export */ __webpack_exports__["a"] = (getters);
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var state = function state() {
+    return {
+        usersList: []
+    };
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (state);
+
+/***/ }),
+/* 69 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var mutations = {
+    setUsersList: function setUsersList(state, users) {
+        state.usersList = users;
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (mutations);
 
 /***/ })
 /******/ ]);

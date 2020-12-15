@@ -1,6 +1,5 @@
 const state = () => ({
 
-    usersList:[],
     info:{
         title:"", 
         author:"",

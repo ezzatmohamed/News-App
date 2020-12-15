@@ -1,8 +1,6 @@
 const mutations = {
 
-    setUsersList(state,users){
-        state.usersList = users
-    },
+  
     changeInfo(state,payload){
         
         if(payload && payload.name && typeof payload.value !== 'undefined')

@@ -15,7 +15,7 @@ export default {
 
     computed:{
             ...mapState({   
-                    usersList: state => state.createFavoriteModule.usersList,
+                    usersList: state => state.userModule.usersList,
                 }),
     },
     methods:{
