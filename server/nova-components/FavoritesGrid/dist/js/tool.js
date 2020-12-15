@@ -287,7 +287,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
+    computed: _extends({
+        columnAttribute: function columnAttribute() {
+            var columnAttributes = [];
+            for (var key in this.columns) {
+                columnAttributes.push(key);
+            }return columnAttributes;
+        }
+    }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
         favoritesList: function favoritesList(state) {
             return state.favoriteModule.favoritesList;
         },
@@ -299,19 +306,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveFavorites']), {
         changeFilter: function changeFilter(e) {
             var filter = e.value;
-
-            var columnAttribute = [];
-            for (var key in this.columns) {
-                columnAttribute.push(key);
-            }this.retrieveFavorites({ columnAttribute: columnAttribute, filter: filter });
+            this.retrieveFavorites({ columnAttribute: this.columnAttribute, filter: filter });
         }
     }),
     created: function created() {
-        // Get Column Attribute from columns titles
-        var columnAttribute = [];
-        for (var key in this.columns) {
-            columnAttribute.push(key);
-        }this.retrieveFavorites({ columnAttribute: columnAttribute });
+        this.retrieveFavorites({ columnAttribute: this.columnAttribute });
     }
 });
 

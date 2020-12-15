@@ -39,6 +39,12 @@ export default {
         }
     },
     computed: {
+            columnAttribute(){
+                let columnAttributes = []
+                for( let key in this.columns)
+                    columnAttributes.push(key)    
+                return columnAttributes
+            },
             ...mapState({
                     favoritesList: state => state.favoriteModule.favoritesList,
                     favoriteFilter: state => state.favoriteModule.favoriteFilter,
@@ -49,22 +55,11 @@ export default {
         ...mapActions(['retrieveFavorites'],),
         changeFilter(e){
             const filter = e.value
-
-            let columnAttribute = []
-            for( let key in this.columns)
-                columnAttribute.push(key)
-                
-            this.retrieveFavorites({columnAttribute,filter})
+            this.retrieveFavorites({columnAttribute:this.columnAttribute,filter})
         }
     },
     created(){
-        // Get Column Attribute from columns titles
-        let columnAttribute = []
-        for( let key in this.columns)
-            columnAttribute.push(key)
-            
-        this.retrieveFavorites({columnAttribute})
-        
+        this.retrieveFavorites({columnAttribute:this.columnAttribute})
     },
 
 }
