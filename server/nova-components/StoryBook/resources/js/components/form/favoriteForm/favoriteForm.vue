@@ -4,15 +4,15 @@
             <div class="form-container">
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
-                    <form-input type="text" name="url"          :errorMessage="errors.url" :required="true"     title="URL" :value="info.url"    :handleChange="handleChange" /> 
-                    <select-input name="user" title="Please select a user" :options="selectOptionList"  :required="true"  :value="info.user" optionKey="name" optionValue="id"  :handleChange="handleChange" />
-                    <form-input type="text" name="title"           title="Title" :value="info.title"     :handleChange="handleChange"  /> 
+                    <form-input   type="text" name="url"          :errorMessage="errors.url" :required="true"     title="URL"     /> 
+                    <select-input name="user" title="Please select a user" :options="selectOptionList"  :required="true"  optionKey="name" optionValue="id" />
+                    <form-input   type="text" name="title"           title="Title" :value="info.title"       /> 
                     
-                    <form-input type="text" name="author"      title="Author" :value="info.author"     :handleChange="handleChange" /> 
-                    <form-input type="text" name="description" title="Description" :value="info.description"    :handleChange="handleChange" /> 
-                    <form-input type="text" name="urlToImage"  :errorMessage="errors.urlToImage" title="Image" :value="info.urlToImage"    :handleChange="handleChange" /> 
+                    <form-input type="text" name="author"      title="Author" /> 
+                    <form-input type="text" name="description" title="Description"  /> 
+                    <form-input type="text" name="urlToImage"  :errorMessage="errors.urlToImage" title="Image"   /> 
 
-                    <form-input type="date" name="publishedAt" title="Publish Date" :value="info.publishedAt"  :handleChange="handleChange" /> 
+                    <form-input type="date" name="publishedAt" title="Publish Date"   /> 
                     <button-input :disabled="canSubmit" type="submit"  text="Create" />
                 </form>
             </div>
@@ -58,7 +58,6 @@ import './favoriteForm.css'
             }),
         },
         methods:{
-            
             onSubmit(){
                 if( typeof this.createFavorite === 'function' )
                     this.createFavorite()
@@ -71,25 +70,8 @@ import './favoriteForm.css'
                     return !this.errors.url && !this.errors.urlToImage
                 }
                 return true
-            }
-            ,
-            handleChange(payload){
-
-                this.changeInfo(payload)
-
-            },     
-            clearForm(){
-                this.info = {
-                                title:"",
-                                author:"",
-                                description:"",
-                                urlToImage:"",
-                                publishedAt:"",
-                                url:"",
-                                user:0
-                            }
             },
-            ...mapActions(['changeInfo','createFavorite'],)
+            ...mapActions(['createFavorite'],),
 
           
 

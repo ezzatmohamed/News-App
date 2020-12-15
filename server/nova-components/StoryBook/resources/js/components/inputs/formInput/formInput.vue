@@ -14,14 +14,15 @@
                 v-bind:name ="name"
                 @input ="onChange"
                 v-bind:placeholder ="title"
-                :value="value"
+                :value="info[name]"
 
         />
     </div>
 </template>
 
 <script>
-  import './formInput.css'
+import './formInput.css'
+import { mapState, mapActions} from 'vuex'
 
   export default {
     name:"form-input",
@@ -55,11 +56,18 @@
         type:Function
       }
     },
+    computed:{
+      ...mapState({   
+                info: state => state.createFavoriteModule.info,
+            })
+    },
     methods: {
       onChange(e) {
-        if(typeof this.handleChange === 'function')
-            this.handleChange(e.target)
-      }
+        if(typeof this.changeInfo === 'function')
+            this.changeInfo(e.target)
+      },
+      ...mapActions(['changeInfo'],)
+
     }
     
   }

@@ -28,6 +28,7 @@ const actions = {
     changeInfo({commit},payload){
         if(payload)
             commit('changeInfo',payload)
+        
     },
     
 

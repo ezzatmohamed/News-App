@@ -1336,6 +1336,9 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__formInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__formInput_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(44);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -1358,6 +1361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -1393,11 +1397,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Function
     }
   },
-  methods: {
-    onChange: function onChange(e) {
-      if (typeof this.handleChange === 'function') this.handleChange(e.target);
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])({
+    info: function info(state) {
+      return state.createFavoriteModule.info;
     }
-  }
+  })),
+  methods: _extends({
+    onChange: function onChange(e) {
+      if (typeof this.changeInfo === 'function') this.changeInfo(e.target);
+    }
+  }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* mapActions */])(['changeInfo']))
 
 });
 
@@ -1476,7 +1485,7 @@ var render = function() {
       _vm._v(" "),
       _c("input", {
         attrs: { type: _vm.type, name: _vm.name, placeholder: _vm.title },
-        domProps: { value: _vm.value },
+        domProps: { value: _vm.info[_vm.name] },
         on: { input: _vm.onChange }
       })
     ]
@@ -1547,6 +1556,9 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selectInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__selectInput_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(44);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -1561,6 +1573,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -1598,11 +1611,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: ""
     }
   },
-  methods: {
-    onChange: function onChange(e) {
-      if (typeof this.handleChange === 'function') this.handleChange(e.target);
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])({
+    info: function info(state) {
+      return state.createFavoriteModule.info;
     }
-  }
+  })),
+  methods: _extends({
+    onChange: function onChange(e) {
+      if (typeof this.changeInfo === 'function') this.changeInfo(e.target);
+    }
+  }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* mapActions */])(['changeInfo']))
 });
 
 /***/ }),
@@ -1663,7 +1681,7 @@ var render = function() {
       "select",
       {
         attrs: { name: _vm.name },
-        domProps: { value: _vm.value },
+        domProps: { value: _vm.info[_vm.name] },
         on: { input: _vm.onChange }
       },
       [
@@ -1989,23 +2007,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return !this.errors.url && !this.errors.urlToImage;
             }
             return true;
-        },
-        handleChange: function handleChange(payload) {
-
-            this.changeInfo(payload);
-        },
-        clearForm: function clearForm() {
-            this.info = {
-                title: "",
-                author: "",
-                description: "",
-                urlToImage: "",
-                publishedAt: "",
-                url: "",
-                user: 0
-            };
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* mapActions */])(['changeInfo', 'createFavorite']))
+    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* mapActions */])(['createFavorite']))
 
 });
 
@@ -3412,9 +3415,7 @@ var render = function() {
               name: "url",
               errorMessage: _vm.errors.url,
               required: true,
-              title: "URL",
-              value: _vm.info.url,
-              handleChange: _vm.handleChange
+              title: "URL"
             }
           }),
           _vm._v(" "),
@@ -3424,10 +3425,8 @@ var render = function() {
               title: "Please select a user",
               options: _vm.selectOptionList,
               required: true,
-              value: _vm.info.user,
               optionKey: "name",
-              optionValue: "id",
-              handleChange: _vm.handleChange
+              optionValue: "id"
             }
           }),
           _vm._v(" "),
@@ -3436,29 +3435,16 @@ var render = function() {
               type: "text",
               name: "title",
               title: "Title",
-              value: _vm.info.title,
-              handleChange: _vm.handleChange
+              value: _vm.info.title
             }
           }),
           _vm._v(" "),
           _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "author",
-              title: "Author",
-              value: _vm.info.author,
-              handleChange: _vm.handleChange
-            }
+            attrs: { type: "text", name: "author", title: "Author" }
           }),
           _vm._v(" "),
           _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "description",
-              title: "Description",
-              value: _vm.info.description,
-              handleChange: _vm.handleChange
-            }
+            attrs: { type: "text", name: "description", title: "Description" }
           }),
           _vm._v(" "),
           _c("form-input", {
@@ -3466,20 +3452,12 @@ var render = function() {
               type: "text",
               name: "urlToImage",
               errorMessage: _vm.errors.urlToImage,
-              title: "Image",
-              value: _vm.info.urlToImage,
-              handleChange: _vm.handleChange
+              title: "Image"
             }
           }),
           _vm._v(" "),
           _c("form-input", {
-            attrs: {
-              type: "date",
-              name: "publishedAt",
-              title: "Publish Date",
-              value: _vm.info.publishedAt,
-              handleChange: _vm.handleChange
-            }
+            attrs: { type: "date", name: "publishedAt", title: "Publish Date" }
           }),
           _vm._v(" "),
           _c("button-input", {

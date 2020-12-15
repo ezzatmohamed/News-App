@@ -1,6 +1,6 @@
 <template>
     <div class="custom-dropdown">
-        <select :value="value" v-bind:name ="name" @input="onChange">
+        <select :value="info[name]" v-bind:name ="name" @input="onChange">
             <option  value=0  disabled key=0>{{title}}</option>
             <option v-for="option in options" :key="option[optionKey]" :value="option[optionValue]"> 
                 {{option[optionKey]}} 
@@ -14,6 +14,7 @@
 
 <script>
 import  './selectInput.css'
+import { mapState, mapActions} from 'vuex'
 
   export default {
     name:"select-input",
@@ -48,12 +49,18 @@ import  './selectInput.css'
         type:String,
         default:""
       }
-    } ,
+    },
+    computed:{
+      ...mapState({   
+                info: state => state.createFavoriteModule.info,
+            })
+    },
     methods: {
       onChange(e) {
-        if(typeof this.handleChange === 'function')
-            this.handleChange(e.target)
-      }
+        if(typeof this.changeInfo === 'function')
+            this.changeInfo(e.target)
+      },
+      ...mapActions(['changeInfo'],)
     }
   }
 </script>
