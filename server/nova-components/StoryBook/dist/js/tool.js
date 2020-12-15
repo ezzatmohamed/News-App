@@ -1923,7 +1923,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_tables__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_inputs___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_form__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vuex_modules___ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_row_row__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_row_row___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_row_row__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vuex_modules___ = __webpack_require__(49);
+
 
 
 
@@ -1932,11 +1935,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 Nova.booting(function (Vue, router, store) {
 
-  store.registerModule('favoriteModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["b" /* favoriteModule */]);
-  store.registerModule('createFavoriteModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["a" /* createFavoriteModule */]);
-  store.registerModule('userModule', __WEBPACK_IMPORTED_MODULE_3__vuex_modules___["c" /* userModule */]);
+  store.registerModule('favoriteModule', __WEBPACK_IMPORTED_MODULE_4__vuex_modules___["b" /* favoriteModule */]);
+  store.registerModule('createFavoriteModule', __WEBPACK_IMPORTED_MODULE_4__vuex_modules___["a" /* createFavoriteModule */]);
+  store.registerModule('userModule', __WEBPACK_IMPORTED_MODULE_4__vuex_modules___["c" /* userModule */]);
 
   Vue.component('favorites-table', __WEBPACK_IMPORTED_MODULE_0__components_tables__["a" /* favoritesTable */]);
+  Vue.component('row', __WEBPACK_IMPORTED_MODULE_3__components_row_row___default.a);
   Vue.component('link-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["c" /* linkInput */]);
   Vue.component('select-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["d" /* selectInput */]);
   Vue.component('form-input', __WEBPACK_IMPORTED_MODULE_1__components_inputs___["b" /* formInput */]);
@@ -2011,8 +2015,6 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_css__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__favoritesTable_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__favoritesTable_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row_row___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__row_row__);
 //
 //
 //
@@ -2027,13 +2029,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "favorites-table",
-  components: { row: __WEBPACK_IMPORTED_MODULE_1__row_row___default.a },
   props: {
     columns: {
       type: Object,

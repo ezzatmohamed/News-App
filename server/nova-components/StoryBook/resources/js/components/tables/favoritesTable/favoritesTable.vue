@@ -14,11 +14,8 @@
 
 <script>
   import './favoritesTable.css';
-  import row from './../../row/row'
-  
   export default {
     name:"favorites-table",
-    components:{row},
     props:{
       columns:{
         type:Object,
