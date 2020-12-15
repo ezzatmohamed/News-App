@@ -1,12 +1,11 @@
-
 <template>
     <div class="form-input-box"
-         v-bind:class="{ 'error-input': error}"
+         v-bind:class="{ 'error-input': errorMessage}"
     >
       <!-- {{require}} -->
         <p class ="input-title" >{{title}} 
           <span class="required-astrisk" v-if="required">*</span>
-          <span class="error-msg" v-if="errors[name]">Error: {{errors[name]}}</span>
+          <span class="error-msg" v-if="errorMessage">Error: {{errorMessage}}</span>
         
         </p>
         
@@ -14,16 +13,14 @@
                 v-bind:name ="name"
                 @input ="onChange"
                 v-bind:placeholder ="title"
-                :value="info[name]"
+                :value="value"
 
         />
     </div>
 </template>
 
 <script>
-import './formInput.css'
-import { mapState, mapActions} from 'vuex'
-
+  import './formInput.css'
   export default {
     name:"form-input",
     props: {
@@ -48,22 +45,20 @@ import { mapState, mapActions} from 'vuex'
         default:false
       }
       ,
-    },
-    computed:{
-      ...mapState({   
-                info: state => state.createFavoriteModule.info,
-                errors: state => state.createFavoriteModule.errors,
-            })
+      errorMessage:{
+        type:String,
+        default:''
+      },
+      handleChange:{
+        type:Function
+      }
     },
     methods: {
       onChange(e) {
-        if(typeof this.changeInfo === 'function')
-            this.changeInfo(e.target)
-      },
-      ...mapActions(['changeInfo'],)
-
+        if(typeof this.handleChange === 'function')
+            this.handleChange(e.target)
+      }
     }
     
   }
 </script>
-

@@ -2,12 +2,10 @@
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
 
-        <select :value="favoriteFilter" name ="filter" @input="changeFilter">
-            <option :value="0">All</option>
-            <option :value="1">Liked</option>
-            <option :value="2">Not Liked</option>
-        </select>
-        
+        <select-input name="filter" title="select an option" :options="favoriteFiltersList" 
+                      :value="favoriteFilter" optionKey="name" optionValue="value"  
+                      :handleChange="changeFilter" />
+
         <favorites-table :columns="columns" 
                          :rowsData="favoritesList"
                                     />
@@ -17,7 +15,7 @@
 
 <script>
 import { mapState, mapActions} from 'vuex'
-
+import {selectInput} from './../../../../StoryBook/resources/js/components/inputs'
 export default {
     name:"favorites-grid",
     data(){
@@ -32,7 +30,12 @@ export default {
                         user:'Username',
                         email:'Email',
                         deleted_at:'Is Deleted'
-                    }
+                    },
+            favoriteFiltersList:[
+                {name:"All",value:0},
+                {name:"Liked",value:1},
+                {name:"Not Liked",value:2},
+            ]
         }
     },
     computed: {
@@ -41,10 +44,11 @@ export default {
                     favoriteFilter: state => state.favoriteModule.favoriteFilter,
                 }),
     },
+    components:{selectInput},
     methods:{
         ...mapActions(['retrieveFavorites'],),
         changeFilter(e){
-            const filter = e.target.value
+            const filter = e.value
 
             let columnAttribute = []
             for( let key in this.columns)
