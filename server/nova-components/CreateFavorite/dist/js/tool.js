@@ -251,11 +251,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(5);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteral([''], ['']);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-//
 //
 //
 //
@@ -276,16 +271,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
             return state.createFavoriteModule.usersList;
         }
     })),
-    methods: _extends({
-        onFavoriteSubmit: function onFavoriteSubmit(info, clearForm) {
-            if (info && typeof clearForm === 'function') Nova.request().post('/nova-api/favorites', info).then(function (res) {
-                Nova.success('Created successfully');
-                clearForm();
-            }).catch(function (err) {
-                Nova.error('Error: ' + err.message);
-            });
-        }
-    }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveUsers'])(_templateObject)),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveUsers'])),
     created: function created() {
         this.retrieveUsers();
     }
@@ -1589,11 +1575,7 @@ var render = function() {
     "div",
     [
       _c("favorite-form", {
-        attrs: {
-          title: "Favorite Creation",
-          selectOptionList: _vm.usersList,
-          onSubmitFunction: _vm.onFavoriteSubmit
-        }
+        attrs: { title: "Favorite Creation", selectOptionList: _vm.usersList }
       })
     ],
     1

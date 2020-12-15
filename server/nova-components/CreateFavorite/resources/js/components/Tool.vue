@@ -2,7 +2,6 @@
     <div>
         <favorite-form title="Favorite Creation"
                        :selectOptionList="usersList"
-                       :onSubmitFunction="onFavoriteSubmit"
                        /> 
 
     </div>
@@ -20,19 +19,7 @@ export default {
                 }),
     },
     methods:{
-        onFavoriteSubmit(info,clearForm){
-            if(info && typeof clearForm === 'function')
-                Nova.request()
-                .post('/nova-api/favorites',info)
-                .then(res=>{
-                    Nova.success('Created successfully')
-                    clearForm()
-                })
-                .catch(err=>{
-                    Nova.error(`Error: ${err.message}`)
-                })
-        },
-        ...mapActions(['retrieveUsers'],)``
+        ...mapActions(['retrieveUsers'],)
     },
     created(){
         this.retrieveUsers()

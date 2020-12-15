@@ -2,7 +2,29 @@ const mutations = {
 
     setUsersList(state,users){
         state.usersList = users
+    },
+    changeInfo(state,payload){
+        
+        if(payload && payload.name && typeof payload.value !== 'undefined')
+        {
+            state.info[payload.name] = payload.value;
+        }
+    },
+
+    clearInfo(state){
+
+        state.info = {
+            title:"",
+            author:"",
+            description:"",
+            urlToImage:"",
+            publishedAt:"",
+            url:"",
+            user:0
+        }
+
     }
+
     
 }
 

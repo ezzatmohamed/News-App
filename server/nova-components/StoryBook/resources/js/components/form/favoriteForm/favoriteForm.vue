@@ -24,6 +24,8 @@
 <script>
 import {buttonInput,formInput,selectInput} from './../../inputs/'
 import {validateUrl } from './../../../helpers/'
+import { mapState, mapActions} from 'vuex'
+
 import './favoriteForm.css'
 
     export default {
@@ -34,25 +36,13 @@ import './favoriteForm.css'
                 type:String,
                 default:""
             },
-            onSubmitFunction:{
-                type:Function,
-            },
             selectOptionList:{
                 type:Array,
                 default:[]
             },
         },
         data(){
-            return{
-                info:{
-                    title:"", 
-                    author:"",
-                    description:"",
-                    urlToImage:"",
-                    publishedAt:"",
-                    url:"",
-                    user:0
-            }, 
+            return{ 
                 errors:{
                     url:'',
                     urlToImage:''
@@ -62,13 +52,16 @@ import './favoriteForm.css'
         computed: {
             canSubmit(){
                 return !( this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user  )
-            }
+            },
+            ...mapState({   
+                info: state => state.createFavoriteModule.info,
+            }),
         },
         methods:{
             
             onSubmit(){
-                if( this.info && typeof this.onSubmitFunction === 'function' && typeof this.clearForm === 'function' )
-                    this.onSubmitFunction(this.info,this.clearForm)
+                if( typeof this.createFavorite === 'function' )
+                    this.createFavorite()
             },
             validateForm(){
                 if(this.errors  && this.info)
@@ -80,11 +73,10 @@ import './favoriteForm.css'
                 return true
             }
             ,
-            handleChange(payload) {
-                if(payload && payload.name && typeof payload.value !== 'undefined')
-                {
-                    this.info[payload.name] = payload.value;
-                }
+            handleChange(payload){
+
+                this.changeInfo(payload)
+
             },     
             clearForm(){
                 this.info = {
@@ -96,7 +88,9 @@ import './favoriteForm.css'
                                 url:"",
                                 user:0
                             }
-            }
+            },
+            ...mapActions(['changeInfo','createFavorite'],)
+
           
 
         }
