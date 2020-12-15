@@ -93,10 +93,10 @@ class Favorite extends Resource
     public static function indexQuery(NovaRequest $request, $query)
     {  
         if($request->has('liked'))
-            $query = $query->where('liked',true);
-        else if($request->has('notliked'))
-            $query = $query->where('liked',false);
-        
+        {
+            $query = $request->query('liked') == 1 ? $query->where('liked',true)
+                                                        : $query = $query->where('liked',false);
+        }
         if( $request->user()->isAn('admin') )
             return $query;
         return $query->where('user_id', $request->user()->id);

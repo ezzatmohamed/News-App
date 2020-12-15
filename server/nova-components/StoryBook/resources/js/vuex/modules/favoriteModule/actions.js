@@ -9,9 +9,9 @@ const actions = {
         {   
             commit('setFavoriteFilter',payload.filter)
             if(payload.filter == 1 )
-                endpoint += '&liked'
+                endpoint += '&liked=1'
             else if(payload.filter == 2)
-                endpoint += '&notliked'
+                endpoint += '&liked=0'
         }
 
         Nova.request()

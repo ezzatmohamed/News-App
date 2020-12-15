@@ -1,7 +1,7 @@
 <template>
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
-
+        
         <select-input name="filter" title="select an option" :options="favoriteFiltersList" 
                       :value="favoriteFilter" optionKey="name" optionValue="value"  
                       :handleChange="changeFilter" />
