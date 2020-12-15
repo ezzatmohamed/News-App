@@ -1387,19 +1387,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     required: {
       type: Boolean,
       default: false
-    },
-
-    errorMessage: {
-      type: String,
-      default: ''
-    },
-    handleChange: {
-      type: Function
     }
+
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])({
     info: function info(state) {
       return state.createFavoriteModule.info;
+    },
+    errors: function errors(state) {
+      return state.createFavoriteModule.errors;
     }
   })),
   methods: _extends({
@@ -1465,10 +1461,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "form-input-box",
-      class: { "error-input": _vm.errorMessage }
-    },
+    { staticClass: "form-input-box", class: { "error-input": _vm.error } },
     [
       _c("p", { staticClass: "input-title" }, [
         _vm._v(_vm._s(_vm.title) + " \n      "),
@@ -1476,9 +1469,9 @@ var render = function() {
           ? _c("span", { staticClass: "required-astrisk" }, [_vm._v("*")])
           : _vm._e(),
         _vm._v(" "),
-        _vm.errorMessage
+        _vm.errors[_vm.name]
           ? _c("span", { staticClass: "error-msg" }, [
-              _vm._v("Error: " + _vm._s(_vm.errorMessage))
+              _vm._v("Error: " + _vm._s(_vm.errors[_vm.name]))
             ])
           : _vm._e()
       ]),
@@ -1978,15 +1971,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             default: []
         }
     },
-    data: function data() {
-        return {
-            errors: {
-                url: '',
-                urlToImage: ''
-            }
-        };
-    },
-
     computed: _extends({
         canSubmit: function canSubmit() {
             return !(this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user);
@@ -1994,6 +1978,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapState */])({
         info: function info(state) {
             return state.createFavoriteModule.info;
+        },
+        errors: function errors(state) {
+            return state.createFavoriteModule.errors;
         }
     })),
     methods: _extends({
@@ -2002,13 +1989,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         validateForm: function validateForm() {
             if (this.errors && this.info) {
-                this.errors.url = this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url) ? 'Invalid Url' : '';
-                this.errors.urlToImage = this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage) ? 'Invalid Image Url' : '';
+                if (this.info.url && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.url)) this.changeError({ name: "url", value: "Invalid Url" });else this.changeError({ name: "url", value: "" });
+
+                if (this.info.urlToImage && !Object(__WEBPACK_IMPORTED_MODULE_1__helpers___["b" /* validateUrl */])(this.info.urlToImage)) this.changeError({ name: "urlToImage", value: "Invalid Image Url" });else this.changeError({ name: "urlToImage", value: "" });
+
                 return !this.errors.url && !this.errors.urlToImage;
             }
             return true;
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* mapActions */])(['createFavorite']))
+    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* mapActions */])(['createFavorite', 'changeError']))
 
 });
 
@@ -3410,13 +3399,7 @@ var render = function() {
         },
         [
           _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "url",
-              errorMessage: _vm.errors.url,
-              required: true,
-              title: "URL"
-            }
+            attrs: { type: "text", name: "url", required: true, title: "URL" }
           }),
           _vm._v(" "),
           _c("select-input", {
@@ -3448,12 +3431,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("form-input", {
-            attrs: {
-              type: "text",
-              name: "urlToImage",
-              errorMessage: _vm.errors.urlToImage,
-              title: "Image"
-            }
+            attrs: { type: "text", name: "urlToImage", title: "Image" }
           }),
           _vm._v(" "),
           _c("form-input", {
@@ -3637,6 +3615,11 @@ var actions = {
         var commit = _ref3.commit;
 
         if (payload) commit('changeInfo', payload);
+    },
+    changeError: function changeError(_ref4, payload) {
+        var commit = _ref4.commit;
+
+        if (payload) commit('changeError', payload);
     }
 };
 /* harmony default export */ __webpack_exports__["a"] = (actions);
@@ -3704,6 +3687,9 @@ var mutations = {
             url: "",
             user: 0
         };
+    },
+    changeError: function changeError(state, payload) {
+        state.errors[payload.name] = payload.value;
     }
 };
 

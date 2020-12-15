@@ -1,12 +1,12 @@
 
 <template>
     <div class="form-input-box"
-         v-bind:class="{ 'error-input': errorMessage}"
+         v-bind:class="{ 'error-input': error}"
     >
       <!-- {{require}} -->
         <p class ="input-title" >{{title}} 
           <span class="required-astrisk" v-if="required">*</span>
-          <span class="error-msg" v-if="errorMessage">Error: {{errorMessage}}</span>
+          <span class="error-msg" v-if="errors[name]">Error: {{errors[name]}}</span>
         
         </p>
         
@@ -48,17 +48,11 @@ import { mapState, mapActions} from 'vuex'
         default:false
       }
       ,
-      errorMessage:{
-        type:String,
-        default:''
-      },
-      handleChange:{
-        type:Function
-      }
     },
     computed:{
       ...mapState({   
                 info: state => state.createFavoriteModule.info,
+                errors: state => state.createFavoriteModule.errors,
             })
     },
     methods: {

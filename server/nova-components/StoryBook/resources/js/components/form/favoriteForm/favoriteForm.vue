@@ -4,13 +4,13 @@
             <div class="form-container">
                 <p class = "form-title">{{title}}</p>
                 <form v-on:submit.prevent="onSubmit" >
-                    <form-input   type="text" name="url"          :errorMessage="errors.url" :required="true"     title="URL"     /> 
+                    <form-input   type="text" name="url"     :required="true"     title="URL"     /> 
                     <select-input name="user" title="Please select a user" :options="selectOptionList"  :required="true"  optionKey="name" optionValue="id" />
                     <form-input   type="text" name="title"           title="Title" :value="info.title"       /> 
                     
                     <form-input type="text" name="author"      title="Author" /> 
                     <form-input type="text" name="description" title="Description"  /> 
-                    <form-input type="text" name="urlToImage"  :errorMessage="errors.urlToImage" title="Image"   /> 
+                    <form-input type="text" name="urlToImage"   title="Image"   /> 
 
                     <form-input type="date" name="publishedAt" title="Publish Date"   /> 
                     <button-input :disabled="canSubmit" type="submit"  text="Create" />
@@ -41,20 +41,13 @@ import './favoriteForm.css'
                 default:[]
             },
         },
-        data(){
-            return{ 
-                errors:{
-                    url:'',
-                    urlToImage:''
-                }
-            }
-        },
         computed: {
             canSubmit(){
                 return !( this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user  )
             },
             ...mapState({   
                 info: state => state.createFavoriteModule.info,
+                errors: state => state.createFavoriteModule.errors,
             }),
         },
         methods:{
@@ -65,15 +58,23 @@ import './favoriteForm.css'
             validateForm(){
                 if(this.errors  && this.info)
                 {
-                    this.errors.url        =   this.info.url && !validateUrl(this.info.url) ?  'Invalid Url' : ''
-                    this.errors.urlToImage =   this.info.urlToImage && !validateUrl(this.info.urlToImage) ? 'Invalid Image Url' : ''
+                    if( this.info.url && !validateUrl(this.info.url) )
+                        this.changeError({name:"url",value:"Invalid Url"})
+                    else
+                        this.changeError({name:"url",value:""})
+
+
+                    if( this.info.urlToImage && !validateUrl(this.info.urlToImage) )
+                        this.changeError({name:"urlToImage",value:"Invalid Image Url"})
+                    else
+                        this.changeError({name:"urlToImage",value:""})
+
                     return !this.errors.url && !this.errors.urlToImage
                 }
                 return true
             },
-            ...mapActions(['createFavorite'],),
+            ...mapActions(['createFavorite','changeError'],),
 
-          
 
         }
 

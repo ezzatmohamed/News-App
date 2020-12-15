@@ -23,6 +23,10 @@ const mutations = {
             user:0
         }
 
+    },
+    changeError(state,payload)
+    {
+        state.errors[payload.name] = payload.value
     }
 
     

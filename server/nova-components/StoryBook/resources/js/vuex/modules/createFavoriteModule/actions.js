@@ -30,6 +30,11 @@ const actions = {
             commit('changeInfo',payload)
         
     },
+    changeError({commit},payload){
+        if(payload)
+            commit('changeError',payload)
+        
+    },
     
 
 }
