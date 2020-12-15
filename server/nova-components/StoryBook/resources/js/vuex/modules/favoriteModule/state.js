@@ -1,6 +1,7 @@
 const state = () => ({
 
     favoritesList:[],
+    favoriteFilter:0,
     
 })
 

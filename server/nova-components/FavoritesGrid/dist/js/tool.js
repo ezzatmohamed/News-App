@@ -261,6 +261,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -285,9 +290,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
         favoritesList: function favoritesList(state) {
             return state.favoriteModule.favoritesList;
+        },
+        favoriteFilter: function favoriteFilter(state) {
+            return state.favoriteModule.favoriteFilter;
         }
     })),
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveFavorites'])),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapActions */])(['retrieveFavorites']), {
+        changeFilter: function changeFilter(e) {
+            var filter = e.target.value;
+
+            var columnAttribute = [];
+            for (var key in this.columns) {
+                columnAttribute.push(key);
+            }this.retrieveFavorites({ columnAttribute: columnAttribute, filter: filter });
+        }
+    }),
     created: function created() {
         // Get Column Attribute from columns titles
         var columnAttribute = [];
@@ -1597,6 +1614,22 @@ var render = function() {
       _c("link-input", {
         attrs: { link: "create-favorite", text: "Create New Favorite" }
       }),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          attrs: { name: "filter" },
+          domProps: { value: _vm.favoriteFilter },
+          on: { input: _vm.changeFilter }
+        },
+        [
+          _c("option", { domProps: { value: 0 } }, [_vm._v("All")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 1 } }, [_vm._v("Liked")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 2 } }, [_vm._v("Not Liked")])
+        ]
+      ),
       _vm._v(" "),
       _c("favorites-table", {
         attrs: { columns: _vm.columns, rowsData: _vm.favoritesList }

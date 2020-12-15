@@ -3,9 +3,19 @@ import {parseNovaApi} from './../../../helpers'
 const actions = {
     
     retrieveFavorites({commit},payload){
-        
+
+        let endpoint = '/nova-api/favorites?trashed=with'
+        if(payload.filter)
+        {   
+            commit('setFavoriteFilter',payload.filter)
+            if(payload.filter == 1 )
+                endpoint += '&liked'
+            else if(payload.filter == 2)
+                endpoint += '&notliked'
+        }
+
         Nova.request()
-            .get('/nova-api/favorites?trashed=with')
+            .get(endpoint)
             .then(res=>{    
                 if(res)
                 {
@@ -29,6 +39,7 @@ const actions = {
                 Nova.error("Error fetching favorites")
             })
         
-    }
+    },
+    
 }
 export default actions

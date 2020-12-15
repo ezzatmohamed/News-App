@@ -1,11 +1,16 @@
 <template>
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
+
+        <select :value="favoriteFilter" name ="filter" @input="changeFilter">
+            <option :value="0">All</option>
+            <option :value="1">Liked</option>
+            <option :value="2">Not Liked</option>
+        </select>
+        
         <favorites-table :columns="columns" 
                          :rowsData="favoritesList"
                                     />
-
-
     </div>
 </template>
 
@@ -33,10 +38,20 @@ export default {
     computed: {
             ...mapState({
                     favoritesList: state => state.favoriteModule.favoritesList,
+                    favoriteFilter: state => state.favoriteModule.favoriteFilter,
                 }),
     },
     methods:{
-        ...mapActions(['retrieveFavorites'],)
+        ...mapActions(['retrieveFavorites'],),
+        changeFilter(e){
+            const filter = e.target.value
+
+            let columnAttribute = []
+            for( let key in this.columns)
+                columnAttribute.push(key)
+                
+            this.retrieveFavorites({columnAttribute,filter})
+        }
     },
     created(){
         // Get Column Attribute from columns titles
