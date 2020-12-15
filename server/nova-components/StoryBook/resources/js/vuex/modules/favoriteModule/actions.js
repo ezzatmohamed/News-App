@@ -5,7 +5,7 @@ const actions = {
     retrieveFavorites({commit},payload){
 
         let endpoint = '/nova-api/favorites?trashed=with'
-        if(payload.filter)
+        if(payload && payload.filter)
         {   
             commit('setFavoriteFilter',payload.filter)
             if(payload.filter == 1 )

@@ -3534,7 +3534,7 @@ var actions = {
 
 
         var endpoint = '/nova-api/favorites?trashed=with';
-        if (payload.filter) {
+        if (payload && payload.filter) {
             commit('setFavoriteFilter', payload.filter);
             if (payload.filter == 1) endpoint += '&liked=1';else if (payload.filter == 2) endpoint += '&liked=0';
         }

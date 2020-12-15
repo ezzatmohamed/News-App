@@ -27,7 +27,13 @@ class AddLikeColumnToFavorites extends Migration
     public function down()
     {
         Schema::table('favorites', function (Blueprint $table) {
-            //
+            if (Schema::hasColumn('favorites', 'liked'))
+            {
+                Schema::table('favorites', function (Blueprint $table)
+                {
+                    $table->dropColumn('liked');
+                });
+            }
         });
     }
 }
