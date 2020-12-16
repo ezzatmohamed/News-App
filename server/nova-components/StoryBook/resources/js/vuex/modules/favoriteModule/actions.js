@@ -5,13 +5,12 @@ const actions = {
     retrieveFavorites({commit},payload){
 
         let endpoint = '/nova-api/favorites?trashed=with'
-        if(payload && payload.filter)
+
+        if(payload && (payload.filter == 0 || payload.filter == 1))
         {   
             commit('setFavoriteFilter',payload.filter)
-            if(payload.filter == 1 )
-                endpoint += '&liked=1'
-            else if(payload.filter == 2)
-                endpoint += '&liked=0'
+            const filter = `[{"class":"App\\\\Nova\\\\Filters\\\\LikeFilter","value":"${payload.filter}"}]`
+            endpoint += '&filters='+btoa(filter)
         }
 
         Nova.request()

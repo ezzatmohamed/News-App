@@ -31,9 +31,9 @@ export default {
                         deleted_at:'Is Deleted'
                     },
             favoriteFiltersList:[
-                {name:"All",value:0},
+                {name:"All",value:2},
                 {name:"Liked",value:1},
-                {name:"Not Liked",value:2},
+                {name:"Not Liked",value:0},
             ]
         }
     },

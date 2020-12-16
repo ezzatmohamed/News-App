@@ -281,7 +281,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 email: 'Email',
                 deleted_at: 'Is Deleted'
             },
-            favoriteFiltersList: [{ name: "All", value: 0 }, { name: "Liked", value: 1 }, { name: "Not Liked", value: 2 }]
+            favoriteFiltersList: [{ name: "All", value: 2 }, { name: "Liked", value: 1 }, { name: "Not Liked", value: 0 }]
         };
     },
 

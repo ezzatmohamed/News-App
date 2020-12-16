@@ -92,11 +92,6 @@ class Favorite extends Resource
     // Return all favorites for admin but for regulars,return only their favorites
     public static function indexQuery(NovaRequest $request, $query)
     {  
-        if($request->has('liked'))
-        {
-            $query = $request->query('liked') == 1 ? $query->where('liked',true)
-                                                        : $query = $query->where('liked',false);
-        }
         if( $request->user()->isAn('admin') )
             return $query;
         return $query->where('user_id', $request->user()->id);
@@ -131,7 +126,8 @@ class Favorite extends Resource
         return [
             new Filters\FavoriteByUser,
             new Filters\CreatedBefore,
-            new Filters\CreatedAfter
+            new Filters\CreatedAfter,
+            new Filters\LikeFilter,
         ];
     }
 
