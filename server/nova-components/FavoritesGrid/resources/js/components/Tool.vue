@@ -39,10 +39,7 @@ export default {
     },
     computed: {
             columnAttribute(){
-                let columnAttributes = []
-                for( let key in this.columns)
-                    columnAttributes.push(key)    
-                return columnAttributes
+                return Object.keys(this.columns)
             },
             ...mapState({
                     favoritesList: state => state.favoriteModule.favoritesList,

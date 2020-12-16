@@ -287,10 +287,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     computed: _extends({
         columnAttribute: function columnAttribute() {
-            var columnAttributes = [];
-            for (var key in this.columns) {
-                columnAttributes.push(key);
-            }return columnAttributes;
+            return Object.keys(this.columns);
         }
     }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
         favoritesList: function favoritesList(state) {
