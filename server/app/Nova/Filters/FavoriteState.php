@@ -2,21 +2,13 @@
 
 namespace App\Nova\Filters;
 
-use Illuminate\Http\Request;
-use Laravel\Nova\Filters\Filter;
 use DB;
 use App\Models\State;
+use Illuminate\Http\Request;
 use Laravel\Nova\Filters\BooleanFilter;
 
-class LikeFilter extends BooleanFilter
+class FavoriteState extends BooleanFilter
 {
-    /**
-     * The filter's component.
-     *
-     * @var string
-     */
-    public $component = 'select-filter';
-
     /**
      * Apply the filter to the given query.
      *
@@ -27,12 +19,21 @@ class LikeFilter extends BooleanFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        // $id = State::where('name','banned')->pluck('id')->first();
-        // return $query->WhereIn('id', function($query) use ($id) {
-        //                           $query->select('favorite_id')
-        //                                 ->from('state_favorite')
-        //                                 ->where('state_id', $id);
-        //                         });
+        $ids = array();
+        if( $value['liked'] )
+            array_push($ids,State::where('name','liked')->pluck('id')->first());
+        if( $value['banned'] )
+            array_push($ids,State::where('name','banned')->pluck('id')->first());
+
+        if(!$value['liked'] && !$value['banned'])
+            return $query;
+
+        return $query->WhereIn('id', function($query) use ($ids) {
+                                  $query->select('favorite_id')
+                                        ->from('state_favorite')
+                                        ->whereIn('state_id', $ids);
+                                });
+
         return $query;
     }
 
