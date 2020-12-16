@@ -2,9 +2,9 @@
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
         
-        <select-input name="filter" title="select an option" :options="favoriteFiltersList" 
-                      :value="favoriteFilter" optionKey="name" optionValue="value"  
-                      :handleChange="changeFilter" />
+        <select-input name="filter" title="select an option" :options="favoriteFilter" 
+                       optionKey="name" optionValue="name"  
+                      :handleChange="changeFilter" :multiple="true" />
 
         <favorites-table :columns="columns" 
                          :rowsData="favoritesList"
@@ -30,11 +30,6 @@ export default {
                         email:'Email',
                         deleted_at:'Is Deleted'
                     },
-            favoriteFiltersList:[
-                {name:"All",value:2},
-                {name:"Liked",value:1},
-                {name:"Not Liked",value:0},
-            ]
         }
     },
     computed: {
@@ -47,14 +42,14 @@ export default {
                 }),
     },
     methods:{
-        ...mapActions(['retrieveFavorites'],),
-        changeFilter(e){
-            const filter = e.value
-            this.retrieveFavorites({columnAttribute:this.columnAttribute,filter})
+        ...mapActions(['retrieveFavorites','retrieveFilters'],),
+        changeFilter(filters){
+            this.retrieveFavorites({columnAttribute:this.columnAttribute,filters})
         }
     },
     created(){
         this.retrieveFavorites({columnAttribute:this.columnAttribute})
+        this.retrieveFilters()
     },
 
 }

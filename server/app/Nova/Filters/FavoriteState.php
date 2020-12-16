@@ -20,21 +20,18 @@ class FavoriteState extends BooleanFilter
     public function apply(Request $request, $query, $value)
     {
         $ids = array();
-        if( $value['liked'] )
-            array_push($ids,State::where('name','liked')->pluck('id')->first());
-        if( $value['banned'] )
-            array_push($ids,State::where('name','banned')->pluck('id')->first());
+        foreach ($value as $key => $v)
+            if($v)
+                array_push($ids,State::where('name',$key)->pluck('id')->first());
 
-        if(!$value['liked'] && !$value['banned'])
+        if(count($ids) === 0 )
             return $query;
-
+            
         return $query->WhereIn('id', function($query) use ($ids) {
                                   $query->select('favorite_id')
                                         ->from('state_favorite')
                                         ->whereIn('state_id', $ids);
                                 });
-
-        return $query;
     }
 
     /**
@@ -45,9 +42,8 @@ class FavoriteState extends BooleanFilter
      */
     public function options(Request $request)
     {
-        return [
-            'Liked' => 'liked',
-            'banned' => 'banned',
-        ];
+        $filter = State::pluck('name','name')->toArray();
+
+        return $filter;
     }
 }

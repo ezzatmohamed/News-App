@@ -5,11 +5,15 @@ const actions = {
     retrieveFavorites({commit},payload){
 
         let endpoint = '/nova-api/favorites?trashed=with'
-
-        if(payload && (payload.filter == 0 || payload.filter == 1))
+        if( payload && payload.filters && payload.filters.length && !payload.filters.includes('all'))
         {   
-            commit('setFavoriteFilter',payload.filter)
-            const filter = `[{"class":"App\\\\Nova\\\\Filters\\\\LikeFilter","value":"${payload.filter}"}]`
+            let filters = ""
+            for(let i=0; i < payload.filters.length;i++){
+                filters += `"${ payload.filters[i]}":1`
+                if(i <  payload.filters.length-1)
+                    filters+=","
+            }
+            const filter = `[{"class":"App\\\\Nova\\\\Filters\\\\FavoriteState","value":{${filters}}}]`
             endpoint += '&filters='+btoa(filter)
         }
 
@@ -39,6 +43,25 @@ const actions = {
             })
         
     },
+
+    retrieveFilters({commit})
+    {
+        Nova.request()
+            .get('/nova-api/states')
+            .then(res=>{    
+                if(res)
+                {
+                    const filters = parseNovaApi(res,["name"])
+                    filters.push({name:'all'})
+                    commit('setFavoriteFilter',filters)
+                }
+
+            })
+            .catch(err=>{
+                Nova.error("Error fetching filters")
+            })
+
+    }
     
 }
 export default actions
