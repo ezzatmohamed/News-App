@@ -1799,7 +1799,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         canSubmit: function canSubmit() {
             return !(this.validateForm() && this.info && this.info.url && this.info.url.length && this.info.user);
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapState */])({
+    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapState */])({
         info: function info(state) {
             return state.createFavoriteModule.info;
         },
@@ -1826,7 +1826,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 this.changeInfo(payload);
             }
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* mapActions */])(['changeInfo', 'createFavorite', 'changeError']))
+    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* mapActions */])(['createFavorite']), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapMutations */])(['changeInfo', 'changeError']))
 
 });
 
@@ -1884,8 +1884,8 @@ var validateUrl = function validateUrl(value) {
 /* unused harmony export install */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mapActions; });
 /* unused harmony export mapGetters */
-/* unused harmony export mapMutations */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapState; });
 /*!
  * vuex v3.6.0
  * (c) 2020 Evan You
@@ -3639,16 +3639,6 @@ var actions = {
         }).catch(function (err) {
             Nova.error('Error: can\'t submit');
         });
-    },
-    changeInfo: function changeInfo(_ref2, payload) {
-        var commit = _ref2.commit;
-
-        if (payload) commit('changeInfo', payload);
-    },
-    changeError: function changeError(_ref3, payload) {
-        var commit = _ref3.commit;
-
-        if (payload) commit('changeError', payload);
     }
 };
 /* harmony default export */ __webpack_exports__["a"] = (actions);

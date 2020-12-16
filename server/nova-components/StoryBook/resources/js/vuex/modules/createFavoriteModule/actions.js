@@ -13,19 +13,7 @@ const actions = {
             .catch(err=>{
                 Nova.error(`Error: can't submit`)
             })
-    },
-  
-    changeInfo({commit},payload){
-        if(payload)
-            commit('changeInfo',payload)
-        
-    },
-    changeError({commit},payload){
-        if(payload)
-            commit('changeError',payload)
-        
-    },
-    
+    },    
 
 }
 export default actions

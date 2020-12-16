@@ -22,7 +22,7 @@
 
 <script>
 import {validateUrl } from './../../../helpers/'
-import { mapState, mapActions} from 'vuex'
+import { mapState, mapActions,mapMutations} from 'vuex'
 
 import './favoriteForm.css'
 
@@ -77,7 +77,8 @@ import './favoriteForm.css'
                 }
             },
 
-            ...mapActions(['changeInfo','createFavorite','changeError'],),
+            ...mapActions(['createFavorite']),
+            ...mapMutations(['changeInfo','changeError'])
 
 
         }
