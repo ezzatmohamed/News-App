@@ -1,6 +1,6 @@
 <template>
     <div class="custom-dropdown">
-        <select :value="value" v-model="selectedValues" v-bind:name ="name" @change="onChange" :multiple="multiple">
+        <select :value="value" v-bind:name ="name" @change="onChange" :multiple="multiple">
             <option  value=0  disabled key=0>{{title}}</option>
             <option v-for="option in options" :key="option[optionKey]" :value="option[optionValue]"> 
                 {{option[optionKey]}} 
@@ -16,11 +16,6 @@
 import  './selectInput.css'
   export default {
     name:"select-input",
-    data(){
-      return {
-        selectedValues:[]
-      }
-    },
     props: { 
       options:{
         type:Array,
@@ -60,13 +55,8 @@ import  './selectInput.css'
     methods: {
       onChange(e) {
         if(typeof this.handleChange === 'function') 
-        {
-            if(this.multiple)
-              this.handleChange(this.selectedValues)
-            else
               this.handleChange(e.target)
 
-        }
       }
     }
   }

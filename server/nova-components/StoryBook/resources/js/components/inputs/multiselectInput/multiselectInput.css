@@ -1,0 +1,34 @@
+
+.multiselect-dropdown {
+  margin:auto;
+  padding:10px;
+  background-color: #1a66bc;
+  list-style: none;
+  color:white;
+  border-radius: 5px;
+  min-width:200px;
+}
+.multiselect-dropdown li
+{
+  padding: .5em;
+  padding-right: 2.5em;	
+  margin-bottom: .5rem;
+  text-indent: 0.01px;
+}
+.multiselect-dropdown li:hover
+{
+  background-color: rgb(255, 85, 85);
+  cursor: pointer;
+  border-radius:10px;
+}
+.selected-option{
+  background-color: rgb(200, 16, 16);
+  cursor: pointer;
+  border-radius:10px;
+}
+.multiselect-title{
+  color:rgb(0, 24, 161);
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+
+}

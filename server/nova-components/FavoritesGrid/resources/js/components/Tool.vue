@@ -1,10 +1,10 @@
 <template>
     <div>
         <link-input  link="create-favorite"  text="Create New Favorite" />
-        
-        <select-input name="filter" title="select an option" :options="favoriteFilter" 
+
+        <multiselect-input name="filter" title="Filter Favorites" :options="favoriteFilter" 
                        optionKey="name" optionValue="name"  
-                      :handleChange="changeFilter" :multiple="true" />
+                      :handleChange="changeFilter" />
 
         <favorites-table :columns="columns" 
                          :rowsData="favoritesList"
