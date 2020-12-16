@@ -1,7 +1,7 @@
 <template>
     <div class="custom-dropdown">
         <p class="multiselect-title">{{title}}</p>
-        <ul class="multiselect-dropdown"  v-bind:name ="name" @change="onChange">
+        <ul class="multiselect-dropdown"  v-bind:name ="name" >
             <li 
                 v-for="option in options" 
                 :key="option[optionKey]" 
@@ -62,11 +62,7 @@ import  './multiselectInput.css'
       }
     } ,
     methods: {
-      onChange(e) {
-        if(typeof this.handleChange === 'function') 
-              this.handleChange(e.target)
 
-      },
       handleClick(value)
       {
         let index = this.selectedValues.indexOf(value);
