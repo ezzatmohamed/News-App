@@ -23,7 +23,8 @@ const actions = {
                 if(res)
                 {
                     const favorites = parseNovaApi(res,payload.columnAttribute)
-                    
+
+
                     if(Array.isArray(favorites))
                     {
                         favorites.forEach((data,i)=>{

@@ -26,7 +26,7 @@ class FavoriteState extends BooleanFilter
 
         if(count($ids) === 0 )
             return $query;
-            
+
         return $query->WhereIn('id', function($query) use ($ids) {
                                   $query->select('favorite_id')
                                         ->from('state_favorite')
@@ -43,7 +43,6 @@ class FavoriteState extends BooleanFilter
     public function options(Request $request)
     {
         $filter = State::pluck('name','name')->toArray();
-
         return $filter;
     }
 }

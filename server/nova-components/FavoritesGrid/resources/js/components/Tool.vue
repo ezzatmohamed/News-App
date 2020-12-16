@@ -28,7 +28,8 @@ export default {
                         publishedAt:'Date',
                         user:'Username',
                         email:'Email',
-                        deleted_at:'Is Deleted'
+                        deleted_at:'Is Deleted',
+                        states:'states'
                     },
         }
     },

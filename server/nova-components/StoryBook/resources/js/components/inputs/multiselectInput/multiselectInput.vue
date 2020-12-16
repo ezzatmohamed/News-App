@@ -74,8 +74,7 @@ import  './multiselectInput.css'
           this.selectedValues.splice(index, 1);
         else
           this.selectedValues.push(value)
-
-        // console.log(this.selectedValues)
+          
         if(typeof this.handleChange === 'function') 
               this.handleChange(this.selectedValues)
       }
