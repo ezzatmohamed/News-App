@@ -3,7 +3,7 @@
         <link-input  link="create-favorite"  text="Create New Favorite" />
 
         <multiselect-input name="filter" title="Filter Favorites" :options="favoriteFilter" 
-                       optionKey="name" optionValue="name"  
+                       optionKey="name" optionValue="id"  
                       :handleChange="changeFilter" />
 
         <favorites-table :columns="columns" 

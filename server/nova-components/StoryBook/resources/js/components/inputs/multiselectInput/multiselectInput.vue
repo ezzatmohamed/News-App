@@ -6,11 +6,13 @@
                 v-for="option in options" 
                 :key="option[optionKey]" 
                 :value="option[optionValue]" 
+                :name="option[optionKey]"
                 :handleChange="handleClick"
-                :isSelected="selectedValues.includes(option[optionKey])"  
+                :isSelected="selectedValues.includes(option[optionValue])"  
               />
             <list-item-input
               value="all" 
+              name="all"
               :handleChange="handleClick"
               :isSelected="selectedValues.includes('all')"  
             />

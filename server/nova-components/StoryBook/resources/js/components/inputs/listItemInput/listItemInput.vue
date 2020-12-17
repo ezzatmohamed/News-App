@@ -5,7 +5,7 @@
                 v-bind:class="{'selected-option': isSelected}" 
                 v-on:click="handleClick()"  
               >
-              {{value}} 
+              {{name}} 
               <span v-if="isSelected">&#10004;</span>
 
             </li> 
@@ -19,7 +19,12 @@ import  './listItemInput.css'
     props: { 
 
       value: {
-        type:String
+        type:String,
+        default:""
+      },
+      name:{
+        type:String,
+        default:""
       },
       handleChange:{
         type:Function

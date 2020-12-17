@@ -20,31 +20,21 @@ class FavoriteState extends BooleanFilter
     public function apply(Request $request, $query, $value)
     {
         $ids = array();
-        foreach ($value as $key => $v)
-            if($v)
-                array_push($ids,State::where('name',$key)->pluck('id')->first());
+        foreach(array_keys($value) as $id)
+            if($value[$id])
+                array_push($ids,$id);
 
         if(count($ids) === 0 )
             return $query;
 
-        if(array_key_exists("no state",$value))
-            $no_state = $value["no state"];
-        else
-            $no_state = false;
+        $no_state = array_key_exists("no state",$value) ? $value["no state"] : false;
         
-        return $query->WhereIn('id', function($query) use ($ids) {
-                                  $query->select('favorite_id')
-                                        ->from('state_favorite')
-                                        ->whereIn('state_id', $ids);
+        return $query->whereHas('states', function($query) use ($ids) {
+                                  $query->whereIn('state_id',$ids);
                                 })
                         ->orWhere(function($query) use ($ids,$no_state){
-                            if($no_state)
-                            {
-                                $query->whereNotIn('id',function($query){
-                                    $query->select('favorite_id')
-                                          ->from('state_favorite');
-                                  } );
-                            }
+                                if($no_state)
+                                    $query->doesntHave('states');
                         });
     }
 
@@ -56,7 +46,7 @@ class FavoriteState extends BooleanFilter
      */
     public function options(Request $request)
     {
-        $filter = State::pluck('name','name')->toArray();
+        $filter = State::pluck('id','name')->toArray();
         $filter["no state"]="no state"; 
         return $filter;
     }

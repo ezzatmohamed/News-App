@@ -56,8 +56,8 @@ const actions = {
             .then(res=>{    
                 if(res)
                 {
-                    const filters = parseNovaApi(res,["name"])
-                    filters.push({name:'no state'})
+                    const filters = parseNovaApi(res,["name","id"])
+                    filters.push({name:'no state',id:'no state'})
                     commit('setFavoriteFilter',filters)
                 }
 
