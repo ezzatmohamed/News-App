@@ -9,6 +9,11 @@
                 :handleChange="handleClick"
                 :isSelected="selectedValues.includes(option[optionKey])"  
               />
+            <list-item-input
+              value="all" 
+              :handleChange="handleClick"
+              :isSelected="selectedValues.includes('all')"  
+            />
 
       
         </ul>
@@ -65,11 +70,25 @@ import  './multiselectInput.css'
       handleClick(value)
       {
         let index = this.selectedValues.indexOf(value);
+        const allIndex = this.selectedValues.indexOf('all') ;
         if(index!=-1)
+        {
           this.selectedValues.splice(index, 1);
-        else
-          this.selectedValues.push(value)
+          if(value == 'all')
+            this.selectedValues = []
+          else if( allIndex != -1 ) 
+              this.selectedValues.splice(allIndex, 1);
           
+        }
+        else
+        {
+          this.selectedValues.push(value)
+          if(value == 'all' || (this.selectedValues && this.options && this.selectedValues.length  === this.options.length) )
+          { 
+             this.selectedValues= ['all']
+             this.options.map(option => this.selectedValues.push(option[this.optionValue])  )
+          }
+        } 
         if(typeof this.handleChange === 'function') 
               this.handleChange(this.selectedValues)
       }

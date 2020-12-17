@@ -27,11 +27,25 @@ class FavoriteState extends BooleanFilter
         if(count($ids) === 0 )
             return $query;
 
+        if(array_key_exists("no state",$value))
+            $no_state = $value["no state"];
+        else
+            $no_state = false;
+        
         return $query->WhereIn('id', function($query) use ($ids) {
                                   $query->select('favorite_id')
                                         ->from('state_favorite')
                                         ->whereIn('state_id', $ids);
-                                });
+                                })
+                        ->orWhere(function($query) use ($ids,$no_state){
+                            if($no_state)
+                            {
+                                $query->whereNotIn('id',function($query){
+                                    $query->select('favorite_id')
+                                          ->from('state_favorite');
+                                  } );
+                            }
+                        });
     }
 
     /**
@@ -43,6 +57,7 @@ class FavoriteState extends BooleanFilter
     public function options(Request $request)
     {
         $filter = State::pluck('name','name')->toArray();
+        $filter["no state"]="no state"; 
         return $filter;
     }
 }
