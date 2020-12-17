@@ -8,7 +8,7 @@ const actions = {
         if( payload && payload.filters && payload.filters.length && !payload.filters.includes('all'))
         {   
             // make each filter has value "true" and separate them with a ',' for the request
-            const filtersPayload = payload.filters.map(filter=>`"${filter}"`+':1').join()
+            const filtersPayload = payload.filters.map(filter=>`"${filter}":1`).join()
             const filter = `[{"class":"App\\\\Nova\\\\Filters\\\\FavoriteState","value":{${filtersPayload}}}]`
 
             // convert it to base64 and add it to the url
@@ -30,14 +30,9 @@ const actions = {
                           data['deleted_at'] = res && res.data && 
                                               res.data.resources[i] && 
                                               res.data.resources[i].softDeleted ? "Yes" : "No" 
-                        
+
                           if(data['states'])
-                          {
-                              if(data['states'].length === 0)
-                                data['states'] = ''
-                              else
-                                data['states'] = data['states'].map(ele=>ele.name).join()
-                          }
+                            data['states'] = data['states'].length !== 0 ?  data['states'].map(ele=>ele.name).join() : ''
 
                         })
                         
