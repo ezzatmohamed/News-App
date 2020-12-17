@@ -5,8 +5,11 @@
   background-color: #1a66bc;
   list-style: none;
   color:white;
-  border-radius: 5px;
+  border-radius: 8px;
   min-width:200px;
+  margin-bottom: 20px;
+  box-shadow: 10px 10px 5px grey;
+
 }
 .multiselect-title{
   color: rgb(0, 24, 161);

@@ -1,9 +1,16 @@
 .table-row{
     border-width: 1px;
     border-color:#28d;
+    height:100px;
+    max-height: 100px;
 }
 .table-row th{
-    min-width: 100px;
+    
+    width: 250px;
+    max-width:250px;
+    height: 100px;
+    max-height:100px;
+    overflow: auto;
     padding:20px;
     border-width: 1px;
     border-color:#28d;

@@ -2,15 +2,19 @@
     position: relative;
     padding: 20px;
     margin:auto;
+    width:100%;
 
 }
 .table-header th{
     background-color:  #28d;
     color:white;
     padding:20px 0;
-    min-width: 100px;
+    min-width: 250px;
+    max-width:250px;
 }
 .container{
-    max-width: 100%;
+    margin:auto;
+    max-width: 90%;
     overflow: auto;
+    height:600px;
 }
