@@ -5,16 +5,23 @@
         <multiselect-input name="filter" title="Filter Favorites" :options="favoriteFilter" 
                        optionKey="name" optionValue="id"  
                       :handleChange="changeFilter" />
-
+        
+        <p class ="page-number">page: {{page}}</p>
         <favorites-table :columns="columns" 
                          :rowsData="favoritesList"
                                     />
+        <pagination :handleNext="nextPage"
+                    :handlePrev="prevPage"
+                    :isNext="isNext"
+                    :isPrev="isPrev"
+        />
     </div>
 </template>
 
 
 <script>
-import { mapState, mapActions} from 'vuex' 
+import { mapState, mapActions, mapMutations} from 'vuex' 
+
 export default {
     name:"favorites-grid",
     data(){
@@ -40,13 +47,25 @@ export default {
             ...mapState({
                     favoritesList: state => state.favoriteModule.favoritesList,
                     favoriteFilter: state => state.favoriteModule.favoriteFilter,
-                }),
+                    page: state=>state.favoriteModule.page,
+                    isNext:state=>state.favoriteModule.isNext,
+                    isPrev:state=>state.favoriteModule.isPrev,
+                })
     },
     methods:{
-        ...mapActions(['retrieveFavorites','retrieveFilters'],),
-        changeFilter(filters){
-            this.retrieveFavorites({columnAttribute:this.columnAttribute,filters})
+        ...mapActions(['retrieveFavorites','retrieveFilters','getNextPage','getPrevPage','changeFiltersAction'],),
+        // ...mapMutations(['setSelectedFilters']),
+        changeFilter(filters){  
+            this.changeFiltersAction({filters})
+            this.retrieveFavorites({columnAttribute:this.columnAttribute})
+        },
+        nextPage(){
+            this.getNextPage({columnAttribute:this.columnAttribute})
+        },
+        prevPage(){
+            this.getPrevPage({columnAttribute:this.columnAttribute})
         }
+
     },
     beforeMount(){
         this.retrieveFavorites({columnAttribute:this.columnAttribute})
@@ -55,4 +74,3 @@ export default {
 
 }
 </script>
- 

@@ -1,6 +1,6 @@
 
 <template>
-    <button :disabled="disabled" class="form-button" :type="type" >{{text}}</button>
+    <button :disabled="disabled" class="form-button" :type="type" v-on:click="onClick">{{text}}</button>
 </template>
 
 <script>
@@ -19,8 +19,17 @@
       disabled:{
         type:Boolean,
         default:true
+      },
+      handleClick:{
+        type:Function
       }
     },
+    methods:{
+      onClick(){
+          if(typeof this.handleClick === 'function')
+            this.handleClick()
+      }
+    }
   }
 </script>
  

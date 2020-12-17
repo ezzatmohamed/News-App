@@ -1,0 +1,15 @@
+.pagination{
+    width:50%;
+    margin:auto;
+    display:flex;
+    margin-top:5px;
+}
+.page-button{
+    width:10%;
+    margin:5px;
+    margin:auto;
+    word-wrap: break-word;
+}
+.page-number{
+    text-align: center;
+}
