@@ -2,16 +2,15 @@
     <div class="custom-dropdown">
         <p class="multiselect-title">{{title}}</p>
         <ul class="multiselect-dropdown"  v-bind:name ="name" >
-            <li 
+            <list-item-input
                 v-for="option in options" 
                 :key="option[optionKey]" 
-                :value="option[optionValue]"
-                v-bind:class="{'selected-option': selectedValues.includes(option[optionKey])}" 
-                v-on:click="handleClick(option[optionKey])"  
-              >
+                :value="option[optionValue]" 
+                :handleChange="handleClick"
+                :isSelected="selectedValues.includes(option[optionKey])"  
+              />
 
-              {{option[optionKey]}} 
-            </li> 
+      
         </ul>
 
         <span v-if="required">*</span>

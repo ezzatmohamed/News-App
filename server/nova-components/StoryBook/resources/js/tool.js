@@ -1,5 +1,5 @@
 import {favoritesTable} from './components/tables'
-import {linkInput,selectInput,formInput,buttonInput,multiselectInput} from './components/inputs/'
+import {linkInput,selectInput,formInput,buttonInput,multiselectInput,listItemInput} from './components/inputs/'
 import {favoriteForm} from './components/form'
 import row from './components/row/row'
 
@@ -20,7 +20,8 @@ Nova.booting((Vue, router, store) => {
   Vue.component('button-input',buttonInput)
   Vue.component('multiselect-input',multiselectInput)
   Vue.component('favorite-form',favoriteForm)
-
+  Vue.component('list-item-input',listItemInput)
+  
   Vue.component('story-book', require('./components/Tool'))
 })
   
