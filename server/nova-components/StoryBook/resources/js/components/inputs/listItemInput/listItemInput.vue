@@ -42,8 +42,8 @@ import  './listItemInput.css'
       }
     },
     created(){
-      if(typeof this.handleChange === 'function') 
-        this.handleClick()
+      if(typeof this.handleClick === 'function') 
+          this.handleClick()
     }
   }
 </script>
