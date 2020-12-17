@@ -12,21 +12,19 @@ const mutations = {
         state.selectedFilters = value
     },
     nextPage(state){
-        state.page++
+        state.paginationInfo.page++
     },
     prevPage(state){
-        state.page--
+        state.paginationInfo.page--
     },
     resetPage(state){
-        state.page=1
+        state.paginationInfo.page=1
     },
     setIsNext(state,value){
-        state.isNext = value
-        console.log('called')
+        state.paginationInfo.isNext = value
     },
     setIsPrev(state,value){
-        state.isPrev = value
-        console.log(state.IsPrev)
+        state.paginationInfo.isPrev = value
     }
 }
 

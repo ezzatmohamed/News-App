@@ -4,7 +4,7 @@ const actions = {
     
     retrieveFavorites({commit,state},payload){
         
-        let endpoint = `/nova-api/favorites?trashed=with&perPage=${state.perPage}&page=${state.page}`
+        let endpoint = `/nova-api/favorites?trashed=with&perPage=${state.paginationInfo.perPage}&page=${state.paginationInfo.page}`
 
         if(!(state.selectedFilters && state.selectedFilters.length ) )
         {

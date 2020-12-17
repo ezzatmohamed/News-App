@@ -12,8 +12,8 @@
                                     />
         <pagination :handleNext="nextPage"
                     :handlePrev="prevPage"
-                    :isNext="isNext"
-                    :isPrev="isPrev"
+                    :isNext="paginationInfo.isNext"
+                    :isPrev="paginationInfo.isPrev"
         />
     </div>
 </template>
@@ -47,9 +47,7 @@ export default {
             ...mapState({
                     favoritesList: state => state.favoriteModule.favoritesList,
                     favoriteFilter: state => state.favoriteModule.favoriteFilter,
-                    page: state=>state.favoriteModule.page,
-                    isNext:state=>state.favoriteModule.isNext,
-                    isPrev:state=>state.favoriteModule.isPrev,
+                    paginationInfo: state=>state.favoriteModule.paginationInfo,
                 })
     },
     methods:{
