@@ -7,13 +7,11 @@ const actions = {
         let endpoint = '/nova-api/favorites?trashed=with'
         if( payload && payload.filters && payload.filters.length && !payload.filters.includes('all'))
         {   
-            let filters = ""
-            for(let i=0; i < payload.filters.length;i++){
-                filters += `"${ payload.filters[i]}":1`
-                if(i <  payload.filters.length-1)
-                    filters+=","
-            }
-            const filter = `[{"class":"App\\\\Nova\\\\Filters\\\\FavoriteState","value":{${filters}}}]`
+            // make each filter has value "true" and separate them with a ',' for the request
+            const filtersPayload = payload.filters.map(filter=>`"${filter}"`+':1').join()
+            const filter = `[{"class":"App\\\\Nova\\\\Filters\\\\FavoriteState","value":{${filtersPayload}}}]`
+
+            // convert it to base64 and add it to the url
             endpoint += '&filters='+btoa(filter)
         }
 
