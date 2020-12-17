@@ -30,11 +30,10 @@ class FavoriteState extends BooleanFilter
         $no_state = array_key_exists("no state",$value) ? $value["no state"] : false;
         
         return $query->where(function($query) use($ids,$no_state){
-                
                 // Get favorites with the specified states
                 $query->whereHas('states', function($query) use ($ids) {
                             $query->whereIn('state_id',$ids);
-                     })->orWhere(function($query) use ($ids,$no_state){
+                     })->orWhere(function($query) use ($no_state){
                          // Get favorites that have no state
                             if($no_state)
                                 $query->doesntHave('states');
