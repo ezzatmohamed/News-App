@@ -9,6 +9,8 @@ const actions = {
         if(!(state.selectedFilters && state.selectedFilters.length ) )
         {
             commit('setFavoritesList',[])
+            commit('setIsNext',false)
+            commit('setIsPrev',false)
             return
         }
         if( state && state.selectedFilters && state.selectedFilters.length && !state.selectedFilters.includes('all'))
