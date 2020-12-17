@@ -89,18 +89,7 @@ class Favorite extends Resource
             })->onlyOnIndex(),
 
             Text::make('states','states', function () {
-                $states = "";
-                if($this->states )
-                {
-                    for($i=0;$i<count($this->states);$i++)
-                    {
-                        $states .= $this->states[$i]->name;
-                        if($i < count($this->states)-1)
-                            $states .= ',';
-                    }
-
-                }
-                return $states;
+                return $this->states;
             })->onlyOnIndex(),
 
             ];

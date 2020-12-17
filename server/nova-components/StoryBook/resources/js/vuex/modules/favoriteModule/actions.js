@@ -32,7 +32,18 @@ const actions = {
                           data['deleted_at'] = res && res.data && 
                                               res.data.resources[i] && 
                                               res.data.resources[i].softDeleted ? "Yes" : "No" 
+                        
+                          if(data['states'])
+                          {
+                              if(data['states'].length === 0)
+                                data['states'] = ''
+                              else
+                                data['states'] = data['states'].map(ele=>ele.name).join()
+                          }
+
                         })
+                        
+
                     }
                     commit('setFavoritesList',favorites)
                     
