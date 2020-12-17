@@ -85,15 +85,23 @@ import  './multiselectInput.css'
         else
         {
           this.selectedValues.push(value)
-          if(value == 'all' || (this.selectedValues && this.options && this.selectedValues.length  === this.options.length) )
-          { 
-             this.selectedValues= ['all']
-             this.options.map(option => this.selectedValues.push(option[this.optionValue])  )
-          }
+          if(value == 'all' || (this.selectedValues && this.options && this.selectedValues.length  === this.options.length) ) 
+            this.selectAll()
+          
         } 
         if(typeof this.handleChange === 'function') 
               this.handleChange(this.selectedValues)
+      },
+      selectAll()
+      {
+        this.selectedValues = ['all']
+        this.options.map(option=> this.selectedValues.push(option[this.optionValue]))
       }
+
+    },
+    created(){
+        this.selectAll()
+        this.handleChange(this.selectedValues)
     }
   }
 </script>

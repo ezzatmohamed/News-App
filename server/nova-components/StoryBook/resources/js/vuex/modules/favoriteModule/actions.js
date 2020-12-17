@@ -5,6 +5,11 @@ const actions = {
     retrieveFavorites({commit},payload){
 
         let endpoint = '/nova-api/favorites?trashed=with'
+        if(!(payload.filters && payload.filters.length) )
+        {
+            commit('setFavoritesList',[])
+            return
+        }
         if( payload && payload.filters && payload.filters.length && !payload.filters.includes('all'))
         {   
             // make each filter has value "true" and separate them with a ',' for the request
@@ -33,7 +38,7 @@ const actions = {
 
                           if(data['states'])
                             data['states'] = data['states'].length !== 0 ?  data['states'].map(ele=>ele.name).join() : ''
-
+                            
                         })
                         
 

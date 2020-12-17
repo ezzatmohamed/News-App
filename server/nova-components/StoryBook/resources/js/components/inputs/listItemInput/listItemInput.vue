@@ -40,6 +40,9 @@ import  './listItemInput.css'
         if(typeof this.handleChange === 'function') 
               this.handleChange(this.value)
       }
+    },
+    created(){
+      this.handleClick()
     }
   }
 </script>

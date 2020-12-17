@@ -48,7 +48,7 @@ export default {
             this.retrieveFavorites({columnAttribute:this.columnAttribute,filters})
         }
     },
-    created(){
+    beforeMount(){
         this.retrieveFavorites({columnAttribute:this.columnAttribute})
         this.retrieveFilters()
     },
