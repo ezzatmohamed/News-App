@@ -11,5 +11,8 @@
     word-wrap: break-word;
 }
 .page-number{
+    font-size:20px;
     text-align: center;
+    color:#28d;
+    font-weight: 800;
 }

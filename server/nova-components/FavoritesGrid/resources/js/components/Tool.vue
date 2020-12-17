@@ -6,7 +6,6 @@
                        optionKey="name" optionValue="id"  
                       :handleChange="changeFilter" />
         
-        <p class ="page-number">page: {{page}}</p>
         <favorites-table :columns="columns" 
                          :rowsData="favoritesList"
                                     />
@@ -14,13 +13,14 @@
                     :handlePrev="prevPage"
                     :isNext="paginationInfo.isNext"
                     :isPrev="paginationInfo.isPrev"
+                    :currentPage="paginationInfo.page"
         />
     </div>
 </template>
 
 
 <script>
-import { mapState, mapActions, mapMutations} from 'vuex' 
+import { mapState, mapActions} from 'vuex' 
 
 export default {
     name:"favorites-grid",
@@ -52,7 +52,6 @@ export default {
     },
     methods:{
         ...mapActions(['retrieveFavorites','retrieveFilters','getNextPage','getPrevPage','changeFiltersAction'],),
-        // ...mapMutations(['setSelectedFilters']),
         changeFilter(filters){  
             this.changeFiltersAction({filters})
             this.retrieveFavorites({columnAttribute:this.columnAttribute})

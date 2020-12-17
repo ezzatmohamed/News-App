@@ -1,13 +1,16 @@
 <template>
-    
-    <div class = "pagination">
-        
-        <div class="page-button page-prev">
-            <button-input text="Prev" :disabled="!isPrev" type="button" :handleClick="onPrev"/>
+    <div>
+        <div class = "pagination">
+
+            <div class="page-button page-prev">
+                <button-input text="Prev" :disabled="!isPrev" type="button" :handleClick="onPrev"/>
+            </div>
+            <div class="page-button page-next">
+                <button-input text="Next" :disabled="!isNext" type="button" :handleClick="onNext"/>
+            </div>
         </div>
-        <div class="page-button page-next">
-            <button-input text="Next" :disabled="!isNext" type="button" :handleClick="onNext"/>
-        </div>
+
+        <p class ="page-number">Page: {{currentPage}}</p>
     </div>
             
 </template>
@@ -16,6 +19,10 @@
   export default {
     name:"pagination",
     props:{
+        currentPage:{
+            type:String,
+            default:""
+        },
         handleNext:{
             type:Function
         },
