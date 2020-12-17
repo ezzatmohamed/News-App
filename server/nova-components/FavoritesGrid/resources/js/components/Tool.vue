@@ -53,20 +53,26 @@ export default {
     methods:{
         ...mapActions(['retrieveFavorites','retrieveFilters','getNextPage','getPrevPage','changeFiltersAction'],),
         changeFilter(filters){  
-            this.changeFiltersAction({filters})
-            this.retrieveFavorites({columnAttribute:this.columnAttribute})
+            if(typeof this.changeFiltersAction === 'function')
+                this.changeFiltersAction({filters})
+            if(typeof this.retrieveFavorites === 'function')
+                this.retrieveFavorites({columnAttribute:this.columnAttribute})
         },
         nextPage(){
-            this.getNextPage({columnAttribute:this.columnAttribute})
+            if(typeof this.getNextPage === 'function')
+                this.getNextPage({columnAttribute:this.columnAttribute})
         },
         prevPage(){
-            this.getPrevPage({columnAttribute:this.columnAttribute})
+            if(typeof this.getPrevPage === 'function')
+                this.getPrevPage({columnAttribute:this.columnAttribute})
         }
 
     },
     beforeMount(){
-        this.retrieveFavorites({columnAttribute:this.columnAttribute})
-        this.retrieveFilters()
+        if(typeof this.retrieveFavorites === 'function')
+            this.retrieveFavorites({columnAttribute:this.columnAttribute})
+        if(typeof this.retrieveFilters === 'function')
+            this.retrieveFilters()
     },
 
 }
