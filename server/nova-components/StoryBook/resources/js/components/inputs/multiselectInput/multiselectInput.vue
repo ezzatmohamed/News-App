@@ -101,7 +101,7 @@ import  './multiselectInput.css'
     },
     created(){
         this.selectAll()
-        if(typeof this.handleClick === 'function')
+        if(typeof this.handleChange === 'function')
           this.handleChange(this.selectedValues)
     }
   }
