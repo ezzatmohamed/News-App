@@ -4,7 +4,10 @@
     margin: auto;
     display: flex;
 }
-
+.grid-filter{
+    margin:0;
+    padding:0;
+}
 .grid-create {
     position: absolute;
     bottom: 0;

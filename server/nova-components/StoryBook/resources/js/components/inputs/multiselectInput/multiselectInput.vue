@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-dropdown">
+  <div class="dropdown-container">
     <p class="multiselect-title">{{title}}</p>
     <ul class="multiselect-dropdown" v-bind:name="name">
       <list-item-input
