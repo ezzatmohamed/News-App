@@ -2,7 +2,7 @@
 
 Nova.booting((Vue, router, store) => {
 
-  
+
   router.addRoutes([
     {
       name: 'create-favorite',

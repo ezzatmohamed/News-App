@@ -1,66 +1,90 @@
 <template>
-    <div>
-        <link-input  link="create-favorite"  text="Create New Favorite" />
-        <favorites-table :columns="columns" 
-                         :rowsData="rowsData"
-                                    />
-
+  <div>
+    <div class="grid-tools">
+      <div class="grid-filter">
+        <multiselect-input
+          name="filter"
+          title="Filter Favorites"
+          :options="favoriteFilter"
+          optionKey="name"
+          optionValue="id"
+          :handleChange="changeFilter"
+        />
+      </div>
+      <div class="grid-create">
+        <link-input link="create-favorite" text="Create New Favorite" />
+      </div>
     </div>
+    <favorites-table :columns="columns" :rowsData="favoritesList" />
+    <pagination
+      :handleNext="nextPage"
+      :handlePrev="prevPage"
+      :isNext="paginationInfo.isNext"
+      :isPrev="paginationInfo.isPrev"
+      :currentPage="paginationInfo.page"
+    />
+  </div>
 </template>
 
 
 <script>
-import {parseNovaApi} from './../../../../StoryBook/resources/js/helpers'
-
+import { mapState, mapActions } from "vuex";
+import "./Tool.css";
 export default {
-    name:"favorites-grid",
-    data(){
-        return{
-            rowsData:[],
-            columns:{
-                        title:'Title',
-                        url:'Url',
-                        urlToImage:'Image',
-                        description:'Description',
-                        author:'Author',
-                        publishedAt:'Date',
-                        user:'Username',
-                        email:'Email',
-                        deleted_at:'Is Deleted'
-                    }
-        }
+  name: "favorites-grid",
+  data() {
+    return {
+      columns: {
+        title: "Title",
+        url: "Url",
+        urlToImage: "Image",
+        description: "Description",
+        author: "Author",
+        publishedAt: "Date",
+        user: "Username",
+        email: "Email",
+        deleted_at: "Is Deleted",
+        states: "states"
+      }
+    };
+  },
+  computed: {
+    columnAttribute() {
+      return Object.keys(this.columns);
     },
-    created(){
-        // Get Column Attribute from columns titles
-        let columnAttribute = []
-        for( let key in this.columns)
-            columnAttribute.push(key)
-
-        Nova.request()
-            .get('/nova-api/favorites?trashed=with')
-            .then(res=>{    
-                if(res)
-                {
-                    const favorites = parseNovaApi(res,columnAttribute)
-                    this.rowsData = favorites ? favorites : []
-                    
-                    if(Array.isArray(this.rowsData))
-                    {
-                        this.rowsData.forEach((data,i)=>{
-                          
-                          data['deleted_at'] = res && res.data && 
-                                              res.data.resources[i] && 
-                                              res.data.resources[i].softDeleted ? "Yes" : "No" 
-                        })
-                    }
-
-                } 
-            })
-            .catch(err=>{
-                Nova.error("Error fetching favorites")
-            })
+    ...mapState({
+      favoritesList: state => state.favoriteModule.favoritesList,
+      favoriteFilter: state => state.favoriteModule.favoriteFilter,
+      paginationInfo: state => state.favoriteModule.paginationInfo
+    })
+  },
+  methods: {
+    ...mapActions([
+      "retrieveFavorites",
+      "retrieveFilters",
+      "getNextPage",
+      "getPrevPage",
+      "changeFiltersAction"
+    ]),
+    changeFilter(filters) {
+      if (typeof this.changeFiltersAction === "function")
+        this.changeFiltersAction({ filters });
+      if (typeof this.retrieveFavorites === "function")
+        this.retrieveFavorites({ columnAttribute: this.columnAttribute });
     },
-
-}
+    nextPage() {
+      if (typeof this.getNextPage === "function")
+        this.getNextPage({ columnAttribute: this.columnAttribute });
+    },
+    prevPage() {
+      if (typeof this.getPrevPage === "function")
+        this.getPrevPage({ columnAttribute: this.columnAttribute });
+    }
+  },
+  beforeMount() {
+    if (typeof this.retrieveFavorites === "function")
+      this.retrieveFavorites({ columnAttribute: this.columnAttribute });
+    if (typeof this.retrieveFilters === "function") this.retrieveFilters();
+  }
+};
 </script>
- 

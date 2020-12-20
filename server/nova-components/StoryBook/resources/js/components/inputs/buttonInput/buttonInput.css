@@ -1,5 +1,4 @@
-
-.form-button  {
+.form-button {
     box-sizing: border-box;
     display: block;
     width: 100%;
@@ -19,13 +18,13 @@
 .form-button:hover {
     background: #17c;
 }
+
 .form-button:focus {
     border-color: #05a;
 }
 
-.form-button:disabled,
-.form-button[disabled]{
-  background-color: #cccccc;
-  color: #666666;
-  cursor: default;
+.form-button:disabled, .form-button[disabled] {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: default;
 }

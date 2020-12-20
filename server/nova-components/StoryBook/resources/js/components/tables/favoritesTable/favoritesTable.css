@@ -1,15 +1,27 @@
-.table-container{
+.table-container {
     position: relative;
     padding: 20px;
-    margin:auto;
+    margin: auto;
+    width: 100%;
+    max-height: 560px;
+    overflow-y: auto;
+}
 
+.table-header th {
+    background-color: #28d;
+    color: white;
+    padding: 20px 0;
+    max-height: 100px;
+    overflow-y: auto;
+    min-width: 40px;
+    max-width: 40px;
+    border-width: 1px;
+    border-color: #28d;
 }
-.table-header th{
-    background-color:  #28d;
-    color:white;
-    padding:20px 0;
-}
-.container{
+
+.container {
     max-width: 100%;
-    overflow: auto;
+    height: 560px;
+    max-height: 560px;
+    overflow-y: auto;
 }

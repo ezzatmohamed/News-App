@@ -1,1 +1,1 @@
-export {default as favoritesTable} from './favoritesTable/favoritesTable'
+export { default as favoritesTable } from './favoritesTable/favoritesTable'

@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  props: ['resourceName', 'resourceId', 'panel'],
+  props: ["resourceName", "resourceId", "panel"],
 
   mounted() {
     //
-  },
-}
+  }
+};
 </script>

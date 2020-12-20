@@ -23,4 +23,9 @@ class Favorite extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function states() 
+    {
+        return $this->belongsToMany('App\Models\State','state_favorite');
+    }
 }

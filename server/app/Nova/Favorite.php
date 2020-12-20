@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class Favorite extends Resource
 {
@@ -22,7 +24,7 @@ class Favorite extends Resource
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'url';
     public static $with = ['user'];
 
     /**
@@ -77,12 +79,17 @@ class Favorite extends Resource
             ->sortable()
             ->rules('required', 'max:255'),
 
-
             BelongsTo::make('User'),
+
+            BelongsToMany::make('States'),
 
             Text::make('email','email', function () {
                 if($this->user&& $this->user->email)
                     return $this->user->email;
+            })->onlyOnIndex(),
+
+            Text::make('states','states', function () {
+                return $this->states;
             })->onlyOnIndex(),
 
             ];
@@ -90,7 +97,7 @@ class Favorite extends Resource
 
     // Return all favorites for admin but for regulars,return only their favorites
     public static function indexQuery(NovaRequest $request, $query)
-    {
+    {  
         if( $request->user()->isAn('admin') )
             return $query;
         return $query->where('user_id', $request->user()->id);
@@ -125,7 +132,8 @@ class Favorite extends Resource
         return [
             new Filters\FavoriteByUser,
             new Filters\CreatedBefore,
-            new Filters\CreatedAfter
+            new Filters\CreatedAfter,
+            new Filters\FavoriteState,
         ];
     }
 

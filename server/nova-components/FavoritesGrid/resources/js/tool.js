@@ -6,5 +6,5 @@ Nova.booting((Vue, router, store) => {
       path: '/favorites-grid',
       component: require('./components/Tool'),
     },
-  ]) 
+  ])
 })

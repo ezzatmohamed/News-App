@@ -1,18 +1,25 @@
-.table-row{
+.table-row {
     border-width: 1px;
-    border-color:#28d;
+    border-color: #28d;
+    height: 100px;
+    max-height: 100px;
 }
-.table-row th{
-    min-width: 100px;
-    padding:20px;
-    border-width: 1px;
-    border-color:#28d;
-    word-break: break-all;
 
+.table-row th {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    height: 100px;
+    max-height: 100px;
+    overflow: auto;
+    padding: 5px;
+    border-width: 1px;
+    border-color: #28d;
+    word-break: break-all;
 }
-.table-row span{
-    color:red;
+
+.table-row span {
+    color: red;
     font-size: 13px;
     word-break: normal;
-
 }
