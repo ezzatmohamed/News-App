@@ -82,9 +82,9 @@ export default {
       "retrieveFilters",
       "getNextPage",
       "getPrevPage",
-      "changeFiltersAction"
+      "changeFiltersAction",
+      "searchAction"
     ]),
-    ...mapMutations(["setSearchQuery"]),
     changeFilter(filters) {
       if (typeof this.changeFiltersAction === "function")
         this.changeFiltersAction({ filters });
@@ -100,8 +100,11 @@ export default {
         this.getPrevPage({ columnAttribute: this.columnAttribute });
     },
     handleSearch(value) {
-      if (typeof this.setSearchQuery === "function") this.setSearchQuery(value);
-      this.retrieveFavorites({ columnAttribute: this.columnAttribute });
+      if (typeof this.searchAction === "function")
+        this.searchAction({
+          columnAttribute: this.columnAttribute,
+          searchQuery: value
+        });
     }
   },
   beforeMount() {

@@ -78,6 +78,11 @@ const actions = {
     getPrevPage({ commit, dispatch }, payload) {
         commit('prevPage')
         dispatch('retrieveFavorites', payload)
+    },
+    searchAction({ commit, dispatch }, payload){
+        commit('resetPage')
+        commit('setSearchQuery',payload.searchQuery)
+        dispatch('retrieveFavorites', payload)
     }
 
 }
