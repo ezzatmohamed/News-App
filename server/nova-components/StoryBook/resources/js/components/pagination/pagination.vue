@@ -5,12 +5,14 @@
             <div class="page-button page-prev">
                 <button-input text="Prev" :disabled="!isPrev" type="button" :handleClick="onPrev"/>
             </div>
+
+            <p class ="page-number">Page: {{currentPage}}</p>
+            
             <div class="page-button page-next">
                 <button-input text="Next" :disabled="!isNext" type="button" :handleClick="onNext"/>
             </div>
         </div>
 
-        <p class ="page-number">Page: {{currentPage}}</p>
     </div>
             
 </template>
