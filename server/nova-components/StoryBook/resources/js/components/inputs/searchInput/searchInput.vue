@@ -32,10 +32,10 @@ export default {
     }
   },
   methods: {
-    onChange(e) {
+    onChange: _.debounce(function(e) {
       if (typeof this.handleChange === "function")
         this.handleChange(e.target.value);
-    }
+    }, 500)
   }
 };
 </script>

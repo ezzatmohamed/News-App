@@ -14,13 +14,11 @@
 import "./noResult.css";
 export default {
   name: "no-result",
-  props:{
-      value:{
-          type:String,
-          default:""
-      }
+  props: {
+    value: {
+      type: String,
+      default: ""
+    }
   }
- 
-
 };
 </script>
