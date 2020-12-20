@@ -1,8 +1,7 @@
-
 .custom-dropdown {
   display: inline-block;
-  margin:auto;
-  padding:10px;
+  margin: auto;
+  padding: 10px;
 }
 
 .custom-dropdown select {
@@ -10,12 +9,13 @@
   color: #fff;
   font-size: inherit;
   padding: .5em;
-  padding-right: 2.5em;	
+  padding-right: 2.5em;
   border-radius: 3px;
   text-indent: 0.01px;
   text-overflow: '';
   -webkit-appearance: button;
 }
-.custom-dropdown span{
-  color:red;
-} 
+
+.custom-dropdown span {
+  color: red;
+}

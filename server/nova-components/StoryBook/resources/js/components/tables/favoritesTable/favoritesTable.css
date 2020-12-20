@@ -1,20 +1,21 @@
-.table-container{
+.table-container {
     position: relative;
     padding: 20px;
-    margin:auto;
-    width:100%;
+    margin: auto;
+    width: 100%;
+}
 
-}
-.table-header th{
-    background-color:  #28d;
-    color:white;
-    padding:20px 0;
+.table-header th {
+    background-color: #28d;
+    color: white;
+    padding: 20px 0;
     min-width: 250px;
-    max-width:250px;
+    max-width: 250px;
 }
-.container{
-    margin:auto;
+
+.container {
+    margin: auto;
     max-width: 90%;
     overflow: auto;
-    height:600px;
+    height: 600px;
 }

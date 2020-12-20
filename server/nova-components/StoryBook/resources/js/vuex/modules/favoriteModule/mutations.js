@@ -2,28 +2,28 @@ import state from "./state"
 
 const mutations = {
 
-    setFavoritesList(state,favorites){
+    setFavoritesList(state, favorites) {
         state.favoritesList = favorites
     },
-    setFavoriteFilter(state,value){
+    setFavoriteFilter(state, value) {
         state.favoriteFilter = value
     },
-    setSelectedFilters(state,value){
+    setSelectedFilters(state, value) {
         state.selectedFilters = value
     },
-    nextPage(state){
+    nextPage(state) {
         state.paginationInfo.page++
     },
-    prevPage(state){
+    prevPage(state) {
         state.paginationInfo.page--
     },
-    resetPage(state){
-        state.paginationInfo.page=1
+    resetPage(state) {
+        state.paginationInfo.page = 1
     },
-    setIsNext(state,value){
+    setIsNext(state, value) {
         state.paginationInfo.isNext = value
     },
-    setIsPrev(state,value){
+    setIsPrev(state, value) {
         state.paginationInfo.isPrev = value
     }
 }

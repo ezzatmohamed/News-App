@@ -1,1 +1,1 @@
-export {default as favoriteForm} from './favoriteForm/favoriteForm'
+export { default as favoriteForm } from './favoriteForm/favoriteForm'

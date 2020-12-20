@@ -1,6 +1,6 @@
 const mutations = {
 
-    setUsersList(state,users){
+    setUsersList(state, users) {
         state.usersList = users
     },
 

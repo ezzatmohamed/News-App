@@ -1,16 +1,17 @@
-.form-container{
-    width:50%;
+.form-container {
+    width: 50%;
     position: relative;
-    padding:20px;
-    margin:auto;
+    padding: 20px;
+    margin: auto;
     text-align: center;
 }
-.form-container form{
+
+.form-container form {
     background-color: #ebebeb;
     padding: 2px;
 }
 
-.form-title{
+.form-title {
     background: #252d37;
     padding: 7px;
     font-size: 17px;
@@ -18,13 +19,14 @@
     text-transform: uppercase;
     color: #fff;
 }
+
 .error-box {
     padding: 10px;
-    background-color: rgb(175, 76, 76); 
+    background-color: rgb(175, 76, 76);
     color: white;
     margin-bottom: 15px;
-    width:80%;
-    margin:5px auto;
+    width: 80%;
+    margin: 5px auto;
     border-radius: 6px;
     text-align: center;
     display: block;

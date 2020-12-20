@@ -1,17 +1,18 @@
-.grid-tools{
-    position:relative;
-    width:90%;
-    margin:auto;
+.grid-tools {
+    position: relative;
+    width: 90%;
+    margin: auto;
     display: flex;
 }
-.grid-create{
+
+.grid-create {
     position: absolute;
-    bottom:0;
-    right:0;
+    bottom: 0;
+    right: 0;
     min-width: 100px;
 }
-.grid-create a{
-    float:right;
-    margin-bottom:10px;
-}
 
+.grid-create a {
+    float: right;
+    margin-bottom: 10px;
+}
