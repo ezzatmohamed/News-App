@@ -25,6 +25,9 @@ const mutations = {
     },
     setIsPrev(state, value) {
         state.paginationInfo.isPrev = value
+    },
+    setSearchQuery(state, value) {
+        state.searchQuery = value
     }
 }
 

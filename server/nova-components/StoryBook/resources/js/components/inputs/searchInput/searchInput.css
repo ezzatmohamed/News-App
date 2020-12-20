@@ -1,0 +1,9 @@
+.search-box input {
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(26 102 188);
+  padding: 11px;
+  font-family: inherit;
+  border-radius: 10px;
+}
