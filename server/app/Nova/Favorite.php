@@ -33,7 +33,10 @@ class Favorite extends Resource
      * @var array
      */
     public static $search = [
-        'id','description','title','author'
+        'title','author'
+    ];
+    public static $searchRelations = [
+        'user' => ['email'],
     ];
 
     /**

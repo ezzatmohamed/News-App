@@ -37,14 +37,15 @@
         "laravel/framework": "^8.12",
         "laravel/nova": "*",
         "laravel/tinker": "^2.5",
-        "silber/bouncer": "v1.0.0-rc.9",
-        "tymon/jwt-auth": "^1.0",
-        "yadahan/nova-bouncer": "^0.6.0",
         "newsapp/create-favorite": "*",
-        "newsapp/test-tool": "*",
         "newsapp/favorites-grid": "*",
+        "newsapp/story-book": "*",
+        "newsapp/test-tool": "*",
+        "silber/bouncer": "v1.0.0-rc.9",
+        "titasgailius/search-relations": "^1.0",
+        "tymon/jwt-auth": "^1.0",
         "venturecraft/revisionable": "1.*",
-        "newsapp/story-book": "*"
+        "yadahan/nova-bouncer": "^0.6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
