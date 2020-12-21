@@ -11,12 +11,23 @@
           :handleChange="changeFilter"
         />
       </div>
-      <div class="grid-create">
-        <link-input link="create-favorite" text="Create New Favorite" />
+      
+        <div class="search-bar">
+          <search-input
+            title="search by Title, Author or user's email"
+            :value="searchQuery"
+            :handleChange="handleSearch"
+          />
+        </div>
+        <div class="grid-create">
+          <link-input link="create-favorite" text="Create New Favorite" />
+        </div>
       </div>
-    </div>
-    <favorites-table :columns="columns" :rowsData="favoritesList" />
+    
+    <no-result :value="searchQuery" v-if="noResult" />
+    <favorites-table :columns="columns" :rowsData="favoritesList" v-if="!noResult" />
     <pagination
+      v-if="!noResult"
       :handleNext="nextPage"
       :handlePrev="prevPage"
       :isNext="paginationInfo.isNext"
@@ -28,7 +39,7 @@
 
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 import "./Tool.css";
 export default {
   name: "favorites-grid",
@@ -55,8 +66,17 @@ export default {
     ...mapState({
       favoritesList: state => state.favoriteModule.favoritesList,
       favoriteFilter: state => state.favoriteModule.favoriteFilter,
-      paginationInfo: state => state.favoriteModule.paginationInfo
-    })
+      paginationInfo: state => state.favoriteModule.paginationInfo,
+      searchQuery: state => state.favoriteModule.searchQuery
+    }),
+    noResult() {
+      return (
+        typeof this.searchQuery !== "undefined" &&
+        this.searchQuery.length &&
+        this.favoritesList &&
+        !this.favoritesList.length
+      );
+    }
   },
   methods: {
     ...mapActions([
@@ -64,7 +84,8 @@ export default {
       "retrieveFilters",
       "getNextPage",
       "getPrevPage",
-      "changeFiltersAction"
+      "changeFiltersAction",
+      "searchAction"
     ]),
     changeFilter(filters) {
       if (typeof this.changeFiltersAction === "function")
@@ -79,6 +100,13 @@ export default {
     prevPage() {
       if (typeof this.getPrevPage === "function")
         this.getPrevPage({ columnAttribute: this.columnAttribute });
+    },
+    handleSearch(value) {
+      if (typeof this.searchAction === "function")
+        this.searchAction({
+          columnAttribute: this.columnAttribute,
+          searchQuery: value
+        });
     }
   },
   beforeMount() {

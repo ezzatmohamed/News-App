@@ -1,9 +1,9 @@
 import { favoritesTable } from './components/tables'
-import { linkInput, selectInput, formInput, buttonInput, multiselectInput, listItemInput } from './components/inputs/'
+import { linkInput, selectInput, formInput, buttonInput, multiselectInput, listItemInput, searchInput } from './components/inputs/'
 import { favoriteForm } from './components/form'
 import row from './components/row/row'
 import pagination from './components/pagination/pagination'
-
+import noResult from './components/noResult/noResult'
 import { favoriteModule, createFavoriteModule, userModule } from './vuex/modules/'
 
 
@@ -20,9 +20,11 @@ Nova.booting((Vue, router, store) => {
   Vue.component('form-input', formInput)
   Vue.component('button-input', buttonInput)
   Vue.component('multiselect-input', multiselectInput)
+  Vue.component('search-input', searchInput)
   Vue.component('favorite-form', favoriteForm)
   Vue.component('list-item-input', listItemInput)
   Vue.component('pagination', pagination)
+  Vue.component('no-result', noResult)
 
 
 

@@ -1,23 +1,11 @@
 .grid-tools {
-    position: relative;
     width: 100%;
     margin: auto;
     display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
-.grid-filter {
-    margin: 0;
-    padding: 0;
-}
-
-.grid-create {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    min-width: 100px;
-}
-
-.grid-create a {
-    float: right;
-    margin-bottom: 10px;
+.search-bar {
+    min-width: 350px;
 }

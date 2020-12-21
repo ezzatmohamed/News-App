@@ -8,7 +8,8 @@ const state = () => ({
         perPage: 5,
         isNext: false,
         isPrev: false,
-    }
+    },
+    searchQuery: ""
 
 })
 

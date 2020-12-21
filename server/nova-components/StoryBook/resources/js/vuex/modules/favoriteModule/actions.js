@@ -5,6 +5,7 @@ const actions = {
     retrieveFavorites({ commit, state }, payload) {
 
         let endpoint = `/nova-api/favorites?trashed=with&perPage=${state.paginationInfo.perPage}&page=${state.paginationInfo.page}`
+        endpoint += `&search=${state.searchQuery}`
 
         if (!(state.selectedFilters && state.selectedFilters.length)) {
             commit('setFavoritesList', [])
@@ -76,6 +77,11 @@ const actions = {
     },
     getPrevPage({ commit, dispatch }, payload) {
         commit('prevPage')
+        dispatch('retrieveFavorites', payload)
+    },
+    searchAction({ commit, dispatch }, payload) {
+        commit('resetPage')
+        commit('setSearchQuery', payload.searchQuery)
         dispatch('retrieveFavorites', payload)
     }
 
