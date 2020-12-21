@@ -36,6 +36,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
         "laravel/nova": "*",
+        "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.5",
         "newsapp/create-favorite": "*",
         "newsapp/favorites-grid": "*",
