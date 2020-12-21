@@ -11,17 +11,19 @@
           :handleChange="changeFilter"
         />
       </div>
-      <div class="search-bar">
-        <search-input
-          title="search by Title, Author or user's email"
-          :value="searchQuery"
-          :handleChange="handleSearch"
-        />
+      
+        <div class="search-bar">
+          <search-input
+            title="search by Title, Author or user's email"
+            :value="searchQuery"
+            :handleChange="handleSearch"
+          />
+        </div>
+        <div class="grid-create">
+          <link-input link="create-favorite" text="Create New Favorite" />
+        </div>
       </div>
-      <div class="grid-create">
-        <link-input link="create-favorite" text="Create New Favorite" />
-      </div>
-    </div>
+    
     <no-result :value="searchQuery" v-if="noResult" />
     <favorites-table :columns="columns" :rowsData="favoritesList" v-if="!noResult" />
     <pagination

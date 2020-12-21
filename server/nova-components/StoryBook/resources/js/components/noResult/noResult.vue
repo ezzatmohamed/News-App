@@ -2,7 +2,7 @@
   <div class="no-result">
     <h1>No Result Found</h1>
     <p>
-      Sorry, but nothing matched your search of {{value}}.
+      Sorry, but nothing matched your search of "{{value}}".
       Please try again with some different keywords.
     </p>
   </div>
