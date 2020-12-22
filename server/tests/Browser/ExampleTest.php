@@ -24,8 +24,9 @@ class ExampleTest extends DuskTestCase
             //         ->text('url','www.google3.com')
             //         ->select('user','1')
             //         ->press('Create');
-            $browser->visit('/nova/login')
-                    ->assertSee('Welcome Back!');
+            $browser->visit('/nova/login')->assertSee('Welcome Back!');
+            $url = $browser->driver->getCurrentURL();
+            $this->assertEquals('/nova/login', $url);
         });
     }
 }
