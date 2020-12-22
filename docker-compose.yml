@@ -44,3 +44,14 @@ services:
             - "9000:9000"
         networks: 
             - app
+
+    selenium:
+        image: selenium/standalone-chrome:3.11.0-antimony
+        depends_on:
+            - webserver
+        links:
+            - webserver:app.test
+        volumes:
+            - /dusk:/dev/shm
+        networks:
+            - app
