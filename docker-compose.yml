@@ -50,7 +50,7 @@ services:
         depends_on:
             - webserver
         links:
-            - webserver:app.test
+            - webserver:dusktest
         ports:
             - 4444:4444
         volumes:
