@@ -46,14 +46,8 @@ services:
             - app
 
     selenium:
-        image: selenium/standalone-chrome:3.11.0-antimony
-        depends_on:
-            - webserver
+        image: selenium/standalone-chrome
         links:
             - webserver:dusktest
-        ports:
-            - 4444:4444
-        volumes:
-            - ./dusk:/dev/shm
         networks:
             - app
