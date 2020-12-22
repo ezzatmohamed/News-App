@@ -51,7 +51,9 @@ services:
             - webserver
         links:
             - webserver:app.test
+        ports:
+            - 4444:4444
         volumes:
-            - /dusk:/dev/shm
+            - ./dusk:/dev/shm
         networks:
             - app
